@@ -59,6 +59,7 @@ enum {
     EMP_L1_BITS,
     EMP_L1_CBSUM_L2,
     EMP_L2_MULTI_BITS,
+    EMP_TAGGSC_LIVE_CORR,
     EMP_PID_DROOP_CORR,
     EMP_LAST_EVENT,
     EMP_TAPS_PSA_DATA,
@@ -106,6 +107,7 @@ static const Map_t myPhysicsConfigKeys[] = {
     {"L1-Bits:"                      , EMP_L1_BITS},                        // key for the L1 trigger bits
     {"L1-CBSum-in-L2:"               , EMP_L1_CBSUM_L2},                    // key for the CB sum L1->L2 trigger toggle
     {"L2-Multi-Bits:"                , EMP_L2_MULTI_BITS},                  // key for the L2 trigger multiplicity bits
+    {"TaggSc-Live-Corr:"             , EMP_TAGGSC_LIVE_CORR},               // key for the relative tagger scalers livetime correction
     {"PID-Droop-Corr:"               , EMP_PID_DROOP_CORR},                 // key for PID droop correction
     {"Last-Event:"                   , EMP_LAST_EVENT},                     // key for the last event
     {"TAPS-PSA-Data:"                , EMP_TAPS_PSA_DATA},                  // key for TAPS PSA data file
@@ -131,8 +133,6 @@ private:
     Long64_t fLastEvent;                                    // last event to analyze
     TH1* fH_EventInfo;                                      // general event information
     TH2* fH_ErrorInfo;                                      // hardware error information (error code vs module index)
-    TH1* fH_Corrected_Scalers;                              // overflow corrected current scalers
-    TH1* fH_Corrected_SumScalers;                           // overflow corrected accumulated scalers
     TH1* fH_MCVertX;                                        // MC vertex x-coordinate
     TH1* fH_MCVertY;                                        // MC vertex y-coordinate
     TH1* fH_MCVertZ;                                        // MC vertex z-coordinate
@@ -148,7 +148,12 @@ private:
     TOKinCut** fBadParticleCuts;                            // list of bad particle cuts
 
     // ----------------------------------- Scalers ----------------------------------- 
-    Double_t* fOldScalerSum;                                // used to avoid double sum scaler addition
+    Bool_t fIsTaggScLiveCorr;                               // flag for relative tagger scalers livetime correction
+    Int_t fScCBLive;                                        // CB live scaler
+    Int_t fScCBFree;                                        // CB free scaler
+    Int_t fScTaggLive;                                      // tagger live scaler
+    Int_t fScTaggFree;                                      // tagger free scaler
+    Int_t fScP2;                                            // P2 scaler
     
     // ------------------------------- Bad scaler reads ------------------------------ 
     Int_t fNBadScalerReads;                                 // number of bad scaler reads
@@ -156,6 +161,11 @@ private:
     Bool_t fIsBadScalerSkip;                                // flag for skipping events
     TH1* fH_BadScR_SumScalers;                              // sum scalers w/o bad scaler reads
     TH1* fH_BadScR_SumFPDScalers;                           // FPD sum scalers w/o bad scaler reads
+    TH1* fH_BadScR_SumFPDScalersLiveCorr;                   // FPD sum scalers w/o bad scaler reads (livetime corrected)
+    TH1* fH_BadScR_SumMicroScalers;                         // microscope sum scalers w/o bad scaler reads
+    TH1* fH_BadScR_CBLive;                                  // CB livetime
+    TH1* fH_BadScR_TaggLive;                                // tagger livetime
+    TH2* fH_BadScR_P2Tagger;                                // P2/tagger rate
 
     // ------------------------------------- PID ------------------------------------- 
     TH1** fH_CB_PID_Coinc_Hits;                             // CB-PID coincidence hits
@@ -221,6 +231,9 @@ protected:
     Int_t fSaveEvent;                                       // if 1 : save current event in reduced AcquRoot ROOT file
     Int_t fScalerReadCounter;                               // number of processed scaler reads
     Bool_t fUseBadScalerReads;                              // key to activate bad scaler reads
+    Double_t fCBLive;                                       // CB livetime of last scaler read
+    Double_t fTaggLive;                                     // tagger livetime of last scaler read
+    Double_t fTaggScLiveCorrFac;                            // livetime correction factor of last scaler read
 
     // ----------------------------------- Tagger ----------------------------------- 
     UInt_t fTaggerPhotonNhits;                              // number of photons in the tagger

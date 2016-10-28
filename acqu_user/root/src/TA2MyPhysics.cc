@@ -167,14 +167,26 @@ TA2MyPhysics::TA2MyPhysics(const char* name, TA2Analysis* analysis)
     fNBadParticleCuts = 0;
     fBadParticleCuts = 0;
 
-    fOldScalerSum = new Double_t[gAR->GetMaxScaler()];
-    for (Int_t i = 0; i < gAR->GetMaxScaler(); i++) fOldScalerSum[i] = 0.;
+    fIsTaggScLiveCorr = kFALSE;
+    fCBLive = 1;
+    fTaggLive = 1;
+    fTaggScLiveCorrFac = 1;
+    fScCBLive = 1;
+    fScCBFree = 1;
+    fScTaggLive = 0;
+    fScTaggFree = 0;
+    fScP2 = 0;
     
     fNBadScalerReads = 0;
     fBadScalerReads = 0;
     fIsBadScalerSkip = kFALSE;
     fH_BadScR_SumScalers = 0;
     fH_BadScR_SumFPDScalers = 0;
+    fH_BadScR_SumFPDScalersLiveCorr = 0;
+    fH_BadScR_SumMicroScalers = 0;
+    fH_BadScR_CBLive = 0;
+    fH_BadScR_TaggLive = 0;
+    fH_BadScR_P2Tagger = 0;
 
     fH_CB_PID_Coinc_Hits = new TH1*[gMyPhysics_MaxPID];
     fH_CB_PID_dE_E = new TH2*[gMyPhysics_MaxPID];
@@ -463,6 +475,19 @@ void TA2MyPhysics::SetConfig(Char_t* line, Int_t key)
                 Error("SetConfig", "Bad syntax in L2 trigger multiplicity bits definition!");
             else Info("SetConfig", "Using L2 trigger multiplicity bits: M1+ (0x%.4x), M2+ (0x%.4x), M3+ (0x%.4x), M4+ (0x%.4x)",
                       fL2Bit_M1, fL2Bit_M2, fL2Bit_M3, fL2Bit_M4);
+            break;
+        }
+        case EMP_TAGGSC_LIVE_CORR:
+        {
+            if (sscanf(line, "%d%d%d%d%d", &fScCBLive, &fScCBFree, &fScTaggLive, &fScTaggFree, &fScP2) != 5)
+                Error("SetConfig", "Bad syntax in livetime correction for tagger scalers definition!");
+            else
+            {
+                fIsTaggScLiveCorr = kTRUE;
+                Info("SetConfig", "Scalers for livetime correction: CB live (%d), CB free (%d), "
+                                  "tagger live (%d), tagger free (%d), P2 (%d)",
+                                  fScCBLive, fScCBFree, fScTaggLive, fScTaggFree, fScP2);
+            }
             break;
         }
         case EMP_PID_DROOP_CORR:
@@ -967,14 +992,22 @@ void TA2MyPhysics::PostInit()
     else
     {
         fH_ErrorInfo = new TH2F("ErrorInfo", "ErrorInfo;Module Index;Error Code", 50000, 0, 50000, 20, 0, 20);
-        fH_Corrected_Scalers = new TH1F("CorrectedScalers", "CorrectedScalers", gAR->GetMaxScaler(), 0, gAR->GetMaxScaler());
-        fH_Corrected_SumScalers = new TH1F("CorrectedSumScalers", "CorrectedSumScalers", gAR->GetMaxScaler(), 0, gAR->GetMaxScaler());
 
         if (fUseBadScalerReads)
         {
             fH_BadScR_SumScalers = new TH1D("BadScR_SumScalers", "BadScR_SumScalers", gAR->GetMaxScaler(), 0, gAR->GetMaxScaler());
-            if (fLadder) fH_BadScR_SumFPDScalers = new TH1D("BadScR_SumFPDScalers", "BadScR_SumFPDScalers", fLadder->GetNelement(), 0, fLadder->GetNelement());
-        }
+            if (fLadder)
+            {
+                fH_BadScR_SumFPDScalers = new TH1D("BadScR_SumFPDScalers", "BadScR_SumFPDScalers", fLadder->GetNelement(), 0, fLadder->GetNelement());
+                fH_BadScR_SumFPDScalersLiveCorr = new TH1D("BadScR_SumFPDScalersLiveCorr", "BadScR_SumFPDScalersLiveCorr", fLadder->GetNelement(), 0, fLadder->GetNelement());
+            }
+            if (fIsTaggScLiveCorr)
+            {
+                fH_BadScR_CBLive = new TH1F("BadScR_CBLive", "BadScR_CBLive", 5000, 0, 5000);
+                fH_BadScR_TaggLive = new TH1F("BadScR_TaggLive", "BadScR_TaggLive", 5000, 0, 5000);
+                if (fLadder) fH_BadScR_P2Tagger = new TH2F("BadScR_P2Tagger", "BadScR_P2Tagger", 5000, 0, 5000, fLadder->GetNelement(), 0, fLadder->GetNelement());
+            }
+        }        
     }
 }
 
@@ -999,6 +1032,29 @@ void TA2MyPhysics::Reconstruct()
     // check for scaler read event
     if (!fIsMC && gAR->IsScalerRead())
     {
+        // livetime correction for tagger scalers
+        if (fIsTaggScLiveCorr)
+        {
+            // check for overflow vulnerable 24-bit free CB scaler
+            if (fScaler[fScCBFree] < fScaler[fScCBLive])
+            {
+                Warning("Reconstruct", "CB free scaler is lower than inhibited scaler -> corrected assuming 24-bit scaler");
+                fScaler[fScCBFree] += 16777216;
+            }
+
+            // check for overflow vulnerable 24-bit free tagger scaler
+            if (fScaler[fScTaggFree] < fScaler[fScTaggLive])
+            {
+                Warning("Reconstruct", "Tagger free scaler is lower than inhibited scaler -> corrected assuming 24-bit scaler");
+                fScaler[fScTaggFree] += 16777216;
+            }
+
+            // calculate livetimes
+            fCBLive = (Double_t)fScaler[fScCBLive] / (Double_t)fScaler[fScCBFree];
+            fTaggLive = (Double_t)fScaler[fScTaggLive] / (Double_t)fScaler[fScTaggFree];
+            fTaggScLiveCorrFac = fCBLive / fTaggLive;
+        }
+
         // reset event skipping flag
         fIsBadScalerSkip = kFALSE;
 
@@ -1008,6 +1064,13 @@ void TA2MyPhysics::Reconstruct()
         // check whether previous scaler read (interval) was good in order to update scaler histos
         if (fUseBadScalerReads && !IsBadScalerRead(fScalerReadCounter - 1))
         {
+            // fill livetimes
+            if (fIsTaggScLiveCorr)
+            {
+                fH_BadScR_CBLive->SetBinContent(fScalerReadCounter, fCBLive);
+                fH_BadScR_TaggLive->SetBinContent(fScalerReadCounter, fTaggLive);
+            }
+
             // loop over scalers
             for (Int_t i = 0; i < gAR->GetMaxScaler(); i++)
             {
@@ -1022,7 +1085,18 @@ void TA2MyPhysics::Reconstruct()
                 for (UInt_t i = 0; i < fLadder->GetNelement(); i++)
                 {
                     // fill ladder sum scalers
-                    fH_BadScR_SumFPDScalers->AddBinContent(i+1, (Double_t) fLadder->GetScalerCurr()[i]);
+                    fH_BadScR_SumFPDScalers->AddBinContent(i+1, ((Double_t)fLadder->GetScalerCurr()[i]) * fTaggScLiveCorrFac);
+                    fH_BadScR_SumFPDScalersLiveCorr->AddBinContent(i+1, ((Double_t)fLadder->GetScalerCurr()[i]) * fTaggLive);
+                }
+
+                // fill p2/tagger ratio
+                if (fIsTaggScLiveCorr)
+                {
+                    for (Int_t i = 0; i < fLadder->GetNelement(); i++)
+                    {
+                        Double_t ts = ((Double_t)fLadder->GetScalerCurr()[i]);
+                        if (ts != 0) fH_BadScR_P2Tagger->SetBinContent(fScalerReadCounter, i+1, (Double_t)fScaler[fScP2] / ts);
+                    }
                 }
             }
         }
@@ -1604,24 +1678,7 @@ void TA2MyPhysics::Reconstruct()
     
     // set number of accepted particles
     fTAPSNCluster = nTAPS;
-    
 
-    ////////////////////////////////////////////////////////////////////////////
-    // Update corrected sum scaler histogram                                  //
-    ////////////////////////////////////////////////////////////////////////////
-    
-    if (!fIsMC && gAR->IsScalerRead())
-    {
-        // user information
-        //printf("Scaler read @ event %lld\n", fEventCounter);
-
-        // update corrected clock scalers
-        UpdateCorrectedScaler(0);
-        UpdateCorrectedScaler(1);
-        UpdateCorrectedScaler(144);
-        UpdateCorrectedScaler(145);
-    }
- 
 
     ////////////////////////////////////////////////////////////////////////////
     // Fill event information                                                 //
@@ -1684,6 +1741,7 @@ void TA2MyPhysics::Reconstruct()
     // detector particle arrays
     for (UInt_t i = 0; i < fCBNCluster; i++) delete fPartCB[i];
     for (UInt_t i = 0; i < fTAPSNCluster; i++) delete fPartTAPS[i];
+    delete [] fPart;
     delete [] fPartCB;
     delete [] fPartTAPS;
 
@@ -1716,63 +1774,45 @@ Bool_t TA2MyPhysics::IsBadScalerRead(Int_t scr)
     // Return kTRUE if yes, otherwise or if no bad scaler reads list was
     // specified kFALSE;
 
-    // loop over bad scaler reads list (should be sorted)
-    for (Int_t i = 0; i < fNBadScalerReads; i++)
-    {
-        // check for bad scaler read
-        if (fBadScalerReads[i] < scr) continue;
-        if (fBadScalerReads[i] == scr)
-            return kTRUE;
-        else
-            return kFALSE;
-    }
-
-    return kFALSE;
+    return std::binary_search(fBadScalerReads,
+                              fBadScalerReads + fNBadScalerReads,
+                              scr);
 }
 
 //______________________________________________________________________________
 Bool_t TA2MyPhysics::IsBadTaggerChannel(Int_t ch)
 {
-    // Check if the tagger channel 'ch' is in the list of bad tagger channels.
+    // Check if the tagger channel 'ch' is in the sorted list of bad tagger channels.
     // Return kTRUE if yes, otherwise or if no bad tagger channel list was
     // specified kFALSE;
 
-    // loop over bad tagger channel list
-    for (Int_t i = 0; i < fNBadTaggerChannels; i++)
-    {
-        if (ch == fBadTaggerChannels[i]) return kTRUE;
-    }
-    return kFALSE;
+    return std::binary_search(fBadTaggerChannels,
+                              fBadTaggerChannels + fNBadTaggerChannels,
+                              ch);
 }
 
 //______________________________________________________________________________
 Bool_t TA2MyPhysics::IsBadCBCluster(Int_t center)
 {
-    // Check if the cluster center 'center' is in the list of bad CB clusters.
+    // Check if the cluster center 'center' is in the sorted list of bad CB clusters.
     // Return kTRUE if yes, otherwise or if no bad CB cluster list was
     // specified kFALSE;
 
-    // loop over bad CB cluster list
-    for (Int_t i = 0; i < fNBadCBClusters; i++)
-    {
-        if (center == fBadCBClusters[i]) return kTRUE;
-    }
-    return kFALSE;
+    return std::binary_search(fBadCBClusters,
+                              fBadCBClusters + fNBadCBClusters,
+                              center);
 }
 
 //______________________________________________________________________________
 Bool_t TA2MyPhysics::IsBadTAPSCluster(Int_t center)
 {
-    // Check if the cluster center 'center' is in the list of bad TAPS clusters.
+    // Check if the cluster center 'center' is in the sorted list of bad TAPS clusters.
     // Return kTRUE if yes, otherwise or if no bad TAPS cluster list was
     // specified kFALSE;
 
-    // loop over bad TAPS cluster list
-    for (Int_t i = 0; i < fNBadTAPSClusters; i++)
-    {
-        if (center == fBadTAPSClusters[i]) return kTRUE;
-    }
-    return kFALSE;
+    return std::binary_search(fBadTAPSClusters,
+                              fBadTAPSClusters + fNBadTAPSClusters,
+                              center);
 }
 
 //______________________________________________________________________________
@@ -2203,54 +2243,6 @@ void TA2MyPhysics::FillTaggerCoincidence(TOA2RecParticle& meson, Double_t tagger
     }
 }
  
-//______________________________________________________________________________
-void TA2MyPhysics::UpdateCorrectedScaler(Int_t sc)
-{
-    // Update the entry of the scaler 'sc' in the corrected scaler histogram.
-    // IMPORTANT: Call this function only during a scaler-read event, i.e.
-    // after checking gAR->IsScalerRead().
-
-    // check scaler number
-    if (sc >= gAR->GetMaxScaler())
-    {
-        Error("UpdateCorrectedScaler", "Scaler %d is larger than max. scaler value!", sc);
-        return;
-    }
-
-    // check previous sum scaler entry to avoid double counting
-    // do not do this in offline ROOT file input mode
-    if ((gAR->IsOnline() && fScalerSum[sc] != fOldScalerSum[sc]) ||
-        !gAR->IsOnline())
-    {
-        // free running, overflow vulnerable 24-bit scaler (total)
-        if (sc == 0)
-        {
-            UInt_t scaler_0;
-            if (fScaler[0] < fScaler[1]) scaler_0 = fScaler[0] + 16777216;
-            else scaler_0 = fScaler[0];
-            fH_Corrected_Scalers->SetBinContent(1, scaler_0);
-            fH_Corrected_SumScalers->AddBinContent(1, scaler_0);
-        }
-        // free running, overflow vulnerable 24-bit scaler (tagger)
-        else if (sc == 144)
-        {
-            UInt_t scaler_144;
-            if (fScaler[144] < fScaler[145]) scaler_144 = fScaler[144] + 16777216;
-            else scaler_144 = fScaler[144];
-            fH_Corrected_Scalers->SetBinContent(145, scaler_144);
-            fH_Corrected_SumScalers->AddBinContent(145, scaler_144);
-        }
-        else 
-        {
-            fH_Corrected_Scalers->SetBinContent(sc+1, fScaler[sc]);
-            fH_Corrected_SumScalers->AddBinContent(sc+1, fScaler[sc]);
-        }
-
-        // update old sum scaler value
-        fOldScalerSum[sc] = fScalerSum[sc];    
-    }
-}
-
 //______________________________________________________________________________
 Double_t TA2MyPhysics::CheckClusterVeto(TOA2DetParticle* inCluster, Int_t* outVetoIndex) const
 {
