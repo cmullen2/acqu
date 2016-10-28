@@ -53,17 +53,23 @@ Branch:   mc_rnd_id     8
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #ROOT file(s) (GEANT4 output) to be analysed. Add more lines for more files
 #
-TreeFile: scratch/geant.root
+#TreeFile: scratch/geant.root
+#TreeFile: $HOME/TestFiles/AcquIn/POL_PPi0_OutputA2SimProtonBad.root
+#TreeFile: /scratch/chrism/RealData/CBTaggTAPS_14917.dat.xz
+TreeFile: %%FILE%%
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ## Batch mode operation...redirect output directory for log files etc.
-BatchDir: ./
+#BatchDir: ./
+BatchDir: %%OUTDIR%%/
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Directory to save any created ROOT files (include final '/')
-Directory: ./
+#Directory: $HOME/TestFiles/AcquOut/ProtonBad/
+Directory: %%OUTDIR%%/
+#Directory: /scratch/chrism/RealData/AcquOutput/
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
