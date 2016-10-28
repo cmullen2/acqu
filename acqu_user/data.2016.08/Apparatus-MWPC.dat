@@ -3,8 +3,8 @@
 #
 ## Specify list of detectors which constitute the MWPC apparatus
 ##	  	  Name    		Class Name   			Setup file
-Detector: MWPC_Wires    TA2GenericDetector      Detector-MwpcWires.dat
-Detector: MWPC_Strips   TA2GenericDetector      Detector-MwpcStrips.dat
+Detector: MWPC_Wires    TA2GenericDetector      data.2016.08/Detector-MwpcWires.dat
+Detector: MWPC_Strips   TA2GenericDetector      data.2016.08/Detector-MwpcStrips.dat
 ##
 ## Turn on apparatus reconstruction 
 #Reconstruct:

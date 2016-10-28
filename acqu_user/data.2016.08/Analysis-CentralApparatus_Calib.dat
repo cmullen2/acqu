@@ -5,13 +5,13 @@
 ##	  Name       Class Name		Setup file
 #_______________________________________________________________
 # 
-Detector: NaI        TA2CalArray        Analysis-NaI.dat
+Detector: NaI        TA2CalArray        data.2016.08/Analysis-NaI.dat
 #Detector: PID        TA2PlasticPID      Analysis-PID_Calib.dat
-Detector:       PID     TA2PlasticPID   Detector-PID-EqGain.dat
+Detector:       PID     TA2PlasticPID   data.2016.08/Detector-PID-EqGain.dat
 #Detector: PID        TA2PlasticPID      Analysis-PID.dat
 #Detector: CylMWPC    TA2CylMwpc         Analysis-MWPC.dat
 #Detector: CylMWPC    TA2CylMwpc         AR-Analysis-CentApp-MWPC-1.dat-Set15
-Detector: CylMWPC    TA2CylMwpc         AR-Analysis-CentApp-MWPC_Aug16.dat
+Detector: CylMWPC    TA2CylMwpc         data.2016.08/AR-Analysis-CentApp-MWPC_Aug16.dat
 #Detector: CylMWPC    TA2CylMwpc         CylMwpc_may2013.dat
 #_______________________________________________________________
 #

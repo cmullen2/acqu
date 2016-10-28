@@ -6,9 +6,9 @@
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Detector systems in TAPS apparatus
 #Detector: VetoBaF2     TA2PlasticPID		Detector-Veto.dat
-Detector: Veto          TA2TAPS_Veto		Analysis-TAPS-Veto.dat
+Detector: Veto          TA2TAPS_Veto		data.2016.08/Analysis-TAPS-Veto.dat
 #Detector: BaF2          TA2TAPS_BaF2		Analysis-TAPS-BaF2.dat
-Detector: BaF2         TA2TAPS_BaF2		Detector-BaF2.dat 
+Detector: BaF2         TA2TAPS_BaF2		data.2016.08/Detector-BaF2.dat 
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #

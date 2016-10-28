@@ -32,7 +32,7 @@ Beam-Pol-Bits: 41477 41480
 # General:          dbhost        dbname          dbuser      dbpass         calibration
 #Use-CaLib:          phys-jaguar   calib_may_2016  calib_ro    omega13    D-Butanol_May_16
 #Use-CaLib:      $HOME/acqu/CaLib_DB/Aug_16/CaLib.db                       LD2_Aug_16
-Use-CaLib:	/home/chris/acqu/CaLib_DB/Aug_16/CaLib.db		  LD2_Aug_16
+Use-CaLib:	/home/chris/acqu/acqu_user/data.2016.08/CaLib.db	  LD2_Aug_16
 # tagger calib:     time    eff                                            (0=off/1=on)
 Use-CaLib-TAGG:     1       0
 # CB calib:         energy  time    timewalk    quadr. energy    LED thr.  (0=off/1=on)

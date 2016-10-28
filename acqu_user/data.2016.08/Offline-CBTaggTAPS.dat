@@ -25,7 +25,7 @@ Directory: /w/work14/chris/Run101016/AcquOutput/Perp/test/
 Analysis: TA2UserAnalysis
 ##
 ## Analysis setup file
-AnalysisSetup: Analysis-Calib.dat
+AnalysisSetup: data.2016.08/Analysis-Calib.dat
 ##
 ## Specify non-clearing scalers
 #ScalerNoClear: 12 139
@@ -38,5 +38,5 @@ AnalysisSetup: Analysis-Calib.dat
 ##
 ## Set Server file
 #ServerSetup: ServerOffline-CBTaggTAPSPARA.dat
-ServerSetup: ServerOffline-CBTaggTAPSPERP.dat
+ServerSetup: data.2016.08/ServerOffline-CBTaggTAPSPERP.dat
 #ServerSetup: ServerOffline-CBTaggTAPSPARA.dat
