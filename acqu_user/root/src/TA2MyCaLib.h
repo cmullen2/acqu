@@ -390,6 +390,7 @@ private:
 
     // ---------------------------------- bad scaler read -----------------------------------
     Int_t fCalib_BadScR;                                    // Bad scaler reads toggle
+    Int_t fCalib_BadScR_Max_Reads;                          // maximum number of scaler reads supported by histograms
     TH2* fHCalib_BadScR_NaIHits;                            // NaI hits vs. scaler reads
     TH2* fHCalib_BadScR_BaF2PWOHits;                        // BaF2PWO hits vs. scaler reads
     TH2* fHCalib_BadScR_BaF2Hits;                           // BaF2 hits vs. scaler reads
@@ -397,6 +398,7 @@ private:
     TH2* fHCalib_BadScR_PIDHits;                            // PID hits vs. scaler reads
     TH2* fHCalib_BadScR_VetoHits;                           // Veto hits vs. scaler reads
     TH2* fHCalib_BadScR_LadderHits;                         // Ladder hits vs. scaler reads
+    TH2* fHCalib_BadScR_LadderScalers;                      // Ladder scalers vs. scaler reads
     TH2* fHCalib_BadScR_Scalers;                            // Scalers vs. scaler reads
     
     // ------------------------------------- PWO check --------------------------------------

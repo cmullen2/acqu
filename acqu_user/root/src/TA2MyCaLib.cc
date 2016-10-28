@@ -189,6 +189,7 @@ TA2MyCaLib::TA2MyCaLib(const char* name, TA2Analysis* analysis)
 
     // bad scaler reads
     fCalib_BadScR = 0;
+    fCalib_BadScR_Max_Reads = 0;
 
     // PWO check
     fCalib_PWO_Check = 0;
@@ -476,7 +477,7 @@ void TA2MyCaLib::SetConfig(Char_t* line, Int_t key)
                 Info("SetConfig", "Bad scaler reads were automatically disabled.");
             }
             // Enable bad scaler read
-            if (sscanf(line, "%d", &fCalib_BadScR) != 1) error = kTRUE;
+            if (sscanf(line, "%d%d", &fCalib_BadScR, &fCalib_BadScR_Max_Reads) != 2) error = kTRUE;
             if (fCalib_BadScR) fNCalib++;
             break;
         case ECALIB_PWO_CHECK:
@@ -1039,23 +1040,33 @@ void TA2MyCaLib::PostInit()
     // prepare for bad scaler read
     if (fCalib_BadScR)
     {
-        Int_t maxReads = 5000;
-        fHCalib_BadScR_NaIHits     = new TH2F("CaLib_BadScR_NaIHits",     "CaLib_BadScR_NaIHits;Scaler reads;NaI hits",     
-                                              maxReads, 0, maxReads, fNaI->GetNelement(),     0, fNaI->GetNelement());
-        fHCalib_BadScR_BaF2PWOHits = new TH2F("CaLib_BadScR_BaF2PWOHits", "CaLib_BadScR_BaF2PWOHits;Scaler reads;BaF2PWO hits", 
-                                              maxReads, 0, maxReads, fBaF2PWO->GetNelement(), 0, fBaF2PWO->GetNelement());
-        fHCalib_BadScR_BaF2Hits    = new TH2F("CaLib_BadScR_BaF2Hits", "CaLib_BadScR_BaF2Hits;Scaler reads;BaF2 hits", 
-                                              maxReads, 0, maxReads, fBaF2PWO->GetNelement(), 0, fBaF2PWO->GetNelement());
-        fHCalib_BadScR_PWOHits     = new TH2F("CaLib_BadScR_PWOHits", "CaLib_BadScR_PWOHits;Scaler reads;PWO hits", 
-                                              maxReads, 0, maxReads, fBaF2PWO->GetNelement(), 0, fBaF2PWO->GetNelement());
-        fHCalib_BadScR_PIDHits     = new TH2F("CaLib_BadScR_PIDHits",     "CaLib_BadScR_PIDHits;Scaler reads;PID hits",
-                                              maxReads, 0, maxReads, fPID->GetNelement(),     0, fPID->GetNelement());
-        fHCalib_BadScR_VetoHits    = new TH2F("CaLib_BadScR_VetoHits",    "CaLib_BadScR_VetoHits;Scaler reads;Veto hits",
-                                              maxReads, 0, maxReads, fVeto->GetNelement(),    0, fVeto->GetNelement());
-        fHCalib_BadScR_LadderHits  = new TH2F("CaLib_BadScR_LadderHits",  "CaLib_BadScR_LadderHits;Scaler reads;Ladder hits",
-                                              maxReads, 0, maxReads, fLadder->GetNelement(),  0, fLadder->GetNelement());    
-        fHCalib_BadScR_Scalers     = new TH2F("CaLib_BadScR_Scalers",     "CaLib_BadScR_Scalers;Scaler reads;Scalers", 
-                                              maxReads, 0, maxReads, gAR->GetMaxScaler(), 0, gAR->GetMaxScaler());
+        if (fNaI)
+            fHCalib_BadScR_NaIHits       = new TH2F("CaLib_BadScR_NaIHits", "CaLib_BadScR_NaIHits;Scaler reads;NaI hits",
+                                                    fCalib_BadScR_Max_Reads, 0, fCalib_BadScR_Max_Reads, fNelemCB, 0, fNelemCB);
+        if (fBaF2PWO)
+        {
+            fHCalib_BadScR_BaF2PWOHits   = new TH2F("CaLib_BadScR_BaF2PWOHits", "CaLib_BadScR_BaF2PWOHits;Scaler reads;BaF2PWO hits",
+                                                    fCalib_BadScR_Max_Reads, 0, fCalib_BadScR_Max_Reads, fNelemTAPS, 0, fNelemTAPS);
+            fHCalib_BadScR_BaF2Hits      = new TH2F("CaLib_BadScR_BaF2Hits", "CaLib_BadScR_BaF2Hits;Scaler reads;BaF2 hits",
+                                                    fCalib_BadScR_Max_Reads, 0, fCalib_BadScR_Max_Reads, fNelemTAPS, 0, fNelemTAPS);
+            fHCalib_BadScR_PWOHits       = new TH2F("CaLib_BadScR_PWOHits", "CaLib_BadScR_PWOHits;Scaler reads;PWO hits",
+                                                    fCalib_BadScR_Max_Reads, 0, fCalib_BadScR_Max_Reads, fNelemTAPS, 0, fNelemTAPS);
+        }
+        if (fPID)
+            fHCalib_BadScR_PIDHits       = new TH2F("CaLib_BadScR_PIDHits", "CaLib_BadScR_PIDHits;Scaler reads;PID hits",
+                                                    fCalib_BadScR_Max_Reads, 0, fCalib_BadScR_Max_Reads, fNelemPID, 0, fNelemPID);
+        if (fVeto)
+            fHCalib_BadScR_VetoHits      = new TH2F("CaLib_BadScR_VetoHits", "CaLib_BadScR_VetoHits;Scaler reads;Veto hits",
+                                                    fCalib_BadScR_Max_Reads, 0, fCalib_BadScR_Max_Reads, fNelemVeto, 0, fNelemVeto);
+        if (fLadder)
+        {
+            fHCalib_BadScR_LadderHits    = new TH2F("CaLib_BadScR_LadderHits", "CaLib_BadScR_LadderHits;Scaler reads;Ladder hits",
+                                                    fCalib_BadScR_Max_Reads, 0, fCalib_BadScR_Max_Reads, fNelemTAGG, 0, fNelemTAGG);
+            fHCalib_BadScR_LadderScalers = new TH2F("CaLib_BadScR_LadderScalers", "CaLib_BadScR_LadderScalers;Scaler reads;Ladder scalers",
+                                                    fCalib_BadScR_Max_Reads, 0, fCalib_BadScR_Max_Reads, fNelemTAGG, 0, fNelemTAGG);
+        }
+        fHCalib_BadScR_Scalers           = new TH2F("CaLib_BadScR_Scalers", "CaLib_BadScR_Scalers;Scaler reads;Scalers",
+                                                    fCalib_BadScR_Max_Reads, 0, fCalib_BadScR_Max_Reads, gAR->GetMaxScaler(), 0, gAR->GetMaxScaler());
     }
 
     // prepare for PWO check
@@ -1853,6 +1864,9 @@ void TA2MyCaLib::ReconstructPhysics()
             TLorentzVector p4Gamma_1;
             fPartTAPS[i]->Calculate4Vector(&p4Gamma_1, 0);
  
+            // check for PWO
+            Bool_t isPWO_1 = TOA2Detector::IsTAPSPWO(fPartTAPS[i]->GetCentralElement(), fTAPSType);
+
             // loop over TAPS hits
             for (UInt_t j = i+1; j < fTAPSNCluster; j++)
             {
@@ -1863,10 +1877,18 @@ void TA2MyCaLib::ReconstructPhysics()
                 TLorentzVector p4Gamma_2;
                 fPartTAPS[j]->Calculate4Vector(&p4Gamma_2, 0);
                 
+                // check for PWO
+                Bool_t isPWO_2 = TOA2Detector::IsTAPSPWO(fPartTAPS[j]->GetCentralElement(), fTAPSType);
+
                 // calculate invariant mass of hit combination
                 Double_t im = (p4Gamma_1 + p4Gamma_2).M();
  
-                // fill time difference
+                // skip PWO-PWO events
+                if (isPWO_1 && isPWO_2) continue;
+                // BaF2-BaF2
+                else if (!isPWO_1 && !isPWO_2)
+                {
+                    // time difference
                 fHCalib_TAPS_Time->Fill(time_1 - time_2, fPartTAPS[i]->GetCentralElement());
                 fHCalib_TAPS_Time->Fill(time_2 - time_1, fPartTAPS[j]->GetCentralElement());
 
@@ -1881,6 +1903,39 @@ void TA2MyCaLib::ReconstructPhysics()
                     {
                         fHCalib_TAPS_Time_Neut_IM_Cut->Fill(time_1 - time_2, fPartTAPS[i]->GetCentralElement());
                         fHCalib_TAPS_Time_Neut_IM_Cut->Fill(time_2 - time_1, fPartTAPS[j]->GetCentralElement());
+                    }
+                }
+            }
+                // only fill for PWO in PWO-BaF2 case
+                else if (isPWO_1 && !isPWO_2)
+                {
+                    // time difference
+                    fHCalib_TAPS_Time->Fill(-(time_1 + time_2), fPartTAPS[i]->GetCentralElement());
+
+                    // fill time difference for neutral hits
+                    if (fPartTAPS[i]->GetVetoEnergy() == 0 && fPartTAPS[j]->GetVetoEnergy() == 0)
+                    {
+                        fHCalib_TAPS_Time_Neut->Fill(-(time_1 + time_2), fPartTAPS[i]->GetCentralElement());
+
+                        // invariant mass cut
+                        if (im > 50)
+                            fHCalib_TAPS_Time_Neut_IM_Cut->Fill(-(time_1 + time_2), fPartTAPS[i]->GetCentralElement());
+                    }
+                }
+                // only fill for PWO in BaF2-PWO case
+                else if (!isPWO_1 && isPWO_2)
+                {
+                    // time difference
+                    fHCalib_TAPS_Time->Fill(-(time_1 + time_2), fPartTAPS[j]->GetCentralElement());
+
+                    // fill time difference for neutral hits
+                    if (fPartTAPS[i]->GetVetoEnergy() == 0 && fPartTAPS[j]->GetVetoEnergy() == 0)
+                    {
+                        fHCalib_TAPS_Time_Neut->Fill(-(time_1 + time_2), fPartTAPS[j]->GetCentralElement());
+
+                        // invariant mass cut
+                        if (im > 50)
+                            fHCalib_TAPS_Time_Neut_IM_Cut->Fill(-(time_1 + time_2), fPartTAPS[j]->GetCentralElement());
                     }
                 }
             }
@@ -2826,8 +2881,13 @@ void TA2MyCaLib::ReconstructPhysics()
         // fill scalers
         if (gAR->IsScalerRead())
         {
+            // fill current read (use fScalerReadCounter (without +1) here because it was
+            // already incremented in TA2MyPhysics
             for (Int_t i = 0; i < gAR->GetMaxScaler(); i++)
                 fHCalib_BadScR_Scalers->SetBinContent(fScalerReadCounter, i+1, (Double_t) fScaler[i]);
+            for (UInt_t i = 0; i < fLadder->GetNelement(); i++)
+                if (!IsBadTaggerChannel(i))
+                    fHCalib_BadScR_LadderScalers->SetBinContent(fScalerReadCounter, i+1, ((Double_t)fLadder->GetScalerCurr()[i]) * fTaggScLiveCorrFac);
         }
 
         // fill NaI hits
@@ -2883,16 +2943,8 @@ void TA2MyCaLib::ReconstructPhysics()
         }
 
         // fill Ladder hits
-        if (fLadder)
-        {
-            // get number of hits
-            UInt_t nhits = fLadder->GetNhits();
-            Int_t* hits = fLadder->GetHits();
-
-            // loop over CB ADC hits
-            for (UInt_t i = 0; i < nhits; i++)
-                fHCalib_BadScR_LadderHits->Fill(fScalerReadCounter, hits[i]);
-        }
+        for (Int_t i = 0; i < fTaggerPhotonNhits; i++)
+            fHCalib_BadScR_LadderHits->Fill(fScalerReadCounter, fTaggerPhotonHits[i]);
         
     }
     
