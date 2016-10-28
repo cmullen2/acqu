@@ -44,6 +44,7 @@ private:
         TTree*		treeScalers; 		// Scaler read information (filled each scaler read)
         TTree*      treeMoeller;        // Moeller information (filled each moeller read)
         TTree*      treeSetupParameters;// Calibration parameters (filled once)
+ 	TTree*	    treeMWPCHitsChris;	// Hit positions in the wire chambers
 
     	char        outputFolder[256];
     	char        inputName[64];
@@ -80,6 +81,20 @@ private:
         Double_t*   vertexX;
         Double_t*   vertexY;
         Double_t*   vertexZ;
+
+	//Wire Chamber Hits Info
+	Int_t       nChamberHitsin1;
+        const TA2MwpcIntersection *Chamber1Hits;
+	Double_t*   Chamber1X;
+	Double_t*   Chamber1Y;
+        Double_t*   Chamber1Z;
+
+	Int_t       nChamberHitsin2; 
+	const TA2MwpcIntersection *Chamber2Hits;
+        Double_t*   Chamber2X;
+        Double_t*   Chamber2Y;
+        Double_t*   Chamber2Z;
+
 
     	//Tagger
     	Int_t		nTagged;
