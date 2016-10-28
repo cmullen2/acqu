@@ -1,0 +1,98 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   13th Jan 2004
+##--Update	JRM Annand... 1st Dec 2004
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Parameter File: FPcommServer.Offline
+## Configuration file for DataServer (data input for analysis)
+##
+##-----------------------------------------------------------------------
+## Number of Input streams (sources of data), Record length to write data
+## and switch 0/1 = no/yes to control data write
+##              Number streams	Record Len	Save Data
+Input-Streams:	1		327680		0
+##
+## Optional directory spec. If not specified File-Names must contain the full
+## directory path
+File-Directory:	/w/work14/mainz/2016-08_Recoil_Pol/
+##
+## Specify each input stream
+## From disk file, ACQU (Mk1) format, save any output to file (save=1)
+## Input data record length, Output data record length
+##
+##            	Source	Format	Save?	RecLen	Buffers	Swap	MarkID
+Stream-Spec:	File	Mk2	0	327680	32	0	400
+##
+## Now the list of data files to analyse
+## Tagger test data files
+##		File Name	1st rec	Last rec
+## 2nA
+#File-Name:	CBTaggTAPS_2681.dat	0	0
+#beginhere
+File-Name:      CBTaggTAPS_14919.dat.xz   0       0
+File-Name:      CBTaggTAPS_14920.dat.xz   0       0
+File-Name:      CBTaggTAPS_14956.dat.xz   0       0
+File-Name:      CBTaggTAPS_14957.dat.xz   0       0
+File-Name:      CBTaggTAPS_14961.dat.xz   0       0
+File-Name:      CBTaggTAPS_14962.dat.xz   0       0
+File-Name:      CBTaggTAPS_14968.dat.xz   0       0
+File-Name:      CBTaggTAPS_14969.dat.xz   0       0
+File-Name:      CBTaggTAPS_14976.dat.xz   0       0
+File-Name:      CBTaggTAPS_14978.dat.xz   0       0
+File-Name:      CBTaggTAPS_14982.dat.xz   0       0
+File-Name:      CBTaggTAPS_14985.dat.xz   0       0
+File-Name:      CBTaggTAPS_15016.dat.xz   0       0
+File-Name:      CBTaggTAPS_15019.dat.xz   0       0
+File-Name:      CBTaggTAPS_15023.dat.xz   0       0
+File-Name:      CBTaggTAPS_15024.dat.xz   0       0
+File-Name:      CBTaggTAPS_15031.dat.xz   0       0
+File-Name:      CBTaggTAPS_15036.dat.xz   0       0
+File-Name:      CBTaggTAPS_15037.dat.xz   0       0
+File-Name:      CBTaggTAPS_15041.dat.xz   0       0
+
+File-Name:      CBTaggTAPS_15042.dat.xz   0       0
+File-Name:      CBTaggTAPS_15071.dat.xz   0       0
+File-Name:      CBTaggTAPS_15072.dat.xz   0       0
+File-Name:      CBTaggTAPS_15077.dat.xz   0       0
+File-Name:      CBTaggTAPS_15078.dat.xz   0       0
+File-Name:      CBTaggTAPS_15083.dat.xz   0       0
+File-Name:      CBTaggTAPS_15084.dat.xz   0       0
+File-Name:      CBTaggTAPS_15088.dat.xz   0       0
+File-Name:      CBTaggTAPS_15089.dat.xz   0       0
+File-Name:      CBTaggTAPS_15093.dat.xz   0       0
+File-Name:      CBTaggTAPS_15095.dat.xz   0       0
+File-Name:      CBTaggTAPS_15124.dat.xz   0       0
+File-Name:      CBTaggTAPS_15125.dat.xz   0       0
+File-Name:      CBTaggTAPS_15128.dat.xz   0       0
+File-Name:      CBTaggTAPS_15129.dat.xz   0       0
+File-Name:      CBTaggTAPS_15133.dat.xz   0       0
+File-Name:      CBTaggTAPS_15134.dat.xz   0       0
+File-Name:      CBTaggTAPS_15140.dat.xz   0       0
+File-Name:      CBTaggTAPS_15146.dat.xz   0       0
+File-Name:      CBTaggTAPS_15155.dat.xz   0       0
+File-Name:      CBTaggTAPS_15174.dat.xz   0       0
+File-Name:      CBTaggTAPS_15175.dat.xz   0       0
+File-Name:      CBTaggTAPS_15181.dat.xz   0       0
+File-Name:      CBTaggTAPS_15182.dat.xz   0       0
+File-Name:      CBTaggTAPS_15190.dat.xz   0       0
+File-Name:      CBTaggTAPS_15193.dat.xz   0       0
+File-Name:      CBTaggTAPS_15204.dat.xz   0       0
+File-Name:      CBTaggTAPS_15208.dat.xz   0       0
+File-Name:      CBTaggTAPS_15209.dat.xz   0       0
+File-Name:      CBTaggTAPS_15234.dat.xz   0       0
+File-Name:      CBTaggTAPS_15235.dat.xz   0       0
+File-Name:      CBTaggTAPS_15239.dat.xz   0       0
+File-Name:      CBTaggTAPS_15241.dat.xz   0       0
+File-Name:      CBTaggTAPS_15245.dat.xz   0       0
+File-Name:      CBTaggTAPS_15246.dat.xz   0       0
+File-Name:      CBTaggTAPS_15250.dat.xz   0       0
+File-Name:      CBTaggTAPS_15263.dat.xz   0       0
+File-Name:      CBTaggTAPS_15264.dat.xz   0       0
+File-Name:      CBTaggTAPS_15272.dat.xz   0       0
+File-Name:      CBTaggTAPS_15273.dat.xz   0       0
+#endhere
+#File-Name:	CBTaggTAPS_14920.dat.xz	0	0
+#File-Name:	CBTaggTAPS_14922.dat.xz 0	0
+## END

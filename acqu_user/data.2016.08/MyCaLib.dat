@@ -1,0 +1,162 @@
+#########################################################################
+#                                                                       #
+# Physics analysis class configuration file                             #
+#                                                                       #
+#########################################################################
+
+
+Reconstruct:
+
+#Run-Number: 12694 
+
+#Last-Event: 10000
+
+# L1 trigger bits
+#         CB      TAPS OR  TAPS M2  Pulser  TAPS Pulser 
+L1-Bits:  0x8000  0x0040   0x0080   0x4000  0x8000
+# Read CB sum with the bit specified above from L2 instead of L1
+L1-CBSum-in-L2:
+
+# L2 trigger multiplicity bits
+#               M1(+)   M2      M3      M4+
+L2-Multi-Bits:  0x0200  0x0400  0x0800  0x1000
+
+# Beam helicity settings (41480 is hel state 0, 41477 is hel state 1)
+Beam-Pol-ADC: 7
+Beam-Pol-Bits: 41477 41480
+
+#
+# CaLib configuration
+#
+
+# General:          dbhost        dbname          dbuser      dbpass         calibration
+#Use-CaLib:          phys-jaguar   calib_may_2016  calib_ro    omega13    D-Butanol_May_16
+#Use-CaLib:      $HOME/acqu/CaLib_DB/Aug_16/CaLib.db                       LD2_Aug_16
+Use-CaLib:	/home/chris/acqu/CaLib_DB/Aug_16/CaLib.db		  LD2_Aug_16
+# tagger calib:     time    eff                                            (0=off/1=on)
+Use-CaLib-TAGG:     1       0
+# CB calib:         energy  time    timewalk    quadr. energy    LED thr.  (0=off/1=on)
+Use-CaLib-CB:       1       1       0           0                0
+# TAPS calib:       energy  time    quadr. energy   LED thr.     CFD thr.  (0=off/1=on)
+Use-CaLib-TAPS:     1       1       0               0            0
+# PID calib:        phi     energy  time                                   (0=off/1=on)
+Use-CaLib-PID:      1       1       1
+# Veto calib:       energy  time    LED thr.                               (0=off/1=on)
+Use-CaLib-Veto:     1       1       0
+# Bad scaler reads  list    first   last+1
+#Use-CaLib-BadScR:   0       1       1
+
+
+#
+# software trigger configuration
+#
+
+## total multiplicity
+#Trigger-Total-Mult: 2
+#
+## TAPS alone multiplicity
+#Trigger-TAPS-Mult: 9999
+#
+## CB thresholds: total CB sum / CB segment sum
+#Trigger-CB-Thresholds: 320 5
+#
+## TAPS LED1 thresholds
+#Trigger-TAPS-LED1-Threshold: 5
+#
+## TAPS LED2 thresholds
+#Trigger-TAPS-LED2-Threshold: 9999
+#
+## TAPS excluded rings
+#Trigger-TAPS-Excluded-Rings: $acqu/data/May_09/Calib/trig_excl_taps_rings
+#
+## Bad tagger channels
+#Bad-Tagger-Channels: $acqu/data/May_09/Calib/tagg_bad
+#
+## Bad CB cluster centers
+#Bad-CB-Clusters: $acqu/data/May_09/Calib/cb_bad
+#
+## Bad TAPS cluster centers
+#Bad-TAPS-Clusters: $acqu/data/May_09/Calib/taps_bad
+
+#
+# TA2MyCaLib calibration configuration
+#
+
+# target position calibration
+#CaLib-Target-Position: 1
+
+# CB energy calibration
+CaLib-CB-Energy: 1
+
+# CB quadratic energy correction
+#              on/off  pi0_min  pi0_max  eta_min  eta_max
+#CaLib-CB-Quad: 1       105      165      500      620    
+
+# CB time calibration
+CaLib-CB-Time: 1
+
+# CB rise time calibration  pi0_min   pi0_max
+#CaLib-CB-RiseTime: 1        110       160
+
+# CB time walk calibration
+#              on/off  pi0_min  pi0_max  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max
+#CaLib-CB-Walk: 1       110      160      -45         -30         -400     -200     200      400      -70     70
+
+# CB-TAPS LED calibration
+#CaLib-CB-TAPS-LED: 1
+
+# TAPS energy calibration
+CaLib-TAPS-Energy: 1
+# TAPS energy calibration (BG subtr.)
+#                             on/off  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max
+#CaLib-TAPS-Energy-BG-Subtr:   1       -55         -15         -400     -100     100      400      -70     70
+
+# TAPS quadratic energy correction
+#                on/off  pi0_min  pi0_max  eta_min  eta_max
+#CaLib-TAPS-Quad: 1       110      160      490      610
+
+# TAPS time calibration
+CaLib-TAPS-Time: 1
+
+# TAPS PSA calibration
+#CaLib-TAPS-PSA: 1
+
+# TAPS LED calibration
+#CaLib-TAPS-LED: 1
+
+# PID Phi calibration
+CaLib-PID-Phi: 1
+
+# PID energy calibration
+#                   on/off  pi0_min  pi0_max  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max
+#CaLib-PID-Energy:   1       120      150      -3.        5         -200     -100      100       200      -70     70
+
+# PID energy calibration (traditional)
+#CaLib-PID-Energy-Trad: 1
+
+# PID droop calibration
+#CaLib-PID-Droop: 1
+
+# PID time calibration
+#CaLib-PID-Time: 1
+
+# veto-crystal correlation
+CaLib-Veto-Corr: 1
+
+# Veto energy
+#CaLib-Veto-Energy: 1
+
+# Veto time
+#CaLib-Veto-Time: 1
+
+# tagger time calibration
+CaLib-Tagger-Time: 1
+
+# bad scaler reads
+CaLib-BadScalerReads: 1
+
+# PWO check
+#CaLib-PWO-Check: 1
+
+Initialise:
+
