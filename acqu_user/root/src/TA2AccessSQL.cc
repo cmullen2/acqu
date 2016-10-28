@@ -60,37 +60,47 @@ void TA2AccessSQL::SetConfig(Char_t* line, Int_t key)
   switch (key)
   {
   case ESQL_USE_CALIB:
-  {   
-    if(fIsMC) {
-      Error("SetConfig", "Ignoring Calib statements due to MC run");
-      return;
-    }
-      
-    Char_t tmp[5][256];
-    Int_t useNumber = 0;
+  {  
+     Char_t tmp[5][256];
 
-    // read CaLib parameters
-    if (sscanf(line, "%s%s%s%s%s%d", tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], &useNumber) >= 5)
-    {
-      // create the CaLib reader
-      if (useNumber != 0) fCaLibReader = new CaLibReader_t(tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], useNumber);
-      else fCaLibReader = new CaLibReader_t(tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], fRunNumber);
-      
-      // check database connection
-      if (fCaLibReader->IsConnected())
-        Info("SetConfig", "Using calibration '%s' in the CaLib database '%s' on '%s@%s'"
-             , tmp[4], tmp[1], tmp[2], tmp[0]);
-      else
-      {
-        delete fCaLibReader;
-        fCaLibReader = 0;
-        Error("SetConfig", "Could not connect to CaLib database server!");
-        // block here to get the user's attention
-        Error("SetConfig", "Blocking analysis due to CaLib error!");
-        for (;;) { gSystem->Sleep(1000); }
-      }
-    }
-    else Error("SetConfig", "CaLib could not be configured and is hence disabled!");
+     // read CaLib parameters
+     Int_t npar = sscanf(line, "%s%s%s%s%s", tmp[0], tmp[1], tmp[2], tmp[3], tmp[4]);
+
+     // connect to CaLib database
+     if (npar == 2 || npar == 5)
+     {
+         // create the CaLib reader using SQLite
+         if (npar == 2)
+         {
+             Char_t* exp = gSystem->ExpandPathName(tmp[0]);
+             fCaLibReader = new CaLibReader_t(exp, 0, 0, 0, tmp[1], fRunNumber);
+             if (fCaLibReader->IsConnected())
+                 Info("SetConfig", "Using calibration '%s' from the CaLib database '%s'",
+                                   tmp[1], exp);
+             delete exp;
+         }
+         // create the CaLib reader using MySQL
+         else if (npar == 5)
+         {
+             fCaLibReader = new CaLibReader_t(tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], fRunNumber);
+             if (fCaLibReader->IsConnected())
+                 Info("SetConfig", "Using calibration '%s' from the CaLib database '%s' on '%s@%s'",
+                                   tmp[4], tmp[1], tmp[2], tmp[0]);
+         }
+
+         // check database connection
+         if (!fCaLibReader->IsConnected())
+         {
+             delete fCaLibReader;
+             fCaLibReader = 0;
+             Error("SetConfig", "Could not connect to CaLib database server!");
+             // block here to get the user's attention
+             Error("SetConfig", "Blocking analysis due to CaLib error!");
+             for (;;) { gSystem->Sleep(1000); }
+         }
+     }
+     else Error("SetConfig", "CaLib could not be configured and is hence disabled!");
+  
     break;
   }
   case ESQL_CALIB_TAGG:
