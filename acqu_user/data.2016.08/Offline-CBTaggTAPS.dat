@@ -12,7 +12,7 @@ Branch:	  RawEvent_Scalers	4192
 Branch:	  Mk1_Header        120000
 ##
 ## Directory to save any created ROOT files (include final / )
-Directory: /w/work14/chris/Run101016/AcquOutput/Perp/
+Directory: /w/work14/chris/Run101016/AcquOutput/Perp/test/
 #Directory: /w/work14/chris/Run101016/AcquOutput/Para/
 #Directory: /scratch/chris/RealData/AcquOutput/Perp/
 #Directory: /scratch/chris/RealData/AcquOutput/Testing/
@@ -25,7 +25,7 @@ Directory: /w/work14/chris/Run101016/AcquOutput/Perp/
 Analysis: TA2UserAnalysis
 ##
 ## Analysis setup file
-AnalysisSetup: Analysis_Calib.dat
+AnalysisSetup: Analysis-Calib.dat
 ##
 ## Specify non-clearing scalers
 #ScalerNoClear: 12 139
