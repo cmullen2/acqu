@@ -31,6 +31,7 @@ class CaLibReader_t
 private:
     TSQLServer* fDB;                    // SQL server
     Bool_t fWasError;                   // error flag
+    Int_t fMaxQueryTries;               // maximum number of attempts for a query
     Int_t fRun;                         // run number
     Char_t fCalibration[256];           // calibration identifier
     Bool_t fTAGGtime;                   // tagger time flag

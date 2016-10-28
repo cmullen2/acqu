@@ -26,9 +26,12 @@ CaLibReader_t::CaLibReader_t(const Char_t* dbHost, const Char_t* dbName,
 {
     // Constructor.
     
+    Char_t tmp[256];
+
     // init members
     fDB = 0;
     fWasError = kFALSE;
+    fMaxQueryTries = 0;
     fRun = run;
     strcpy(fCalibration, calibration);
     fTAGGtime = kFALSE;
@@ -67,19 +70,32 @@ CaLibReader_t::CaLibReader_t(const Char_t* dbHost, const Char_t* dbName,
     fNBadScR = 0;
     fBadScR = 0;
     
-    // connect to the SQL server
-    Char_t tmp[256];
+    // connect to SQLite database
+    if (!dbName && !dbUser && !dbPass)
+    {
+        sprintf(tmp, "sqlite://%s", dbHost);
+        Info("CaLibReader_t", "Trying to connect to the database '%s' ...", tmp);
+        while (!(fDB = TSQLServer::Connect(tmp, "", ""))) gSystem->Sleep(5000);
+    }
+    // connect to MySQL database
+    else
+    {
     sprintf(tmp, "mysql://%s/%s", dbHost, dbName);
     Info("CaLibReader_t", "Trying to connect to the database server '%s' ...", tmp);
     while (!(fDB = TSQLServer::Connect(tmp, dbUser, dbPass))) gSystem->Sleep(5000); 
+    }
 
     // check the connection to the server
-    if (IsConnected()) Info("CaLibReader_t", "Successfully connected to CaLib database server");
+    if (IsConnected()) Info("CaLibReader_t", "Successfully connected to CaLib database");
     else 
     {
-        Error("CaLibReader_t", "Could not connect to CaLib database server!");
+        Error("CaLibReader_t", "Could not connect to CaLib database!");
         fWasError = kTRUE;
     }
+
+    // set maximum number of query tries
+    if (fDB->InheritsFrom("TSQLiteServer")) fMaxQueryTries = 10;
+    else fMaxQueryTries = 1;
 }
 
 //______________________________________________________________________________
@@ -170,6 +186,7 @@ Bool_t CaLibReader_t::ReadScalerReads(Int_t ndata_in, Char_t** data_in)
     if (!IsConnected())
     {
         Error("ReadScalerReads", "BadScR calibration was not applied! No connection to database!");
+        fWasError = kTRUE;
         return kFALSE;
     }
 
@@ -180,6 +197,7 @@ Bool_t CaLibReader_t::ReadScalerReads(Int_t ndata_in, Char_t** data_in)
         if (fBadScRlast)
         {
             Error("ReadScalerReads", "Could not find number of scaler reads in data base.");
+            fWasError = kTRUE;
             return kFALSE;
         }
         else
@@ -216,6 +234,7 @@ Bool_t CaLibReader_t::ReadScalerReads(Int_t ndata_in, Char_t** data_in)
         if (!SearchRunEntry("scr_bad", badscr_str))
         {
             Error("ReadScalerReads", "Could not load bad scaler reads list from data base.");
+            fWasError = kTRUE;
             return kFALSE;
         }
 
@@ -909,24 +928,52 @@ Bool_t CaLibReader_t::SearchRunEntry(const Char_t* name, Char_t* out)
             "WHERE run = %d",
             name, fRun);
 
-    // read from database
-    TSQLResult* res = fDB->Query(query);
-
-    // check result
-    if (!res)
+    // try to read from database
+    Int_t tries = 0;
+    TSQLResult* res;
+    TSQLRow* row;
+    while (tries < fMaxQueryTries)
     {
-        Error("SearchRunEntry", "Could not find the information '%s' for run %d!", name, fRun);
+        // init results
+        res = 0;
+        row = 0;
+
+        // submit query
+        res = fDB->Query(query);
+
+        // check results
+        Bool_t bad = kFALSE;
+        if (!res || !res->GetRowCount()) bad = kTRUE;
+        else
+        {
+            // get row
+            row = res->Next();
+            if (!row) bad = kTRUE;
+        }
+
+        // leave or try again
+        if (bad)
+    {
+            Error("SearchRunEntry", "Could not find the information '%s' for run %d - attempt %d of %d",
+                                    name, fRun, tries+1, fMaxQueryTries);
+
+            // clean-up and try again after some time
+            if (res) delete res;
+            if (row) delete row;
+            tries++;
+            gSystem->Sleep(5000);
+            continue;
+        }
+        else break;
+    }
+
+    // check query tries
+    if (tries == fMaxQueryTries)
+    {
+        Error("SearchRunEntry", "Could not find the information '%s' for run %d after %d attempts!",
+                                name, fRun, fMaxQueryTries);
         return kFALSE;
     }
-    if (!res->GetRowCount())
-    {
-        Error("SearchRunEntry", "Could not find the information '%s' for run %d!", name, fRun);
-        delete res;
-        return kFALSE;
-    }
-
-    // get row
-    TSQLRow* row = res->Next();
 
     // write the information
     const Char_t* field = row->GetField(0);
@@ -965,24 +1012,54 @@ Bool_t CaLibReader_t::ReadParameters(const Char_t* table, Double_t* par, Int_t l
             "ORDER BY changed DESC LIMIT 1",
 	    table, fCalibration, fRun, fRun);
     
-    // read from database
-    TSQLResult* res = fDB->Query(query); 
+    // try to read from database
+    Int_t tries = 0;
+    TSQLResult* res;
+    TSQLRow* row;
+    while (tries < fMaxQueryTries)
+    {
+        // init results
+        res = 0;
+        row = 0;
 
-    // check result
-    if (!res)
+        // submit query
+        res = fDB->Query(query);
+
+        // check results
+        Bool_t bad = kFALSE;
+        if (!res || !res->GetRowCount()) bad = kTRUE;
+        else
+        {
+            // get row
+            row = res->Next();
+            if (!row) bad = kTRUE;
+        }
+
+        // leave or try again
+        if (bad)
     {
-        Error("ReadParameters", "No calibration found for run %d in table %s!", fRun, table);
-        return kFALSE;
+            Error("ReadParameters", "No calibration found for run %d in table %s - attempt %d of %d",
+                                    fRun, table, tries+1, fMaxQueryTries);
+
+            // clean-up and try again after some time
+            if (res) delete res;
+            if (row) delete row;
+            tries++;
+            gSystem->Sleep(5000);
+            continue;
+        }
+        else break;
     }
-    else if (!res->GetRowCount())
+
+    // check query tries
+    if (tries == fMaxQueryTries)
     {
-        Error("ReadParameters", "No calibration found for run %d in table %s!", fRun, table);
-        delete res;
+        Error("ReadParameters", "No calibration found for run %d in table %s after %d attempts!",
+                                fRun, table, fMaxQueryTries);
         return kFALSE;
     }
 
     // get data (parameters start at field 5)
-    TSQLRow* row = res->Next();
     for (Int_t i = 0; i < length; i++) par[i] = atof(row->GetField(i+5));
   
     // clean-up
