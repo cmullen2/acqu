@@ -66,6 +66,7 @@ Physics-Analysis:   PHYS      TA2MyCaLib	       data.2016.08/Physics-CaLib.dat
 ##
 ## Do some post initialisation...usually necessary
 Initialise:
+#
 ## 
 ## Setup of extra procedures to run at periodic intervals
 ## The procedures are usually held in macro script files
@@ -77,6 +78,8 @@ Period: 100000   root/macros/PeriodMacro.C   PeriodMacro()
 Finish:		    root/macros/FinishWorker.C	Finish()
 #Finish:         root/macros/FinishMacro.C   FinishMacro()
 #Finish:	root/macros/FinishTree.C	FinishTree("ARHistograms_XXX.root")
+##
+Display: All
 ##
 ## Save all accepted events (ie those which pass all data cuts) to a
 ## ROOT file. Data saved in RAW format (ie ADC indices and values)
