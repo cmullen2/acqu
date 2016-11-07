@@ -1,0 +1,2 @@
+The embedded CaLib is not going to be used!
+I am going to use the one /home/chris/CaLib since this has most of the paths changed already and I think Dominik changed things in it.

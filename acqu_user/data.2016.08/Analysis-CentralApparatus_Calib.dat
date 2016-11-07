@@ -34,6 +34,7 @@ Initialise:
 #Allows an overall position shift for CB NaI crystals
 #May be useful for misaligned target positions
 #Misc: PosShift +0.0 +0.0 +0.0
+#Shift-Coord: TZ 6
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -88,7 +89,7 @@ AngleLimits:	20.             50.             15.             60.                
 ##
 ##		MaxTrack	MaxRpsvertex	MaxZpsvertex	MinZpsvertex
 # TrackLimits:	10		30.		500.		-500.
-TrackLimits:	10		70.		500.		-500.
+TrackLimits:	10		70.		1000.		-1000.
 ##
 
 
@@ -118,12 +119,12 @@ Display: 2D EclNaI 500 0 500 21   EhitPid 200 0 1200 21
 Display: 2D EclNaI 500 0 500 22   EhitPid 200 0 1200 22
 Display: 2D EclNaI 500 0 500 23   EhitPid 200 0 1200 23
 
-#Display: 2D EOR 400 0 400 -1 DeltaEOR 100 0 6 -1
+Display: 2D EOR 400 0 400 -1 DeltaEOR 100 0 6 -1
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Display phi correlation between PID and NaI for charged particles
-#Display: 1D DeltaPhi 360 -180 180
+Display: 1D DeltaPhi 360 -180 180
 Display: 2D PID_Hits 24 0 24 -1              NaI_ClPhi 180 -180 180 -1
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #

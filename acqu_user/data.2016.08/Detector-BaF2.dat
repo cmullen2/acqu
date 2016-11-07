@@ -13,7 +13,7 @@
 #
 Size:   384     1       1       1
 RawHits:
-Shift-Coord: TZ 7 #Copied from Stephens
+Shift-Coord: TZ 6
 #BitPattern: data/TAPS.pat
 #
 #          ADC#     low  high     ped     MeV/ch     TDC#   low     high    Off     ns/ch     Pos x        y     z (cm)
