@@ -75,7 +75,8 @@ Initialise:
 Period: 100000   root/macros/PeriodMacro.C   PeriodMacro()
 ##
 ## Finish...when all input data files processed
-Finish:		    root/macros/FinishWorker.C	Finish()
+#Finish:		    root/macros/FinishWorker.C	Finish()
+Finish:		root/macros/MyFinishWorker.C 	MyFinish()
 #Finish:         root/macros/FinishMacro.C   FinishMacro()
 #Finish:	root/macros/FinishTree.C	FinishTree("ARHistograms_XXX.root")
 ##
