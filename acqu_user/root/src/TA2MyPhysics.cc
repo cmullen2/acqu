@@ -1269,12 +1269,12 @@ void TA2MyPhysics::Reconstruct()
         else
         {
             // get the tagger hit multiplicity
-            Int_t m = fLadder->GetNMultihit();
+            Int_t m = fLadder->GetNMultihit(); //CAM 14/11/16 always 0!!
 
             // count total number of hits including all hit multiplicities
             Int_t nhits = 0;
             for (Int_t i = 0; i < m; i++) nhits += fLadder->GetNhitsM(i);
-            
+
             // create hit, energy and time arrays
             fTaggerPhotonNhits = 0;
             fTaggerPhotonHits = new Int_t[nhits];
@@ -1293,13 +1293,11 @@ void TA2MyPhysics::Reconstruct()
 
                 // time array of current multiplicity
                 Double_t* time = fLadder->GetTimeORM(i);
-
                 // loop over hits of current multiplicity
                 for (Int_t j = 0; j < nhits; j++)
                 {
                     // skip bad tagger channels
                     if (IsBadTaggerChannel(hits[j])) continue;
-
                     // set hit element, time and energy
                     fTaggerPhotonHits[fTaggerPhotonNhits] = hits[j];
                     fTaggerPhotonEnergy[fTaggerPhotonNhits] = eBeamEnergy - fpdEnergy[hits[j]];

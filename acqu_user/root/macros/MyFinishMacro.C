@@ -19,7 +19,7 @@ Int_t LastIndexOf(const Char_t* s, Char_t c)
 {
     // Returns the position of the last occurence of the character c
     // in the string s. Returns -1 if c was not found (taken from OSCAR's TOSUtils).
-    
+
     Char_t* pos = strrchr(s, (Int_t)c);
     if (pos) return pos-s;
     else return -1;
@@ -30,36 +30,36 @@ Char_t* ExtractFileName(const Char_t* s)
 {
     // Extracts the file name of a file given by its full Unix paths in
     // the string s (taken from OSCAR's TOSUtils).
-    
+
     // Create output string if empty
     if (!fTmpCh) fTmpCh = new Char_t[256];
-    
+
     // Search last slash
     Int_t pos = LastIndexOf(s, '/');
 
     // Return the same string or copy substring
     if (pos == -1) sprintf(fTmpCh, "%s", s);
     else strncpy(fTmpCh, s+pos+1, strlen(s)-pos);
-    
+
     return fTmpCh;
 }
 
 //______________________________________________________________________________
 Char_t* ExtractPureFileName(const Char_t* s)
 {
-    // Extracts the file name and truncates the file ending of a file given 
+    // Extracts the file name and truncates the file ending of a file given
     // by its full Unix path in the string s (taken from OSCAR's TOSUtils).
-    
+
     // Create output string if empty
     if (!fTmpCh) fTmpCh = new Char_t[256];
-   
+
     // Get the file name
     Char_t fn[256];
     sprintf(fn, "%s", ExtractFileName(s));
-    
+
     // Search last dot
     Int_t pos = LastIndexOf(fn, '.');
-    
+
     // Strip file ending
     if (pos == -1) sprintf(fTmpCh, "%s", fn);
     else
@@ -74,16 +74,16 @@ Char_t* ExtractPureFileName(const Char_t* s)
 //______________________________________________________________________________
 Char_t* ExtractPureFileNameParDirPrefix(const Char_t* s)
 {
-    // Extracts the file name and truncates the file ending of a file given 
+    // Extracts the file name and truncates the file ending of a file given
     // by its full Unix path in the string s (taken from OSCAR's TOSUtils).
     // Use the parent directory as prefix.
-    
+
     Char_t tmp[256];
     Char_t tmp2[256];
 
     // Create output string if empty
     if (!fTmpCh) fTmpCh = new Char_t[256];
-    
+
     // Search last slash
     Int_t pos = LastIndexOf(s, '/');
 
@@ -105,7 +105,7 @@ Char_t* ExtractPureFileNameParDirPrefix(const Char_t* s)
 Bool_t IsOSCARTree()
 {
     // Check if an A2 OSCAR Tree was created in the analysis.
-    
+
     if (!gAR->GetAnalysis()->GetPhysics()) return kFALSE;
 
     TTree* t = gAR->GetAnalysis()->GetPhysics()->GetTree();
@@ -128,9 +128,9 @@ void CorrectTaggerScalers(Bool_t useNewScalers)
     //    useNewScalers:
     //       kTRUE   : use new scaler pairs (after 24th September 2008 / Run 20000)
     //       kFALSE  : use old scaler pairs
-  
+
     Char_t name[256];
-    
+
     // create total scaler histogram name
     sprintf(name, "SumScalers0to%d", gAR->GetMaxScaler());
 
@@ -141,22 +141,22 @@ void CorrectTaggerScalers(Bool_t useNewScalers)
     if (!hScT) hScT = (TH1*) gROOT->Get("FPD_ScalerAcc");
 
     // check if all histograms are here
-    if (!hSc) 
+    if (!hSc)
     {
         printf("ERROR: Could not load the '%s' histograms which is required for the tagger scaler correction!\n", name);
         return;
     }
-    if (!hScC) 
+    if (!hScC)
     {
         printf("ERROR: Could not load the 'CorrectedSumScalers' histograms which is required for the tagger scaler correction!\n");
         return;
     }
-    if (!hScT) 
+    if (!hScT)
     {
         printf("ERROR: Could not load the 'FPD_ScalerAcc' histograms which is required for the tagger scaler correction!\n");
         return;
     }
-    
+
     // load scaler values
     Double_t sc_0_ar   = hSc->GetBinContent(1);
     Double_t sc_1_ar   = hSc->GetBinContent(2);
@@ -186,11 +186,11 @@ void CorrectTaggerScalers(Bool_t useNewScalers)
         live_tag = sc_145 / sc_144;
         corr_fac = live_tot / live_tag;
     }
-   
+
     // divide correction factor by 2 to correct double scaler entries
     // in offline ROOT file processing
     if (!gAR->IsOnline()) corr_fac /= 2.;
-    
+
     // calculate error
     Double_t fc2 = corr_fac * corr_fac;
     Double_t corr_fac_err;
@@ -201,7 +201,7 @@ void CorrectTaggerScalers(Bool_t useNewScalers)
     Int_t n_corr = 0;
     if (useNewScalers) strcpy(name, "FPD_ScalerAccCorrNew");
     else strcpy(name, "FPD_ScalerAccCorr");
-    TH1F* hScTC = new TH1F(name, name, hScT->GetNbinsX(), 
+    TH1F* hScTC = new TH1F(name, name, hScT->GetNbinsX(),
                             hScT->GetXaxis()->GetXmin(), hScT->GetXaxis()->GetXmax());
     for (Int_t i = 0; i < hScT->GetNbinsX(); i++)
     {
@@ -220,7 +220,7 @@ void CorrectTaggerScalers(Bool_t useNewScalers)
         else
         {
             tscC = tsc * corr_fac;
-            tscC_err = TMath::Sqrt(tscC*tscC*tsc_err*tsc_err/tsc/tsc + 
+            tscC_err = TMath::Sqrt(tscC*tscC*tsc_err*tsc_err/tsc/tsc +
                                    tscC*tscC*corr_fac_err*corr_fac_err/corr_fac/corr_fac);
         }
 
@@ -247,7 +247,7 @@ void CorrectTaggerScalers(Bool_t useNewScalers)
             {
                 ntup->GetEntry(j);
                 ratio_corr = ratio / corr_fac;
-                ratio_corr_err = TMath::Sqrt(ratio_corr*ratio_corr*ratio_err*ratio_err/ratio/ratio + 
+                ratio_corr_err = TMath::Sqrt(ratio_corr*ratio_corr*ratio_err*ratio_err/ratio/ratio +
                                              ratio_corr*ratio_corr*corr_fac_err*corr_fac_err/corr_fac/corr_fac);
                 ntup_corr->Fill(ratio_corr, ratio_corr_err);
             }
@@ -288,23 +288,22 @@ void CorrectTaggerScalers(Bool_t useNewScalers)
 void MyFinishMacro()
 {
     // Main method.
-    
-    Char_t outFileName[256];
-    
+
+    TString outFileName;
+
     printf("\nEnd of file: Executing MyFinishMacro ...\n");
-    
+
     // check for physics analysis
     if (!gAR->GetAnalysis()->GetPhysics())
     {
-        // Build the output file name depending on the type of analysis
-        if (gAR->IsOnline()) sprintf(outFileName, "%sARHistograms_%s.root", gAR->GetTreeDir(), 
-                                     ExtractPureFileName(gAR->GetFileName()));
-        else 
-            sprintf(outFileName, "%sARHistograms_%s.root", gAR->GetTreeDir(), 
-                    ExtractPureFileNameParDirPrefix(gAR->GetTreeFile()->GetName()));
+        // build the output file name depending on the type of analysis
+        if (gAR->IsOnline())
+            outFileName.Form("%sARHistograms_%s.root", gAR->GetTreeDir(), ExtractPureFileName(gAR->GetFileName()));
+        else
+            outFileName.Form("%sARHistograms_%s.root", gAR->GetTreeDir(), ExtractPureFileName(gAR->GetTreeFile()->GetName()));
 
         // create output file and save objects
-        TFile* f = new TFile(outFileName, "recreate");
+        TFile* f = new TFile(outFileName.Data(), "recreate");
         f->SetCompressionLevel(4);
         gROOT->GetList()->Write();
         printf("Saved all histograms to %s\n", f->GetName());
@@ -316,14 +315,14 @@ void MyFinishMacro()
         TA2MyPhysics* ana = (TA2MyPhysics*)gAR->GetAnalysis()->GetPhysics();
         Int_t run = 0;
         if (ana) run = ana->GetRunNumber();
-        
+
         // Correct tagger scalers for different dead-times in the tagger DAQ and
         // the CB DAQ, respectively.
         // On September 24 2008 a new pair of scalers was installed for this purpose
         // (after run 19000 (September 25 2008) this should work).
-        CorrectTaggerScalers(kFALSE);
-        if (run > 19000) CorrectTaggerScalers(kTRUE);
- 
+        //CorrectTaggerScalers(kFALSE);
+        //if (run > 19000) CorrectTaggerScalers(kTRUE);
+
         // Check if output file is already open
         TFile* f;
         if (f = ana->GetOutputFile())
@@ -337,12 +336,11 @@ void MyFinishMacro()
         }
         else
         {
-            // Build the output file name depending on the type of analysis
-            if (gAR->IsOnline()) sprintf(outFileName, "%sARHistograms_%s.root", gAR->GetTreeDir(), 
-                                         ExtractPureFileName(gAR->GetFileName()));
-            else 
-                sprintf(outFileName, "%sARHistograms_%s.root", gAR->GetTreeDir(), 
-                        ExtractPureFileNameParDirPrefix(gAR->GetTreeFile()->GetName()));
+            // build the output file name depending on the type of analysis
+            if (gAR->IsOnline())
+                outFileName.Form("%sARHistograms_%s.root", gAR->GetTreeDir(), ExtractPureFileName(gAR->GetFileName()));
+            else
+                outFileName.Form("%sARHistograms_%s.root", gAR->GetTreeDir(), ExtractPureFileName(gAR->GetTreeFile()->GetName()));
 
             // Save histograms to file and close it
             f = new TFile(outFileName, "recreate");

@@ -463,7 +463,7 @@ void TA2Detector::ParseShift( Char_t* line )
 
 //-----------------------------------------------------------------------------
 void TA2Detector::ParseMultihit( Char_t* line )
-{
+{     
   // Turn on analysis of multihit TDCs
   //
   if( !fIsTime ){

@@ -2612,7 +2612,6 @@ void TA2MyCaLib::ReconstructPhysics()
  
 
     // ------------------------------------ tagger time ----------------------------------- 
-    
     if (fCalib_Tagger_Time)
     {
         // look for pi0 in combination with a proton
@@ -2662,17 +2661,17 @@ void TA2MyCaLib::ReconstructPhysics()
                 if (im > 120 && im < 150) isPi0 = kTRUE;
             }
         }
-
-        // tagger loop
+        // tagger loop //CAM 14/11/16
+        //
         for (UInt_t i = 0; i < fTaggerPhotonNhits; i++)
         {
             // get tagger element and time
             Int_t tagg_element = fTaggerPhotonHits[i];
             Double_t tagg_time = fTaggerPhotonTime[i];
-            
+          //cout << "OUTSIDE 2 " << endl;  
             // check if there is no TAPS -> tagging efficiency run
             if (!fBaF2PWO)
-            {
+            {  cout << "OUTSIDE 1 " << endl;
                 // second loop over tagger hits
                 for (UInt_t j = i+1; j < fTaggerPhotonNhits; j++)
                 {
@@ -2681,6 +2680,7 @@ void TA2MyCaLib::ReconstructPhysics()
                     Double_t tagg_time_2 = fTaggerPhotonTime[j];
                     
                     // fill time difference
+                    cout << "Inside tagger loop " << endl;
                     fHCalib_Tagger_Time->Fill(tagg_time - tagg_time_2, tagg_element);
                     fHCalib_Tagger_Time->Fill(tagg_time_2 - tagg_time, tagg_element_2);
                 }
