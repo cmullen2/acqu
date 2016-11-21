@@ -1,0 +1,4 @@
+I moved some files that are not present in AcquHierarchy to UnUsed folder.
+I also copied over from 2015.06 folder the file and used it to replace
+Analysis-TAPS-Veto and Detector-BaF2 which both now reside in UnUsed folder.
+I also used the Detector-Veto file that was present in the 2016 folder.
