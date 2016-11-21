@@ -59,7 +59,7 @@ Reconstruct-Analysis:
 ## Specify physics analysis
 ##			Name		Class			Config File
 ##Physics-Analysis:       Example	TA2GammaDeuterium	TA2GammaDeuterium.dat
-#Physics-Analysis:	PHYS	TA2GoAT		Physics-GoAT.dat
+#Physics-Analysis:	PHYS	TA2GoAT		data.2016.08/Physics-GoAT.dat
 Physics-Analysis:   PHYS      TA2MyCaLib	       data.2016.08/Physics-CaLib.dat
 #Physics-Analysis:	PHYS	TA2Pi0Compton	AR-Analysis-Pi0Compton.dat
 #Physics-Analysis:	PHYS	TA2MyPhysics		Physics-GoAT.dat
@@ -76,7 +76,7 @@ Period: 100000   root/macros/PeriodMacro.C   PeriodMacro()
 ##
 ## Finish...when all input data files processed
 #Finish:		    root/macros/FinishWorker.C	Finish()
-Finish:		root/macros/MyFinishWorker.C 	MyFinish()
+Finish:		root/macros/MyFinishMacro.C 	MyFinishMacro()
 #Finish:         root/macros/FinishMacro.C   FinishMacro()
 #Finish:	root/macros/FinishTree.C	FinishTree("ARHistograms_XXX.root")
 ##
