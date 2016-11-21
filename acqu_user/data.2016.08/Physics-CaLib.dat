@@ -9,7 +9,7 @@ Reconstruct:
 
 #Run-Number: 12694 
 
-#Last-Event: 10000
+Last-Event: 500000
 
 # L1 trigger bits
 #         CB      TAPS OR  TAPS M2  Pulser  TAPS Pulser 
@@ -24,6 +24,10 @@ L2-Multi-Bits:  0x0200  0x0400  0x0800  0x1000
 # Beam helicity settings (41480 is hel state 0, 41477 is hel state 1)
 Beam-Pol-ADC: 7
 Beam-Pol-Bits: 41477 41480
+
+# relative/absolute livetime correction for tagger scalers
+#                    live CB   free CB   live tagg   free tagg  P2
+TaggSc-Live-Corr:    190       191       190         191        203
 
 #
 # CaLib configuration
@@ -43,9 +47,8 @@ Use-CaLib-TAPS:     1       1       0               0            0
 Use-CaLib-PID:      1       1       1
 # Veto calib:       energy  time    LED thr.                               (0=off/1=on)
 Use-CaLib-Veto:     1       1       0
-# Bad scaler reads  list    first   last+1
-#Use-CaLib-BadScR:   0       1       1
-
+# Bad scaler reads  list    first   last (0=off/1=on)    lists (ALL, NaI, ..., NONE, space-sep. list)
+Use-CaLib-BadScR:   0       1       0                    ALL
 
 #
 # software trigger configuration
