@@ -13,7 +13,7 @@
 ##-----------------------------------------------------------------------
 Foam-Model:	SAID
 ##		#events/run	Random seed	#runs
-Number-Throws:	50000		888899		1
+Number-Throws:	1000000		888899		1
 ##
 ## Baryon resonances
 ##		Name	PDG code
@@ -28,7 +28,7 @@ Foam-Distribution:	3	0		data.AMC/ppi0_145-1500.db
 Foam-Limits:	0	0.2 	1
 ##
 ##		Polarisation Vectors
-Beam-Pol: 	0.00 0.00 0.00   
+Beam-Pol: 	1.00 0.00 0.00   
 Target-Pol:	0.00 0.00 0.00   
 Recoil-Pol:	0.00 0.00 0.00
 ##
@@ -43,7 +43,7 @@ Foam:	Beam	  	-1 -1 -1 0 -1
 P-Distr: Beam Cos(Theta)   TMath::Gaus(x,1.0,0.000001)	  0.9999975 1.0  2000
 ##
 ##	Mass	Radius	Length	Center (x,y,z)
-Target: 0.938 	2.5	5.0   	0.0 0.0 0.0
+Target: 0.938 	5.0	10.0   	0.0 0.0 0.0
 ##
 ## The reaction "particle"
 ##	  Name		PDG/Res	Decay?	Track?	Parent	Opt
@@ -61,5 +61,7 @@ Particle: Proton	2212	0	1	Reaction NULL
 #Tree-Output:   /scratch/roddym/AcquMC/GP_PPi0/tree/SAIDEvents
 #Ntuple-Output: /scratch/chris/AcquMC
 #Ntuple-Output: testAMC
-Tree-Output:	/scratch/chris/AcquMC/GP_PPi0/SecondaryTest/BIC/BIC_PPi0_AcquMC_OutputTree
-Ntuple-Output:	/scratch/chris/AcquMC/GP_PPi0/SecondaryTest/BIC/BIC_PPi0_AcquMC_OutputNtuple
+#Tree-Output:	/scratch/chris/AcquMC/GP_PPi0/SecondaryTest/BIC/BIC_PPi0_AcquMC_OutputTree
+#Ntuple-Output:	/scratch/chris/AcquMC/GP_PPi0/SecondaryTest/BIC/BIC_PPi0_AcquMC_OutputNtuple
+Tree-Output:	/w/work14/chris/AcquMC/GP_PPi0/PPi0_AcquMC_OutputTree
+Ntuple-Output:	/w/work14/chris/AcquMC/GP_PPi0/PPi0_AcquMC_OutputNtuple
