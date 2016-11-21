@@ -12,6 +12,9 @@
 ##
 ##	#FP	Energy	Time	Pos
 Size: 	352 	0 	1 	1
+#
+Multi-hit: 10
+#
 ##	Scalers	Calib	Overlap	Micro	#trig	Toff	Tres
 Misc:	1	1	1	0	0	0	0.0
 ##
@@ -408,9 +411,9 @@ Display: 1D NhitsRand   32 0 32
 Display: 1D Hits        352 0 352
 Display: 1D HitsPrompt  352 0 352
 Display: 1D HitsRand    352 0 352
-#Display: 1D EnergyOR    200 0 2.5
+Display: 1D EnergyOR    200 0 2.5
 Display: 1D TimeOR     1000 -250.0 150.0
-#Display: 1D Energy 100 0 2.5   0 352
+Display: 1D Energy 100 0 2.5   0 352
 #Display: 1D Time  1000 -250.0 150.0   0 352
 #Display: 1D Eelect   352 v2ud_1557_1.88839.plot.ehist
 Display: 1D ScalerCurr 352 0 352
