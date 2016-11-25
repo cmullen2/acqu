@@ -15,7 +15,7 @@
 # Info switch is off/on = 0/1
 #	Total	Energy?	Time?	Position?
 Size:	720	1	1	1
-RawHits:
+#RawHits:
 Energy-Scale:  1.0
 Shift-Coord: TZ 7
 # Calibration factors for each crystal...one line for each crystal

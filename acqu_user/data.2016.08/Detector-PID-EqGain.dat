@@ -5,7 +5,7 @@
 #position) to be used
 #       No. of elements   Energy  Time    Position
 Size:   24                1       1       1
-RawHits:
+#RawHits:
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Configuration of detector elements.
 #        ADC Low [MeV]  High [MeV]  Ped [chan.]  MeV/Chan  TDC    Low [ns]  High [ns]  Off [chan.]  ns/Chan  Position [r(mm), theta, phi(deg)]
