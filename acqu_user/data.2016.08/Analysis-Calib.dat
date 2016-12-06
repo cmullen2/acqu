@@ -80,7 +80,7 @@ Finish:		root/macros/MyFinishMacro.C 	MyFinishMacro()
 #Finish:         root/macros/FinishMacro.C   FinishMacro()
 #Finish:	root/macros/FinishTree.C	FinishTree("ARHistograms_XXX.root")
 ##
-Display: All
+#Display: All
 ##
 ## Save all accepted events (ie those which pass all data cuts) to a
 ## ROOT file. Data saved in RAW format (ie ADC indices and values)
