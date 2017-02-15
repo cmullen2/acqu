@@ -93,7 +93,7 @@ CaLib-CB-Energy: 1
 
 # CB quadratic energy correction
 #              on/off  pi0_min  pi0_max  eta_min  eta_max
-#CaLib-CB-Quad: 1       105      165      500      620    
+CaLib-CB-Quad: 1       105      165      500      620    
 
 # CB time calibration
 CaLib-CB-Time: 1
@@ -112,7 +112,7 @@ CaLib-CB-Time: 1
 CaLib-TAPS-Energy: 1
 # TAPS energy calibration (BG subtr.)
 #                             on/off  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max
-#CaLib-TAPS-Energy-BG-Subtr:   1       -55         -15         -400     -100     100      400      -70     70
+CaLib-TAPS-Energy-BG-Subtr:   1       -70        -40         -250     -100     50      200      -70     70
 
 # TAPS quadratic energy correction
 #                on/off  pi0_min  pi0_max  eta_min  eta_max
