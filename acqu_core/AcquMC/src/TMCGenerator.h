@@ -269,7 +269,9 @@ inline void TMCGenerator::GEvent( )
   // Generate 4-momenta recursively for all steps of the reaction process
   // If error detected, e.g. if energy/momentum balance violated at
   // some stage, then do not store event
+  //std::cout<<"Start "<<std::endl;
   GP4( fReaction );
+  //std::cout<<"Stop "<<std::endl;
   // Write to Tree or Ntuple
   if( !fIsError ) SaveEvent();
 }

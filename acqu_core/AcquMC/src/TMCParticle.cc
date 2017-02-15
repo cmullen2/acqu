@@ -358,6 +358,7 @@ Bool_t TMCParticle::Gen2Decay( )
   case EMCParticleQQF:
     // 2nd QF level, e.g. interaction of beam with "parton" d0 in nucleus
     // e.g. single N of interacting N-N pair
+   //  std::cout <<"In QQF " <<std::endl;
     TLorentzVector* QF = d0->GetP4();
     TLorentzVector* rQF = d1->GetP4();
     TLorentzVector* p4bm = fBeam->GetP4();
@@ -368,6 +369,7 @@ Bool_t TMCParticle::Gen2Decay( )
     rQF->SetE(TMath::Sqrt(p*p + m*m));   // Set recoil on-shell mass
     // Standard QF with beam energy compensation
     if( fDecayMode == EMCParticleQF ){
+     // std::cout << "In Beam Comp" << std::endl;
       Double_t eb = p4bm->E();           // beam energy
       Double_t m2qf = QF->M2();          // qf particle Mass**2
       TLorentzVector qf = *fP4 - *rQF;   // = beam + QF particle
@@ -401,7 +403,7 @@ Bool_t TMCParticle::Gen2Decay( )
     if( (pd = ed*ed - md2) < 0.0 ) return kFALSE;
     pd = TMath::Sqrt( pd );                       // |p| decay product 1
   }
-
+  
   // Sample polar and asimuthal angle distribution
   Double_t costh, sinth, phi;                   // CM production angles
   costh = d0->CosTheta();
@@ -414,7 +416,9 @@ Bool_t TMCParticle::Gen2Decay( )
   fP4d[0]->SetXYZT(x,y,z,ed);
   fP4d[1]->SetXYZT( -x,-y,-z, TMath::Sqrt( pd*pd + fMd2[1] ) );
   // Boost CM -> Lab. Boost vector from 4-momentum of parent particle
+  //std::cout<<"UnBoosted "<<fP4d[0]->Phi()<<std::endl;
   BoostLab( );
+  //std::cout<<"Boosted "<<fP4d[0]->Phi()<<std::endl;
   x = fP4d[0]->Theta()*TMath::RadToDeg();
   x = fP4d[1]->Theta()*TMath::RadToDeg();
   return kTRUE;

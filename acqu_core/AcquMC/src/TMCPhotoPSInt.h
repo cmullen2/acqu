@@ -104,12 +104,11 @@ inline Double_t TMCPhotoPSInt::Density(Int_t nDim, Double_t *Xarg)
   if( nDim < 4 ) tarPol = 1;
   else if( Xarg[3] < 0.5 ) tarPol = -1;
   else tarPol = 1;
-
+ 
   result = fPSO[EpsoDSG]*(1-fPSO[EpsoS]*LinearPol*cos2phi
   +TransPol*cosphi*(-fPSO[EpsoH]*LinearPol*sin2phi+fPolB->Z()*fPSO[EpsoF])
   -TransPol*sinphi*(fPSO[EpsoT]+fPSO[EpsoP]*LinearPol*cos2phi)
   -tarPol*fPolT->Z()*(-fPSO[EpsoG]*LinearPol*sin2phi+fPolB->Z()*fPSO[EpsoE]));
-
   return WgtDensity( result );
 }
 

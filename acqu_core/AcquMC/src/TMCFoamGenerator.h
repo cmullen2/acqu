@@ -94,13 +94,16 @@ inline void TMCFoamGenerator::GEvent( )
 {
   // Sample the N-Dim TFoam distribution
   // and then call standard event
-
+  // std::cout <<"fXbf = "<< fX[0] << " fX1 = " << fX[1] << " fX2 " << fX[2] << std::endl;
   if( fFoamX ){
     fFoamX->MakeEvent();               // sample N-dimensional space
     fFoamX->GetMCvect( fX );           // get the sample
     fInt->Scale( fX, fXscale );        // scale vector
   }
+ // std::cout <<"fXsc = "<< fXscale[0] << " fX1 = " << fXscale[1] << "  fX2 = " << fXscale[2] << " fX3 = " << fXscale[3] << " fX4 = " << fXscale[4] << std::endl;
   TMCGenerator::GEvent();
+     
+
 }
 
 
