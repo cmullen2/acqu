@@ -1,0 +1,80 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   11th May 2006
+##--Update
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Master parameter file for Monte Carlo reaction event generator
+## Expected to reside in directory $acqu/data/
+## Radiative Pi0 photo production on the proton
+## Radiated photon energy from Breit-Wigner
+## To use invoke... MCGenerator GP_GPPi0.dat
+##-----------------------------------------------------------------------
+Foam-Model:	SAID
+##		#events/run	Random seed	#runs
+Number-Throws:	100000		888888		1
+##
+## Baryon resonances
+##		Name	PDG code
+Resonance:	P33	2214
+##		Name	Peak Mass(GeV)	Width(GeV)
+Resonance:	S11	1.535		0.150
+##			N-Dim	Interp-Opt	DB File
+Foam-Distribution:	3	0		data/ppi0_145-1500.db
+##
+##	Index Egamma	Low	High (GeV)
+#Foam-Limits:	0	0.9	1.2
+##
+##		Polarisation Vectors, Xvec was neg for neg pol
+#Beam-Pol: 	0.707 0.707 0.00   
+#Beam-Pol: 	0.00 0.00 0.00   
+Beam-Pol: 	1.00 0.00 0.00   
+Target-Pol:	0.00 0.00 0.00   
+Recoil-Pol:	0.00 0.00 0.00
+##
+##		nCell nSampl nBin OptRej OptDr Ev/Bin Chat MaxWgtRej
+Foam-Option:	2000   2000   200  1      2     100    1    1.1
+#Foam-Option:	2000   1000   200  1      2     100    1    1.1
+##
+## Beam parameters, energy from Foam, theta...cos(theta) = Gaussian
+##	PDG-index	Source x,y,z (cm)
+Beam: 	22		0.0 0.0 -500.
+Foam:	Beam	  	-1 -1 -1 0 -1
+P-Distr: Beam Cos(Theta)   TMath::Gaus(x,1.0,0.000001)	  0.9999975 1.0  2000
+##CAM altered the radius and length below as requested!
+##		Mass		Radius	Length	Center (x,y,z)
+Target: 	2212 	5.0	10.0   	0.0 0.0 -6.0
+##
+## The reaction "particle"
+##	  Name		PDG/Res	Decay?	Track?	Parent	 Opt
+Particle: Reaction	P33	1	0	NULL	 NULL
+##
+## Decay Delta -> p, pi0
+##	  Name		PDG	Decay?	Track?	Parent	Opt
+Particle: Pi0		111	1	0	Reaction      NULL
+Foam:     Pi0 		1 -1 2 -1 -1
+Particle: Proton	2212	0	1	Reaction      NULL
+##
+## Weight TFoam density
+## Brem on Ebeam(0); SinTh on Theta-gamma'(2); SinTh on Theta-pi(4)
+Foam-Weight:	Bremsstrahlung	0
+##
+## Pi0 decay partticles
+Particle: Gamma_1	22	0	1	Pi0	NULL
+Particle: Gamma_2	22	0	1	Pi0	NULL
+##
+#Tree-Output:    /scratch/jrma/GD_PPi0_QFSAID_1MT	2
+#Ntuple-Output:  /scratch/jrma/GD_PPi0_QFSAID_1MN
+#Particle-Output:  /scratch/jrma/GD_PPi0_QFSAID_1MP
+#Tree-Output:	/scratch/chris/AcquMC/GD_PPi0/POL/Proton/POL_PPi0_AcquMC_OutputTreeProtonBad
+#Ntuple-Output:	/scratch/chris/AcquMC/GD_PPi0/POL/Proton/POL_PPi0_AcquMC_OutputNtupleProtonBad
+#Tree-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/FoamOut/Deuterium/BeamAsym/PosPolarisation/10Mil/PosPol
+Ntuple-Output:	/scratch/chris/Simulations/testfree
+#Tree-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/FoamOut/Deuterium/BeamAsym/NegPolarisation/10Mil/NegPol
+#Ntuple-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/FoamOut/Deuterium/BeamAsym/NegPolarisation/10Mil/NegPol
+#
+#Tree-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/FoamOut/Deuterium/ScatAsym/ScatAsymPol
+#Ntuple-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/FoamOut/Deuterium/ScatAsym/ScatAsymPol
+#
+#
