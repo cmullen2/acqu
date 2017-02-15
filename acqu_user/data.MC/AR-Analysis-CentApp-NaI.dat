@@ -14,17 +14,18 @@ Max-Cluster:	16			15.0
 # Apply an energy scale
 Energy-Scale: 1.05
 #
+Shift-Coord: TZ 7
 # Energy resolution using the form A*(E^B): A, B,   Use to smear MC data (0/1 = off/on) 
-Energy-Resolution: 0.027 0.75 1
+#Energy-Resolution: 0.027 0.75 1
 #
 # Time resolution, apply gaus. smear (sigma in ns), Use to smear MC data (0/1 = off/on)
-Time-Resolution: 2.87 0
+#Time-Resolution: 2.87 0
 #
 # Theta Resolution in Degrees
-Theta-Resolution: 2.5
+#Theta-Resolution: 2.5
 #
 # Phi Resolution in Degrees (divided by sin(theta) for res @ specific theta)
-Phi-Resolution: 2.0
+#Phi-Resolution: 2.0
 #
 #-------------------------------------------------------------------------
 #
@@ -600,7 +601,7 @@ Element: 	567     0.5 1200.0	0.00	0.0583	0 -500 500 -2200 0.11771	-19.987	-40.71
 Element: 	568     0.5 1200.0	0.00	0.0789	0 -500 500 -2200 0.11771	-18.449	-39.214	-13.403	
 Element: 	569     0.5 1200.0	0.00	0.0813	0 -500 500 -2200 0.11771	-14.668	-41.639	-10.656	
 Element: 	570     0.5 1200.0	0.00	0.0739	0 -500 500 -2200 0.11771	-9.929	-42.29	-13.258	
-Element: 	571     0.5 1200.0	0.00	0.0722	0 -500 500 -2200 0.11771	-15.678	-42.29	-5.346	
+Element: 	571     0.5 1200.0	0.00	0.0722	0 -500 500 -2200 0.11771	-15.678	-42.29	-5.346
 Element: 	572     0.5 1200.0	0.00	0.0722	0 -500 500 -2200 0.11771	-11.996	-43.725	-2.69	
 Element: 	573     0.5 1200.0	0.00	0.0836	0 -500 500 -2200 0.11771	-6.266	-43.725	-10.577	
 Element: 	574     0.5 1200.0	0.00	0.0737	0 -500 500 -2200 0.11771	-7.322	-44.51	-5.32	
@@ -752,7 +753,7 @@ Element: 	719     0.5 1200.0	0.00	0.0685	0 -500 500 -2200 0.11771	-3.619	-45.214
 ##
 ##
 ## Nearest neighbours for each element of array
-#Iterate-Neighbours:	3		3		7
+Iterate-Neighbours:	3		3		7
 #
 ##              N       List of neighbours
 Next-Neighbour: 12	0	1	144	576	145	577	432	579	2	3	146	288	

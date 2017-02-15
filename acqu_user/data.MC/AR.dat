@@ -57,12 +57,15 @@ Branch:   mc_rnd_id     8
 #TreeFile: $HOME/TestFiles/AcquIn/POL_PPi0_OutputA2SimProtonBad.root
 #TreeFile: /scratch/chrism/RealData/CBTaggTAPS_14917.dat.xz
 #TreeFile: %%FILE%%
-TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/BeamAsym/PosPolarisation/A2OutPosPol.root
+#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/BeamAsym/PosPolarisation/A2OutPosPol.root
 #TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/BeamAsym/NegPolarisation/A2OutNegPol.root
 #TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/A2OutPolNeg_PolQF.root
 #TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/A2OutPolPos_PolQF.root
 #TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/A2OutPolNeg_Pol.root
+#This was prev.
 #TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/A2OutPolPos_Pol.root
+TreeFile: /w/work14/chris/EdinGeant/Geant_10e7_PN_300_1557_1.root
+#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/TestA2OutPolPos_Pol.root
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -76,9 +79,12 @@ BatchDir: %%OUTDIR%%/
 #Directory: $HOME/TestFiles/AcquOut/ProtonBad/
 #Directory: %%OUTDIR%%/
 #Directory: /scratch/chrism/RealData/AcquOutput/
-Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/BeamAsym/PosPolarisation/
+#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/BeamAsym/PosPolarisation/
 #Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/BeamAsym/NegPolarisation/
+#this was prev.
 #Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/
+#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/
+Directory: /w/work14/chris/EdinGeant/Out/
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
