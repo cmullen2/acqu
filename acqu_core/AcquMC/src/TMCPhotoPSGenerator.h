@@ -50,13 +50,19 @@ inline void TMCPhotoPSGenerator::GP4( TMCParticle* particle )
   TIter nextp( particle->GetDecayList() );
   Double_t phiR=0;//default do nothing
   if(particle==fReaction) phiR = fReaction->GetP4()->Phi();//unless reaction
+  if(TString(particle->GetName())==TString("QP"))phiR=particle->GetP4()->Phi();
   for(Int_t i=0; i<n; i++){
     //phi angle from distribution was already in lab
     //BoostLab rotates assuming CM frame y=ZlabXZreaction
     //so particle rotated by beam phi angle, which is a rand #
     //"solution" rotate back to original phi
+    //CAM 09/01/2017 Need to know why this is needed.
     if( !(ptcl = (TMCParticle*)nextp()) ) break;
+   // std::cout <<"bfrot "<<ptcl->GetP4()->Phi() <<"         phiR = "<< phiR<<" "<<i<<" "<<ptcl->GetName()<<std::endl;//phiR is non zero and performing rotation
     ptcl->GetP4()->RotateZ(-phiR);
+    //    if(TString(particle->GetName())==TString("Pi0"))ptcl->GetP4()->SetPhi(1.4);
+    // ptcl->GetP4()->SetPhi(1.4);
+    //std::cout <<"afrot "<<ptcl->GetP4()->Phi() <<std::endl;//phiR is non zero and performing rotation
     GP4( ptcl );
   }
 }
