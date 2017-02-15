@@ -26,7 +26,7 @@ int main(int argc, char **argv)
   for( int i=1; i<argc; i++ ){
     if( strncmp("--", argv[i],2) != 0 ) strcpy( setfile, argv[i] );
      else if( strcmp("--PS", argv[i]) == 0 )
-       MC = new TMCPhotoPSGenerator( "MC_PS_Meson" );
+      MC = new TMCPhotoPSGenerator( "MC_PS_Meson" );
   }
   if( !MC ) MC = new TMCUserGenerator( "MC_User" );
   MC->FileConfig(setfile);
