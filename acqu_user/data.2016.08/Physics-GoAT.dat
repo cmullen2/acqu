@@ -18,9 +18,9 @@ Use-CaLib:	/home/chris/acqu/acqu_user/data.2016.08/CaLib.db	  LD2_Aug_16
 #
 #
 # tagger calib:     time    efficiency (0=off/1=on)
-#Use-CaLib-TAGG:     0       0
+Use-CaLib-TAGG:     1       0
 # CB calib:         energy  time    timewalk    quadr. energy    led  (0=off/1=on)
-Use-CaLib-CB:       1       0       0           0                0 
+Use-CaLib-CB:       1       1       0           0                0 
 # TAPS calib:       energy  time    quadr. energy   LED thr.    CFD thr.  (0=off/1=on)
 #Use-CaLib-TAPS:     0       0       0               0           0
 # PID calib:        phi     energy  time  (0=off/1=on)
