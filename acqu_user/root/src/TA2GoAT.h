@@ -96,6 +96,24 @@ private:
         Double_t*   Chamber2Z;
 
 
+
+	//Mikhail's Wire Chamber Hits info
+
+	Int_t      MnChamberHitsin1;
+        const TA2MwpcIntersection *MChamber1Hits;
+
+	Int_t       MnChamberHitsin2; 
+	const TA2MwpcIntersection *MChamber2Hits;
+
+	Double_t* MWPC0PosX;
+	Double_t* MWPC1PosX;
+	Double_t* MWPC0PosY;
+	Double_t* MWPC1PosY;
+	Double_t* MWPC0PosZ;
+	Double_t* MWPC1PosZ;
+	
+	
+
     	//Tagger
     	Int_t		nTagged;
         Double_t*	taggedEnergy;
