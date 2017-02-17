@@ -53,6 +53,16 @@ Initialise:
 # Droop: 300.    7              0 120 140 160 180 200 300        0.76 0.80 0.85 0.92 0.97 0.99 1.00
 ##
 
+## PID Droop Settings 
+## UsePidDroop PID_Length[mm]  PID_Radius[mm] PID_Target_Position[mm] Droop_Param PID_direction PID_Type
+PidDroopSettings: 1 300.0  33.0  100.0  1  1  3 24
+
+
+## PID Droop Parameters
+PidDroopPositionParameters: /scratch/mbashkan/Mainz/New_acqu/acqu/acqu_user/data/PID_Droop_Corr_Aug_16.root
+
+
+
 
 ## ElDroop correction for light attenuation inside PID strips
 ## ElDroop: 1.
