@@ -340,7 +340,8 @@ void    TA2GoAT::PostInit()
     treeTracks->Branch("pseudoVertexZ", pseudoVertexZ, "pseudoVertexZ[nTracks]/D");
 
 
-    
+    treeTracks->Branch("MnChamberHitsin1", &MnChamberHitsin1, "MnChamberHitsin1/I");
+    treeTracks->Branch("MnChamberHitsin2", &MnChamberHitsin2, "MnChamberHitsin2/I");
     treeTracks->Branch("MWPC0PosX",MWPC0PosX, "MWPC0PosX[nTracks]/D");
     treeTracks->Branch("MWPC1PosX",MWPC1PosX, "MWPC1PosX[nTracks]/D");
     treeTracks->Branch("MWPC0PosY",MWPC0PosY, "MWPC0PosY[nTracks]/D");
