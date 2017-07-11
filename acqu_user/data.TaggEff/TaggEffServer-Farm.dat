@@ -1,0 +1,121 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   13th Jan 2004
+##--Update	JRM Annand... 1st Dec 2004
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Parameter File: FPcommServer.Offline
+## Configuration file for DataServer (data input for analysis)
+##
+##-----------------------------------------------------------------------
+## Number of Input streams (sources of data), Record length to write data
+## and switch 0/1 = no/yes to control data write
+##              Number streams	Record Len	Save Data
+Input-Streams:	1		327680		0
+##
+## Optional directory spec. If not specified File-Names must contain the full
+## directory path
+#File-Directory: /w/work12/mainz/EandGData/TaggEff/2013-11_G_E/
+#File-Directory: /w/work12/mainz/EandGData/TaggEff/2014-01_G_E_Neutron/
+#File-Directory: /w/work12/mainz/EandGData/TaggEff/2014-04_G_E_Carbon/
+#File-Directory: /w/work14/roddym/TaggEff/2014-05_Compton_Sigma2z/
+#File-Directory: /w/work12/mainz/EandGData/TaggEff/2014-05_G_E_Proton/
+#File-Directory: /w/work14/roddym/TaggEff/2015-03_Double_D/
+#File-Directory: /w/work14/roddym/TaggEff/2015-05_G-E_HButanol/
+#File-Directory: /w/work14/roddym/TaggEff/2015-09_G_E_Proton/
+File-Directory: /w/work14/mainz/2016-08_Recoil_Pol/
+##
+## Specify each input stream
+## From disk file, ACQU (Mk1) format, save any output to file (save=1)
+## Input data record length, Output data record length
+##
+##
+## Use MK2 for 2014 beamtimes
+##            	Source	Format	Save?	RecLen	Buffers	Swap	MarkID
+#Stream-Spec:	File	Mk1	0	32768	32	0	400
+#Stream-Spec:	File	Mk2	0	32768	32	0	400
+##
+## 
+## Use MK2 for 2015 beamtimes, larger RecLen
+##            	Source	Format	Save?	RecLen	Buffers	Swap	MarkID
+#Stream-Spec:	File	Mk1	0	327680	32	0	400
+Stream-Spec:	File	Mk2	0	327680	32	0	400
+##
+## Now the list of data files to analyse
+## Tagger test data files
+##		File Name	1st rec	Last rec
+##
+##
+# G and E on the Proton runs 
+#
+#File-Name: TaggEff_313.dat.xz	0	0
+#File-Name: TaggEff_314.dat.xz	0	0
+#File-Name: TaggEff_315.dat.xz	0	0
+#File-Name: TaggEff_317.dat.xz	0	0 ### Error: Illegal pointer to class object GetFile() in EndFileMacro.C ###
+#File-Name: TaggEff_316.dat.xz	0	0
+#File-Name: TaggEff_338.dat.xz	0	0
+##
+#File-Name: TaggEff_338.dat.xz	0	0
+#File-Name: TaggEff_338.dat.xz	0	0
+#File-Name: TaggEff_338.dat.xz	0	0
+#File-Name: TaggEff_339.dat.xz	0	0
+#File-Name: TaggEff_338.dat.xz	0	0
+##August 2016 Beamtime Start
+#File-Name: TaggEff_14599.dat.xz 0	0
+#File-Name: TaggEff_14600.dat.xz 0	0
+#File-Name: TaggEff_14601.dat.xz 0	0
+#File-Name: TaggEff_14665.dat.xz 0	0
+#File-Name: TaggEff_14668.dat.xz 0	0
+#File-Name: TaggEff_14667.dat.xz 0	0
+#File-Name: TaggEff_14666.dat.xz 0	0
+#File-Name: TaggEff_14669.dat.xz 0	0
+#File-Name: TaggEff_14752.dat.xz 0	0
+#File-Name: TaggEff_14750.dat.xz 0	0
+#File-Name: TaggEff_14751.dat.xz 0	0
+#File-Name: TaggEff_14773.dat.xz 0	0
+#File-Name: TaggEff_14772.dat.xz 0	0
+#File-Name: TaggEff_14776.dat.xz 0	0
+#File-Name: TaggEff_14774.dat.xz 0	0
+#File-Name: TaggEff_14775.dat.xz 0	0
+#File-Name: TaggEff_14889.dat.xz 0	0
+#File-Name: TaggEff_14891.dat.xz 0	0
+#File-Name: TaggEff_14890.dat.xz 0	0
+#File-Name: TaggEff_14892.dat.xz 0	0
+#File-Name: TaggEff_14991.dat.xz 0	0
+#File-Name: TaggEff_14992.dat.xz 0	0
+#File-Name: TaggEff_14990.dat.xz 0	0
+#File-Name: TaggEff_14995.dat.xz 0	0
+#File-Name: TaggEff_14996.dat.xz 0	0
+#File-Name: TaggEff_14993.dat.xz 0	0
+#File-Name: TaggEff_14994.dat.xz 0	0
+#File-Name: TaggEff_15025.dat.xz 0	0
+#File-Name: TaggEff_15028.dat.xz 0	0
+#File-Name: TaggEff_15026.dat.xz 0	0
+#File-Name: TaggEff_15027.dat.xz 0	0
+#File-Name: TaggEff_15046.dat.xz 0	0
+#File-Name: TaggEff_15047.dat.xz 0	0
+#File-Name: TaggEff_15048.dat.xz 0	0
+#File-Name: TaggEff_15116.dat.xz 0	0
+#File-Name: TaggEff_15118.dat.xz 0	0
+#File-Name: TaggEff_15117.dat.xz 0	0
+#File-Name: TaggEff_15120.dat.xz 0	0
+#File-Name: TaggEff_15119.dat.xz 0	0
+#File-Name: TaggEff_15253.dat.xz 0	0
+#File-Name: TaggEff_15255.dat.xz 0	0
+#File-Name: TaggEff_15254.dat.xz 0	0
+#File-Name: TaggEff_15257.dat.xz 0	0
+#File-Name: TaggEff_15256.dat.xz 0	0
+#File-Name: TaggEff_15421.dat.xz 0	0
+#File-Name: TaggEff_15423.dat.xz 0	0
+#File-Name: TaggEff_15424.dat.xz 0	0
+#File-Name: TaggEff_15422.dat.xz 0	0
+#File-Name: TaggEff_15425.dat.xz 0	0
+#File-Name: TaggEff_15578.dat.xz 0	0
+#File-Name: TaggEff_15579.dat.xz 0	0
+#File-Name: TaggEff_15580.dat.xz 0	0
+#File-Name: TaggEff_15581.dat.xz 0	0
+#File-Name: TaggEff_15582.dat.xz 0	0
+
+##
+## END			

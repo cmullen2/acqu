@@ -1,0 +1,117 @@
+File-Directory: out/
+Energy-File: 1402_EnaG_n.plot.dat
+Output-File: 1402_TaggEff
+Prompt-Correction: 1
+
+File: TaggEff_1993.out.root	data	BG	0
+File: TaggEff_1994.out.root	data	para	0
+File: TaggEff_1995.out.root	data	perp	0
+File: TaggEff_1996.out.root	data	amor	0
+File: TaggEff_1997.out.root	data	BG	0
+
+File: TaggEff_2029.out.root	data	BG	1	
+File: TaggEff_2030.out.root	data	para	1
+File: TaggEff_2031.out.root	data	perp	1
+File: TaggEff_2032.out.root	data	amor	1
+File: TaggEff_2033.out.root	data	BG	1 
+
+File: TaggEff_2062.out.root	data	BG	2
+File: TaggEff_2063.out.root	data	para	2
+File: TaggEff_2064.out.root	data	perp	2
+File: TaggEff_2065.out.root	data	amor	2
+File: TaggEff_2066.out.root	data	BG	2
+
+File: TaggEff_2101.out.root	data	BG	3
+File: TaggEff_2102.out.root	data	amor	3
+File: TaggEff_2103.out.root	data	BG  	3
+
+File: TaggEff_2134.out.root	data	BG	4
+File: TaggEff_2135.out.root	data	amor	4
+File: TaggEff_2136.out.root	data	para	4
+File: TaggEff_2137.out.root	data	perp	4
+File: TaggEff_2138.out.root	data	BG	4
+
+File: TaggEff_2159.out.root	data	BG	5
+File: TaggEff_2160.out.root	data	amor	5
+File: TaggEff_2161.out.root	data	para	5
+File: TaggEff_2162.out.root	data	perp	5
+File: TaggEff_2163.out.root	data	BG	5
+
+File: TaggEff_2186.out.root	data	BG	6
+File: TaggEff_2187.out.root	data	perp	6
+File: TaggEff_2188.out.root	data	para	6
+File: TaggEff_2189.out.root	data	amor  	6
+File: TaggEff_2190.out.root	data	BG	6 
+
+File: TaggEff_2222.out.root	data	BG	7
+File: TaggEff_2223.out.root	data	amor	7
+File: TaggEff_2224.out.root	data	para	7
+File: TaggEff_2225.out.root	data	perp	7
+File: TaggEff_2226.out.root	data	BG	7 
+
+File: TaggEff_2243.out.root	data	BG  	8
+File: TaggEff_2244.out.root	data	para	8
+File: TaggEff_2245.out.root	data	perp	8
+File: TaggEff_2246.out.root	data	amor	8 
+File: TaggEff_2247.out.root	data	BG	8 
+
+File: TaggEff_2285.out.root	data	BG  	9
+File: TaggEff_2286.out.root	data	amor	9 
+File: TaggEff_2287.out.root	data	BG	9 
+
+File: TaggEff_2313.out.root	data	BG  	10
+File: TaggEff_2314.out.root	data	amor	10
+File: TaggEff_2315.out.root	data	para	10
+File: TaggEff_2316.out.root	data	perp	10
+File: TaggEff_2317.out.root	data	BG	10
+
+File: TaggEff_2347.out.root	data	BG  	11
+File: TaggEff_2348.out.root	data	para	11
+File: TaggEff_2349.out.root	data	perp	11
+File: TaggEff_2350.out.root	data	amor	11
+File: TaggEff_2351.out.root	data	BG	11
+
+File: TaggEff_2378.out.root	data	BG  	12
+File: TaggEff_2379.out.root	data	perp	12
+File: TaggEff_2380.out.root	data	para	12
+File: TaggEff_2381.out.root	data	amor	12
+File: TaggEff_2382.out.root	junk	BG	12
+File: TaggEff_2383.out.root	junk	BG  	12
+File: TaggEff_2384.out.root	data	BG	12
+
+File: TaggEff_2417.out.root	data	BG  	13
+File: TaggEff_2418.out.root	data	amor	13
+File: TaggEff_2419.out.root	data	perp	13
+File: TaggEff_2420.out.root	data	para	13
+File: TaggEff_2421.out.root	data	BG	13
+File: TaggEff_2422.out.root	junk	BG	13
+
+File: TaggEff_2513.out.root	data	BG  	14
+File: TaggEff_2513.out.root	data	amor	14
+File: TaggEff_2514.out.root	junk	para	14
+File: TaggEff_2515.out.root	data	para	14
+File: TaggEff_2516.out.root	data	perp	14
+File: TaggEff_2517.out.root	data	BG	14
+
+File: TaggEff_2549.out.root	data	BG  	15
+File: TaggEff_2550.out.root	data	perp  	15
+File: TaggEff_2551.out.root	junk	perp	15
+File: TaggEff_2552.out.root	data	para	15
+File: TaggEff_2553.out.root	data	amor	15
+File: TaggEff_2554.out.root	data	BG	15
+File: TaggEff_2555.out.root	junk	BG  	15
+File: TaggEff_2556.out.root	junk	BG	15
+
+File: TaggEff_2595.out.root	data	BG  	16
+File: TaggEff_2596.out.root	data	perp	16
+File: TaggEff_2597.out.root	data	para	16
+File: TaggEff_2598.out.root	junk	para	16
+File: TaggEff_2599.out.root	data	amor	16
+File: TaggEff_2600.out.root	data	BG	16
+
+File: TaggEff_2622.out.root	data	BG  	17
+File: TaggEff_2623.out.root	data	amor	17
+File: TaggEff_2624.out.root	data	para	17
+File: TaggEff_2625.out.root	junk	perp	17
+File: TaggEff_2626.out.root	data	perp	17
+File: TaggEff_2627.out.root	data	BG	17

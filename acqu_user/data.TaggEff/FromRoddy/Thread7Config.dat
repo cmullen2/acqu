@@ -1,0 +1,25 @@
+########################################################################
+##
+## Batch mode operation...redirect output directory for log files etc.
+## BatchDir: /tmp/roddym/
+BatchDir: /w/work14/roddym/TaggEff/Log/
+##
+##        Tree Name     	# branches	Process Type
+Name:     RawEvent_AR_Save	3		Raw	
+##        Branch Name		Buffer size
+Branch:   RawEvent_Hits		327680
+Branch:	  RawEvent_Scalers	4192
+#Branch:	  Mk1_Header            120000
+Branch:	  Mk2_Header            120000
+##
+## Directory to save any created ROOT files (include final / )
+Directory: /w/work14/roddym/TaggEff/
+##
+## User-defined analysis class
+Analysis: TA2UserAnalysis
+##
+## Analysis setup file
+AnalysisSetup: Analysis-TaggEff.dat
+##
+
+ServerSetup: Thread7Server.dat

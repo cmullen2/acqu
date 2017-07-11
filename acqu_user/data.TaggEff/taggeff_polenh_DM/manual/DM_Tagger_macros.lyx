@@ -1,0 +1,714 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language british
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_default_family rmdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset Graphics
+	filename pics/a2logo_square.eps
+	lyxscale 12
+	width 15col%
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename pics/MtA_FullWordmark_stacked_PMS.eps
+	lyxscale 20
+	width 20col%
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+Tagging Efficiency and Beam Polarisation Macros
+\end_layout
+
+\begin_layout Author
+D.G.
+\begin_inset space ~
+\end_inset
+
+Middleton
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+middletn@kph.uni-mainz.de
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Address
+\noindent
+\align center
+Mount Allison University, Sackville, Canada/
+\begin_inset Newline newline
+\end_inset
+
+Institut f
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+"u
+\end_layout
+
+\end_inset
+
+r Kernphysik, University of Mainz, Germany
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+I have written a macro that will determine the tagging efficiency and if
+ applicable the degree of linear polarisation for tagging efficiency runs
+ using the A2 AcquRoot DAQ and analysis software
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AcquRoot"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Some of the Root macros described here are adaptations of macros written
+ by J.R.M.
+\begin_inset space ~
+\end_inset
+
+Annand 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "tagger_manual"
+
+\end_inset
+
+.
+ I changed them a bit so that they would output histogram files where applicable
+ and also to fit with the recent change to the A2 DAQ; I believe the originals
+ are still distributed with the AcquRoot software 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AcquRoot"
+
+\end_inset
+
+.
+ Basically using them in conjunction with the output of the ugcal program
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ugcal_mail_cameron"
+
+\end_inset
+
+ will allow the A2 tagger to be calibrated for energy and time alignment
+ using data taken for tagging efficiency purposes.
+ They are set up so that the output of one macro can be used with AcquRoot
+ which should give an output that can be automatically used as an input
+ to the next.
+\end_layout
+
+\begin_layout Section
+Ugcal
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Ugcal"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ugcal is a program written by J.C.
+ McGeorge 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ugcal_mail_cameron"
+
+\end_inset
+
+ which determines a channel to energy calibration for the A2 tagger, the
+ current version at time of writing is Version 2.u.d.
+ Using the NMR reading of the tagger magnetic field in Tesla and the MAMI
+ electron beam energy (including rest mass) the code outputs two files,
+ the first gives many details on the tagger energy calibration while the
+ second is more limited but is used as an input to the Root macros used
+ to generate a 'Ladder' calibration file for the AcquRoot analysis code.
+ The ugcal Fortran code distributed with this includes a Makefile which
+ should be run to produce the ugcal executable; the CERN libraries are needed
+ when making the program.
+\end_layout
+
+\begin_layout Section
+Tagger Calibration Macros
+\end_layout
+
+\begin_layout Subsection
+LadderGen_DM.C
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:LadderGen_DM.C"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This macro has been adapted from the original LadderGen.C from J.R.M.
+\begin_inset space ~
+\end_inset
+
+Annand 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "tagger_manual"
+
+\end_inset
+
+.
+ The macro requires at least two inputs, the first of which is the tagger
+ channel-energy calibration file output from ugcal and the second of which
+ is the MAMI beam energy (including rest mass) so that the correct energies
+ for each channel can be determined in the Ladder calibration file.
+ Ugcal outputs the photon energy for each tagger channel while the AcquRoot
+ calibration file uses the electron energy as an input.
+ The other optional inputs are the maximum number of tagger channels to
+ be used and the ADC, TDC and scaler numbering convention for AcquRoot all
+ of which have default values set.
+ At the time of writing the main tagger ADC, TDC and scaler numbering is
+ correct for the current version of AcquRoot and begin from 800, 1432 and
+ 400 respectively, the default number of channels is 352.
+ The output file is named 
+\begin_inset Quotes eld
+\end_inset
+
+Detector_TaggerXXX.ua.dat
+\begin_inset Quotes erd
+\end_inset
+
+ where XXX is the MAMI beam energy that was input to run the macro; the
+ 'ua' represents an unaligned file.
+ Default calibration values similar to those from 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "tagger_manual"
+
+\end_inset
+
+ are included except for the individual TDC time offsets and global offset
+ which, as things currently stand with the DAQ, should mean all prompt peaks
+ from the tagging efficiency runs should be at an offset in the range 10
+ - 30 ns.
+\end_layout
+
+\begin_layout Subsection
+AlignTDC_DM.C
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:AlignTDC_DM.C"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This macro has been adapted from the original AlignTDC.C from J.R.M.
+\begin_inset space ~
+\end_inset
+
+Annand 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "tagger_manual"
+
+\end_inset
+
+.
+ The macro will fit the individual TDC channel prompt peak positions from
+ a tagging efficiency run and align them all to a desired position and output
+ an adapted Ladder calibration file with the new channel offsets.
+ 
+\end_layout
+
+\begin_layout Standard
+After running AcquRoot with a Ladder calibration file generated using LadderGen_
+DM.C the output histogram file should contain the histograms necessary to
+ run this macro.
+ The histogram file name (including directory path) and the Ladder calibration
+ file used to generate it are required as inputs.
+ The other optional inputs are the lower and upper limits for the range
+ to fit the prompt peak and the position the peaks should be aligned to,
+ by default these are set at 0, 50 and 20 ns respectively.
+ To check that the fitting has worked correctly two files are output, a
+ pdf showing the individual TDC channels with the fits to the peaks and
+ a Root histogram file containing these plots.
+ An adapted version of the input calibration file is also output with the
+ new TDC offsets included, the file is given a new name from the original.
+ If the default name from LadderGen_DM.C has been used for the calibration
+ file the output will be this with the '.ua' removed.
+\end_layout
+
+\begin_layout Subsection
+TDCAlign_Check_DM.C
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:TDCAlign_Check_DM.C"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This macro can be used to check an existing tagger TDC calibration.
+ As above it needs an analysed tagging efficiency run with individual TDC
+ time histograms and a Ladder calibration file as an input.
+ The minimum and maximum and aligned peak position are the same as above
+ by default but can be changed as desired.
+ The macro will compare the current peak position and TDC offset with the
+ desired position and output the difference to the terminal it is run from
+ on a channel-by-channel basis.
+ By default there is no other output from running the macro but if the differenc
+es are deemed to be significant enough that a new calibration file is necessary
+ it can be run again with an output option selected when it will output
+ a new calibration file as well as a pdf and Root file with the peak positions
+ and their fits.
+\end_layout
+
+\begin_layout Section
+Tagging Efficiency & Polarisation Enhancement
+\end_layout
+
+\begin_layout Standard
+The macro that will determine the tagging efficiency and polarisation enhancemen
+t is called TaggEff_DM.C.
+ It takes one argument which is a configuration file described in more detail
+ below.
+ The macro will run through the listed files and produce a pdf and root
+ file of histograms related to the tagging efficiency and if appropriate
+ the linear polarisation enhancement from using a diamond radiator.
+\end_layout
+
+\begin_layout Subsection
+Input file
+\end_layout
+
+\begin_layout Standard
+In the input file various things related to the analysis can be defined
+ and an example file is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:eg_infile"
+
+\end_inset
+
+.
+ The inputs are as follow:
+\end_layout
+
+\begin_layout Itemize
+File-Directory: The path to the data files that have been analysed in AcquRoot.
+\end_layout
+
+\begin_layout Itemize
+Energy-File: A channel-to-energy calibration file from ugcal.
+ This is the second file output from ugcal and is the same format which
+ is used with the LadderGen_DM.C macro.
+ At present this is only relevant for measurements which use a linearly
+ polarised photon beam and if defined the polarisation enhancement will
+ be determined as a function of the photon energy.
+\end_layout
+
+\begin_layout Itemize
+Output-File: A label for the files that will be output.
+ If this is not defined a default of 'TaggEff_analysis' will be used.
+\end_layout
+
+\begin_layout Itemize
+Prompt-Correction: Whether to an accidental subtraction for the focal plane
+ 'Hits', default is 1.
+\end_layout
+
+\begin_layout Itemize
+Clock-Histogram: The histogram where the clock scalers are defined, the
+ default is 
+\begin_inset Quotes eld
+\end_inset
+
+SumScalers190to191
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Clock-Histogram-Bin: The bin number of the above histogram which contains
+ the inhibited clock data.
+\end_layout
+
+\begin_layout Itemize
+File: This defines the files to be analysed and takes four arguments in
+ the following order:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+<file name>: name if the data file.
+\end_layout
+
+\begin_layout Itemize
+<status>: data/junk, anything other than data will be ignored.
+\end_layout
+
+\begin_layout Itemize
+<type>: the type of run: background: 
+\emph on
+BG
+\emph default
+; Amorphous: 
+\emph on
+amor
+\emph default
+; Diamond parallel: 
+\emph on
+para
+\emph default
+; Diamond perpendicular: 
+\emph on
+perp
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+<run no.>: the number of the tagging efficiency measurement starting at 0.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The various definitions can be commented out using a '#' as with AcquRoot
+ or can be left out from the file if not relevant.
+ At least one amorphous file must be defined for each data set for the macro
+ to do anything.
+ Presently the macro can only handle two background files, if more have
+ been taken you should either combine their histogram output with Root or
+ in the AcquRoot analysis or select the two best ones.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/1402_TE_filelist.cut.pdf
+	width 70col%
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:eg_infile"
+
+\end_inset
+
+Example input file for the TaggEff_DM.C macro.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When executed the macro will read in the input files and then analyse the
+ histogram files that are defined there.
+ By default the macro analyses the hits with an accidental subtraction using
+ the 'prompt' and 'accidental' coincidence regions defined during the AcquRoot
+ analysis.
+ If hall background runs are defined a background correction will be applied
+ to the scaler counts using the inhibited clock information for normalisation;
+ if the clock information is missing a warning will be given.
+ To determine the polarisation enhancement the ratio of hits for a diamond
+ radiator setting to the amorphous hits is determined.
+\end_layout
+
+\begin_layout Standard
+The macro outputs two files, a pdf of various plots described below and
+ a Root histogram file which contains all of the histograms used to make
+ up the pdf.
+ An example page from the pdf output is shown for an amorphous radiator
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:amor_eg"
+
+\end_inset
+
+.
+ The various plots shown are as follows:
+\end_layout
+
+\begin_layout Itemize
+Top row: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Coincidence time plot.
+\end_layout
+
+\begin_layout Itemize
+Scaler counts from 1st background run.
+\end_layout
+
+\begin_layout Itemize
+Scaler counts from 2nd background run.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Middle row:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The prompt (red) and accidental (blue) hits (in most cases the accidental
+ contribution is too small to be seen).
+\end_layout
+
+\begin_layout Itemize
+The scalers counts (yellow) with the sum of the hall background contribution
+ (green).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Bottom row: The tagging efficiency as a function of tagger channel.
+\end_layout
+
+\begin_layout Standard
+If there are diamond runs as well as amorphous the page for these will also
+ include the polarisation enhancement as a function of tagger channel.
+ If an energy calibration file is defined the tagging efficiency and polarisatio
+n enhancement will be be determined as a function of photon energy.
+ The tagging efficiency histograms will only be produced in the Root output
+ file but the polarisation enhancement plot will be shown on an extra page
+ of the pdf file so that one can check that the polarisation peak is where
+ it is expected.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pics/1402_TaggEff.pg1.pdf
+	width 90col%
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:amor_eg"
+
+\end_inset
+
+Example of the pdf output for an amorphous radiator.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Suggested Use
+\end_layout
+
+\begin_layout Enumerate
+Produce a tagger calibration file using ugcal.
+\end_layout
+
+\begin_layout Enumerate
+Use the output from ugcal with LadderGen_DM.C to generate a ladder calibration
+ file.
+\end_layout
+
+\begin_layout Enumerate
+Change the AcquRoot analysis files provided with these macros to include
+ the ladder calibration file and a data file that was taken with beam.
+ Put the 'Finish.C' macro somewhere where AcquRoot can find and execute it.
+ Make sure a directory 
+\begin_inset Quotes eld
+\end_inset
+
+$acqu/out
+\begin_inset Quotes erd
+\end_inset
+
+ is defined.
+ Run AcquRoot and analyse your chosen file.
+\end_layout
+
+\begin_layout Enumerate
+Using the output of the AcquRoot analysis and the ladder calibration file
+ run AlignTDC_DM.C to generate a new ladder calibration file with the TDC
+ aligned.
+ Check the histograms to make sure the fits have worked correctly and if
+ necessary correct any errors.
+\end_layout
+
+\begin_layout Enumerate
+Replace the original ladder calibration file with the aligned one in the
+ AcquRoot data directory.
+\end_layout
+
+\begin_layout Enumerate
+Analyse all your tagging efficiency data files and create your input file
+ for TaggEff_DM.C including what you wish as appropriate.
+ Use the example provided as a basis if you wish.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Run TaggEff_DM.C and then check your output.
+ Update the input file as more data is collected.
+ If there are any files missing or wrongly defined the macro will crash;
+ exit Root and fix the problem.
+\end_layout
+
+\begin_layout Enumerate
+If it looks like there is a shift in the prompt peak or it starts to become
+ messy use the TDCAlign_Check_DM.C to check for any changes/drift.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "Tagger_macros_report_refs"
+options "unsrt"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

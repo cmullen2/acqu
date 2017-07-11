@@ -1,0 +1,652 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   13th Jan 2004
+##--Update	JRM Annand... 1st Dec 2004
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Parameter File: FPcommServer.Offline
+## Configuration file for DataServer (data input for analysis)
+##
+##-----------------------------------------------------------------------
+## Number of Input streams (sources of data), Record length to write data
+## and switch 0/1 = no/yes to control data write
+##              Number streams	Record Len	Save Data
+Input-Streams:	1		327680		0
+##
+## Optional directory spec. If not specified File-Names must contain the full
+## directory path
+#File-Directory: /w/work12/mainz/EandGData/TaggEff/2013-11_G_E/
+#File-Directory: /w/work12/mainz/EandGData/TaggEff/2014-01_G_E_Neutron/
+#File-Directory: /w/work12/mainz/EandGData/TaggEff/2014-04_G_E_Carbon/
+#File-Directory: /w/work14/roddym/TaggEff/2014-05_Compton_Sigma2z/
+#File-Directory: /w/work12/mainz/EandGData/TaggEff/2014-05_G_E_Proton/
+#File-Directory: /w/work14/roddym/TaggEff/2015-03_Double_D/
+#File-Directory: /w/work14/roddym/TaggEff/2015-05_G-E_HButanol/
+File-Directory: /w/work14/roddym/TaggEff/2015-09_G_E_Proton/
+##
+## Specify each input stream
+## From disk file, ACQU (Mk1) format, save any output to file (save=1)
+## Input data record length, Output data record length
+##
+##
+## Use MK2 for 2014 beamtimes
+##            	Source	Format	Save?	RecLen	Buffers	Swap	MarkID
+#Stream-Spec:	File	Mk1	0	32768	32	0	400
+#Stream-Spec:	File	Mk2	0	32768	32	0	400
+##
+## 
+## Use MK2 for 2015 beamtimes, larger RecLen
+##            	Source	Format	Save?	RecLen	Buffers	Swap	MarkID
+#Stream-Spec:	File	Mk1	0	327680	32	0	400
+Stream-Spec:	File	Mk2	0	327680	32	0	400
+##
+## Now the list of data files to analyse
+## Tagger test data files
+##		File Name	1st rec	Last rec
+##
+##
+# G and E on the Proton runs 
+#
+#File-Name: TaggEff_313.dat.xz	0	0
+#File-Name: TaggEff_314.dat.xz	0	0
+#File-Name: TaggEff_315.dat.xz	0	0
+#File-Name: TaggEff_317.dat.xz	0	0 ### Error: Illegal pointer to class object GetFile() in EndFileMacro.C ###
+#File-Name: TaggEff_316.dat.xz	0	0
+#File-Name: TaggEff_338.dat.xz	0	0
+#File-Name: TaggEff_339.dat.xz	0	0
+#File-Name: TaggEff_340.dat.xz	0	0
+#File-Name: TaggEff_341.dat.xz	0	0
+#File-Name: TaggEff_342.dat.xz	0	0
+#File-Name: TaggEff_411.dat.xz	0	0
+#File-Name: TaggEff_410.dat.xz	0	0
+#File-Name: TaggEff_412.dat.xz	0	0
+#File-Name: TaggEff_413.dat.xz	0	0
+#File-Name: TaggEff_414.dat.xz	0	0
+#File-Name: TaggEff_415.dat.xz	0	0
+#File-Name: TaggEff_416.dat.xz	0	0
+#File-Name: TaggEff_417.dat.xz	0	0
+#File-Name: TaggEff_418.dat.xz	0	0
+#File-Name: TaggEff_419.dat.xz	0	0
+#File-Name: TaggEff_420.dat.xz	0	0
+###File-Name: TaggEff_471.dat.xz	0	0
+###File-Name: TaggEff_473.dat.xz	0	0
+###File-Name: TaggEff_472.dat.xz	0	0
+###File-Name: TaggEff_475.dat.xz	0	0
+###File-Name: TaggEff_474.dat.xz	0	0
+###File-Name: TaggEff_476.dat.xz	0	0
+###File-Name: TaggEff_477.dat.xz	0	0
+###File-Name: TaggEff_478.dat.xz	0	0
+###File-Name: TaggEff_479.dat.xz	0	0
+###File-Name: TaggEff_480.dat.xz	0	0
+###File-Name: TaggEff_481.dat.xz	0	0 
+###File-Name: TaggEff_482.dat.xz	0	0
+#File-Name: TaggEff_533.dat.xz	0	0
+#File-Name: TaggEff_534.dat.xz	0	0
+#File-Name: TaggEff_535.dat.xz	0	0
+#File-Name: TaggEff_536.dat.xz	0	0
+#File-Name: TaggEff_537.dat.xz	0	0
+#File-Name: TaggEff_582.dat.xz	0	0
+#File-Name: TaggEff_583.dat.xz	0	0
+#File-Name: TaggEff_584.dat.xz	0	0
+#File-Name: TaggEff_585.dat.xz	0	0
+#File-Name: TaggEff_586.dat.xz	0	0
+#File-Name: TaggEff_636.dat.xz	0	0
+#File-Name: TaggEff_637.dat.xz	0	0
+#File-Name: TaggEff_638.dat.xz	0	0
+#File-Name: TaggEff_639.dat.xz	0	0
+#File-Name: TaggEff_640.dat.xz	0	0
+#File-Name: TaggEff_686.dat.xz	0	0
+#File-Name: TaggEff_687.dat.xz	0	0
+#File-Name: TaggEff_688.dat.xz	0	0
+#File-Name: TaggEff_689.dat.xz	0	0
+#File-Name: TaggEff_690.dat.xz	0	0
+#File-Name: TaggEff_737.dat.xz	0	0
+#File-Name: TaggEff_738.dat.xz	0	0
+#File-Name: TaggEff_739.dat.xz	0	0
+#File-Name: TaggEff_740.dat.xz	0	0
+#File-Name: TaggEff_741.dat.xz	0	0
+#File-Name: TaggEff_742.dat.xz	0	0
+#File-Name: TaggEff_788.dat.xz	0	0
+#File-Name: TaggEff_789.dat.xz	0	0
+#File-Name: TaggEff_790.dat.xz	0	0
+#File-Name: TaggEff_791.dat.xz	0	0
+#File-Name: TaggEff_792.dat.xz	0	0
+#File-Name: TaggEff_793.dat.xz	0	0
+#File-Name: TaggEff_794.dat.xz	0	0
+#File-Name: TaggEff_891.dat.xz	0	0
+#File-Name: TaggEff_892.dat.xz	0	0
+#File-Name: TaggEff_893.dat.xz	0	0
+#File-Name: TaggEff_894.dat.xz	0	0
+#File-Name: TaggEff_895.dat.xz	0	0
+#File-Name: TaggEff_896.dat.xz	0	0
+#File-Name: TaggEff_900.dat.xz	0	0
+#File-Name: TaggEff_999.dat.xz	0	0
+#File-Name: TaggEff_1000.dat.xz	0	0
+#File-Name: TaggEff_1001.dat.xz	0	0
+#File-Name: TaggEff_1002.dat.xz	0	0
+#File-Name: TaggEff_1003.dat.xz	0	0
+#File-Name: TaggEff_1061.dat.xz	0	0
+#File-Name: TaggEff_1062.dat.xz	0	0
+#File-Name: TaggEff_1063.dat.xz	0	0
+#File-Name: TaggEff_1064.dat.xz	0	0
+#File-Name: TaggEff_1066.dat.xz	0	0
+#File-Name: TaggEff_1109.dat.xz	0	0
+#File-Name: TaggEff_1110.dat.xz	0	0
+#File-Name: TaggEff_1111.dat.xz	0	0
+#File-Name: TaggEff_1112.dat.xz	0	0
+#File-Name: TaggEff_1113.dat.xz	0	0
+#File-Name: TaggEff_1114.dat.xz	0	0
+#File-Name: TaggEff_1157.dat.xz	0	0
+#File-Name: TaggEff_1158.dat.xz	0	0
+#File-Name: TaggEff_1159.dat.xz	0	0
+#File-Name: TaggEff_1160.dat.xz	0	0
+#File-Name: TaggEff_1161.dat.xz	0	0
+#File-Name: TaggEff_1225.dat.xz	0	0
+#File-Name: TaggEff_1226.dat.xz	0	0
+#File-Name: TaggEff_1227.dat.xz	0	0
+#File-Name: TaggEff_1229.dat.xz	0	0
+#File-Name: TaggEff_1230.dat.xz	0	0
+#File-Name: TaggEff_1275.dat.xz	0	0
+#File-Name: TaggEff_1276.dat.xz	0	0
+#File-Name: TaggEff_1277.dat.xz	0	0
+#File-Name: TaggEff_1278.dat.xz	0	0
+#File-Name: TaggEff_1279.dat.xz	0	0
+#File-Name: TaggEff_1314.dat.xz	0	0
+#File-Name: TaggEff_1315.dat.xz	0	0
+#File-Name: TaggEff_1316.dat.xz	0	0
+#File-Name: TaggEff_1317.dat.xz	0	0
+#File-Name: TaggEff_1318.dat.xz	0	0
+##
+##
+## G and E on the Neutron Runs 
+##
+##
+#File-Name: TaggEff_1907.dat.xz	0	0
+#File-Name: TaggEff_1908.dat.xz	0	0
+#File-Name: TaggEff_1910.dat.xz	0	0
+#File-Name: TaggEff_1909.dat.xz	0	0
+#File-Name: TaggEff_1911.dat.xz	0	0
+#File-Name: TaggEff_1993.dat.xz	0	0
+##File-Name: TaggEff_1992.dat.xz	0	0	Seems to be missing from Elog and not run on Acqu
+#File-Name: TaggEff_1912.dat.xz	0	0
+#File-Name: TaggEff_1994.dat.xz	0	0
+#File-Name: TaggEff_1995.dat.xz	0	0
+#File-Name: TaggEff_1996.dat.xz	0	0
+#File-Name: TaggEff_1997.dat.xz	0	0
+#File-Name: TaggEff_2029.dat.xz	0	0
+#File-Name: TaggEff_2030.dat.xz	0	0
+#File-Name: TaggEff_2031.dat.xz	0	0
+#File-Name: TaggEff_2032.dat.xz	0	0
+#File-Name: TaggEff_2033.dat.xz	0	0
+#File-Name: TaggEff_2062.dat.xz	0	0
+#File-Name: TaggEff_2063.dat.xz	0	0
+#File-Name: TaggEff_2064.dat.xz	0	0
+#File-Name: TaggEff_2065.dat.xz	0	0
+#File-Name: TaggEff_2066.dat.xz	0	0
+#File-Name: TaggEff_2101.dat.xz	0	0
+#File-Name: TaggEff_2102.dat.xz	0	0
+#File-Name: TaggEff_2134.dat.xz	0	0
+#File-Name: TaggEff_2103.dat.xz	0	0
+#File-Name: TaggEff_2135.dat.xz	0	0
+#File-Name: TaggEff_2136.dat.xz	0	0
+#File-Name: TaggEff_2137.dat.xz	0	0
+#File-Name: TaggEff_2159.dat.xz	0	0
+##File-Name: TaggEff_2138.dat.xz	0	0	Cannot find Elog entry
+#File-Name: TaggEff_2160.dat.xz	0	0
+#File-Name: TaggEff_2161.dat.xz	0	0
+#File-Name: TaggEff_2162.dat.xz	0	0
+#File-Name: TaggEff_2163.dat.xz	0	0
+#File-Name: TaggEff_2186.dat.xz	0	0
+#File-Name: TaggEff_2187.dat.xz	0	0
+#File-Name: TaggEff_2188.dat.xz	0	0
+#File-Name: TaggEff_2189.dat.xz	0	0
+#File-Name: TaggEff_2190.dat.xz	0	0
+#File-Name: TaggEff_2221.dat.xz	0	0
+#File-Name: TaggEff_2222.dat.xz	0	0
+#File-Name: TaggEff_2223.dat.xz	0	0
+#File-Name: TaggEff_2224.dat.xz	0	0
+#File-Name: TaggEff_2225.dat.xz	0	0
+#File-Name: TaggEff_2226.dat.xz	0	0
+#File-Name: TaggEff_2243.dat.xz	0	0
+#File-Name: TaggEff_2244.dat.xz	0	0
+#File-Name: TaggEff_2245.dat.xz	0	0
+#File-Name: TaggEff_2246.dat.xz	0	0
+#File-Name: TaggEff_2247.dat.xz	0	0
+#File-Name: TaggEff_2285.dat.xz	0	0
+#File-Name: TaggEff_2286.dat.xz	0	0
+#File-Name: TaggEff_2287.dat.xz	0	0   <-----> Not passing through AcquRoot or Worker for some reason.
+#File-Name: TaggEff_2313.dat.xz	0	0
+#File-Name: TaggEff_2314.dat.xz	0	0
+#File-Name: TaggEff_2315.dat.xz	0	0
+#File-Name: TaggEff_2316.dat.xz	0	0
+#File-Name: TaggEff_2317.dat.xz	0	0
+#File-Name: TaggEff_2347.dat.xz	0	0
+#File-Name: TaggEff_2348.dat.xz	0	0
+#File-Name: TaggEff_2349.dat.xz	0	0
+#File-Name: TaggEff_2350.dat.xz	0	0
+#File-Name: TaggEff_2351.dat.xz	0	0
+#File-Name: TaggEff_2378.dat.xz	0	0
+#File-Name: TaggEff_2379.dat.xz	0	0
+#File-Name: TaggEff_2380.dat.xz	0	0
+#File-Name: TaggEff_2381.dat.xz	0	0
+##
+##File-Name: TaggEff_2383.dat.xz	0	0 
+##File-Name: TaggEff_2382.dat.xz	0	0 
+##
+#File-Name: TaggEff_2384.dat.xz	0	0
+#File-Name: TaggEff_2417.dat.xz	0	0
+#File-Name: TaggEff_2418.dat.xz	0	0
+#File-Name: TaggEff_2419.dat.xz	0	0
+#File-Name: TaggEff_2420.dat.xz	0	0
+#File-Name: TaggEff_2421.dat.xz	0	0
+#File-Name: TaggEff_2482.dat.xz	0	0
+##
+##File-Name: TaggEff_2422.dat	0	0
+##
+#File-Name: TaggEff_2483.dat.xz	0	0
+#File-Name: TaggEff_2484.dat.xz	0	0
+#File-Name: TaggEff_2485.dat.xz	0	0
+#File-Name: TaggEff_2486.dat.xz	0	0
+#File-Name: TaggEff_2512.dat.xz	0	0
+#File-Name: TaggEff_2513.dat.xz	0	0
+#File-Name: TaggEff_2514.dat.xz	0	0
+#File-Name: TaggEff_2515.dat.xz	0	0
+#File-Name: TaggEff_2516.dat.xz	0	0
+#File-Name: TaggEff_2517.dat.xz	0	0
+#File-Name: TaggEff_2549.dat.xz	0	0
+#File-Name: TaggEff_2550.dat.xz	0	0
+#File-Name: TaggEff_2551.dat.xz	0	0
+#File-Name: TaggEff_2552.dat.xz	0	0
+#File-Name: TaggEff_2553.dat.xz	0	0
+#File-Name: TaggEff_2554.dat.xz	0	0
+#File-Name: TaggEff_2555.dat.xz	0	0
+#File-Name: TaggEff_2556.dat.xz	0	0
+#File-Name: TaggEff_2595.dat.xz	0	0
+#File-Name: TaggEff_2596.dat.xz	0	0
+#File-Name: TaggEff_2597.dat.xz	0	0
+#File-Name: TaggEff_2598.dat.xz	0	0
+#File-Name: TaggEff_2599.dat.xz	0	0
+#File-Name: TaggEff_2622.dat.xz	0	0
+#File-Name: TaggEff_2600.dat.xz	0	0
+#File-Name: TaggEff_2623.dat.xz	0	0
+#File-Name: TaggEff_2624.dat.xz	0	0
+#File-Name: TaggEff_2625.dat.xz	0	0
+#File-Name: TaggEff_2626.dat.xz	0	0
+#File-Name: TaggEff_2627.dat.xz	0	0
+#File-Name: TaggEff_2692.dat.xz	0	0
+##
+##
+## PolObs E dButanol - Eta 2Pi0 - Feb 2014      
+## Files under Neutron directory
+## 
+##
+#File-Name: TaggEff_2702.dat.xz	0	0
+#File-Name: TaggEff_2701.dat.xz	0	0
+#File-Name: TaggEff_2703.dat.xz	0	0
+#File-Name: TaggEff_2706.dat.xz	0	0
+##
+##File-Name: TaggEff_2705.dat.xz	0	0
+##File-Name: TaggEff_2704.dat.xz	0	0
+##
+#File-Name: TaggEff_2753.dat.xz	0	0
+#File-Name: TaggEff_2707.dat.xz	0	0
+#File-Name: TaggEff_2754.dat.xz	0	0
+#File-Name: TaggEff_2755.dat.xz	0	0
+#File-Name: TaggEff_2814.dat.xz	0	0
+#File-Name: TaggEff_2815.dat.xz	0	0
+#File-Name: TaggEff_2816.dat.xz	0	0
+#File-Name: TaggEff_2849.dat.xz	0	0
+#File-Name: TaggEff_2850.dat.xz	0	0
+#File-Name: TaggEff_2851.dat.xz	0	0
+#File-Name: TaggEff_2897.dat.xz	0	0 <---> File does not pass through AcquRoot or Worker
+#File-Name: TaggEff_2898.dat.xz	0	0
+#File-Name: TaggEff_2899.dat.xz	0	0
+##
+##
+## Carbon Background Measurement at 1557MeV 
+##
+##
+#File-Name: TaggEff_2941.dat.xz	0	0
+#File-Name: TaggEff_2942.dat.xz	0	0
+#File-Name: TaggEff_2943.dat.xz	0	0
+#File-Name: TaggEff_2979.dat.xz	0	0
+#File-Name: TaggEff_2980.dat.xz	0	0
+#
+#File-Name: TaggEff_2982.dat	0	0
+#File-Name: TaggEff_2981.dat	0	0
+#File-Name: TaggEff_2987.dat	0	0
+#File-Name: TaggEff_2986.dat	0	0
+#File-Name: TaggEff_2985.dat	0	0
+#File-Name: TaggEff_2983.dat	0	0
+#
+#File-Name: TaggEff_2988.dat.xz	0	0
+#
+# Above Carbon within the 2014-01_G_E_Neutron directory.
+# Below Carbon within the 2014-04_G_E_Carbon directory.
+#
+#File-Name: TaggEff_3157.dat.xz	0	0
+#File-Name: TaggEff_3158.dat.xz	0	0
+#File-Name: TaggEff_3159.dat.xz	0	0
+#File-Name: TaggEff_3206.dat.xz	0	0
+#File-Name: TaggEff_3160.dat.xz	0	0
+#File-Name: TaggEff_3208.dat.xz	0	0
+#File-Name: TaggEff_3209.dat.xz	0	0
+#File-Name: TaggEff_3210.dat.xz	0	0
+#File-Name: TaggEff_3211.dat.xz	0	0
+#File-Name: TaggEff_3245.dat.xz	0	0
+#File-Name: TaggEff_3213.dat.xz	0	0
+#File-Name: TaggEff_3212.dat.xz	0	0
+#File-Name: TaggEff_3246.dat.xz	0	0
+#File-Name: TaggEff_3247.dat.xz	0	0
+#File-Name: TaggEff_3248.dat.xz	0	0
+#File-Name: TaggEff_3249.dat.xz	0	0
+#File-Name: TaggEff_3289.dat.xz	0	0
+#File-Name: TaggEff_3250.dat.xz	0	0
+#File-Name: TaggEff_3290.dat.xz	0	0
+#File-Name: TaggEff_3291.dat.xz	0	0
+#File-Name: TaggEff_3295.dat.xz	0	0
+#File-Name: TaggEff_3293.dat.xz	0	0
+#File-Name: TaggEff_3292.dat.xz	0	0
+#File-Name: TaggEff_3296.dat.xz	0	0
+#File-Name: TaggEff_3297.dat.xz	0	0
+##File-Name: TaggEff_3300.dat.xz	0	0 Not found in Elog
+#File-Name: TaggEff_3299.dat.xz	0	0
+#File-Name: TaggEff_3298.dat.xz	0	0
+#File-Name: TaggEff_3331.dat.xz	0	0
+#File-Name: TaggEff_3332.dat.xz	0	0
+#File-Name: TaggEff_3334.dat.xz	0	0
+#File-Name: TaggEff_3333.dat.xz	0	0
+#File-Name: TaggEff_3376.dat.xz	0	0
+#File-Name: TaggEff_3377.dat.xz	0	0
+#File-Name: TaggEff_3378.dat.xz	0	0
+#File-Name: TaggEff_3379.dat.xz	0	0
+##
+##
+##
+##
+## Compton carbon data - April 2014 
+##
+##
+#File-Name: TaggEff_3428.dat.xz	0	0
+#File-Name: TaggEff_3429.dat.xz	0	0
+#File-Name: TaggEff_3430.dat.xz	0	0
+#File-Name: TaggEff_3459.dat.xz	0	0
+#File-Name: TaggEff_3460.dat.xz	0	0
+#File-Name: TaggEff_3484.dat.xz	0	0
+#File-Name: TaggEff_3485.dat.xz	0	0
+#File-Name: TaggEff_3486.dat.xz	0	0
+#File-Name: TaggEff_3513.dat.xz	0	0
+#File-Name: TaggEff_3514.dat.xz	0	0
+#File-Name: TaggEff_3515.dat.xz	0	0
+#File-Name: TaggEff_3539.dat.xz	0	0
+#File-Name: TaggEff_3540.dat.xz	0	0
+##File-Name: TaggEff_3541.dat.xz	0	0 Not goiing through AcquRoot properly
+#File-Name: TaggEff_3542.dat.xz	0	0
+#File-Name: TaggEff_3543.dat.xz	0	0
+#File-Name: TaggEff_3568.dat.xz	0	0
+#File-Name: TaggEff_3569.dat.xz	0	0
+#File-Name: TaggEff_3570.dat.xz	0	0
+#File-Name: TaggEff_3597.dat.xz	0	0
+#File-Name: TaggEff_3598.dat.xz	0	0
+#File-Name: TaggEff_3599.dat.xz	0	0
+#File-Name: TaggEff_3624.dat.xz	0	0
+#File-Name: TaggEff_3625.dat.xz	0	0
+#File-Name: TaggEff_3626.dat.xz	0	0
+##
+##
+## Sigma2z Compton - May 2014
+##
+##
+#File-Name: TaggEff_3671.dat.xz	0	0
+#File-Name: TaggEff_3672.dat.xz	0	0
+#File-Name: TaggEff_3673.dat.xz	0	0
+#File-Name: TaggEff_3674.dat.xz	0	0
+#File-Name: TaggEff_3675.dat.xz	0	0
+#File-Name: TaggEff_3676.dat.xz	0	0
+#File-Name: TaggEff_3678.dat.xz	0	0
+#File-Name: TaggEff_3679.dat.xz	0	0
+#File-Name: TaggEff_3702.dat.xz	0	0
+#File-Name: TaggEff_3703.dat.xz	0	0
+#File-Name: TaggEff_3704.dat.xz	0	0
+#File-Name: TaggEff_3738.dat.xz	0	0
+#File-Name: TaggEff_3739.dat.xz	0	0
+#File-Name: TaggEff_3740.dat.xz	0	0
+#File-Name: TaggEff_3768.dat.xz	0	0
+#File-Name: TaggEff_3769.dat.xz	0	0
+#File-Name: TaggEff_3770.dat.xz	0	0
+#File-Name: TaggEff_3798.dat.xz	0	0
+#File-Name: TaggEff_3799.dat.xz	0	0
+#File-Name: TaggEff_3800.dat.xz	0	0
+#File-Name: TaggEff_3829.dat.xz	0	0
+#File-Name: TaggEff_3830.dat.xz	0	0
+#File-Name: TaggEff_3831.dat.xz	0	0
+#File-Name: TaggEff_3832.dat.xz	0	0
+#File-Name: TaggEff_3868.dat.xz	0	0
+#File-Name: TaggEff_3869.dat.xz	0	0
+#File-Name: TaggEff_3870.dat.xz	0	0
+#File-Name: TaggEff_3871.dat.xz	0	0
+#File-Name: TaggEff_3900.dat.xz	0	0
+#File-Name: TaggEff_3901.dat.xz	0	0
+#File-Name: TaggEff_3902.dat.xz	0	0
+#File-Name: TaggEff_3941.dat.xz	0	0
+#File-Name: TaggEff_3942.dat.xz	0	0
+#File-Name: TaggEff_3943.dat.xz	0	0
+#File-Name: TaggEff_3970.dat.xz	0	0
+#File-Name: TaggEff_3971.dat.xz	0	0
+#File-Name: TaggEff_3972.dat.xz	0	0
+#File-Name: TaggEff_3973.dat.xz	0	0
+#File-Name: TaggEff_3997.dat.xz	0	0
+#File-Name: TaggEff_3998.dat.xz	0	0
+#File-Name: TaggEff_3999.dat.xz	0	0
+##File-Name: TaggEff_4027.dat.xz	0	0 Not running on AcquRoot/Worker
+#File-Name: TaggEff_4028.dat.xz	0	0
+#File-Name: TaggEff_4029.dat.xz	0	0
+#File-Name: TaggEff_4030.dat.xz	0	0
+#File-Name: TaggEff_4060.dat.xz	0	0
+#File-Name: TaggEff_4061.dat.xz	0	0
+#File-Name: TaggEff_4062.dat.xz	0	0
+#File-Name: TaggEff_4091.dat.xz	0	0
+#File-Name: TaggEff_4092.dat.xz	0	0
+#File-Name: TaggEff_4093.dat.xz	0	0
+#File-Name: TaggEff_4094.dat.xz	0	0
+#File-Name: TaggEff_4126.dat.xz	0	0
+#File-Name: TaggEff_4127.dat.xz	0	0
+#File-Name: TaggEff_4128.dat.xz	0	0
+##
+##
+## G and E on the Proton Runs 2
+##
+##
+#File-Name: TaggEff_4211.dat.xz	0	0
+#File-Name: TaggEff_4212.dat.xz	0	0
+#File-Name: TaggEff_4213.dat.xz	0	0
+#File-Name: TaggEff_4275.dat.xz	0	0
+#File-Name: TaggEff_4214.dat.xz	0	0
+#File-Name: TaggEff_4276.dat.xz	0	0
+#File-Name: TaggEff_4282.dat.xz	0	0
+#File-Name: TaggEff_4283.dat.xz	0	0
+#File-Name: TaggEff_4284.dat.xz	0	0
+#File-Name: TaggEff_4329.dat.xz	0	0
+#File-Name: TaggEff_4286.dat.xz	0	0
+#File-Name: TaggEff_4285.dat.xz	0	0
+#File-Name: TaggEff_4330.dat.xz	0	0
+#File-Name: TaggEff_4331.dat.xz	0	0
+#File-Name: TaggEff_4332.dat.xz	0	0
+#File-Name: TaggEff_4379.dat.xz	0	0
+#File-Name: TaggEff_4334.dat.xz	0	0
+#File-Name: TaggEff_4333.dat.xz	0	0
+#File-Name: TaggEff_4380.dat.xz	0	0
+#File-Name: TaggEff_4381.dat.xz	0	0
+#File-Name: TaggEff_4382.dat.xz	0	0
+#File-Name: TaggEff_4483.dat.xz	0	0
+#File-Name: TaggEff_4383.dat.xz	0	0
+#File-Name: TaggEff_4484.dat.xz	0	0
+#File-Name: TaggEff_4485.dat.xz	0	0
+#File-Name: TaggEff_4486.dat.xz	0	0
+#File-Name: TaggEff_4489.dat.xz	0	0
+##
+##
+## Double pol on the Deuteron
+##
+##
+#File-Name: TaggEff_7987.dat.xz	0	0
+#File-Name: TaggEff_7988.dat.xz	0	0
+#File-Name: TaggEff_7989.dat.xz	0	0
+#File-Name: TaggEff_7990.dat.xz	0	0
+#File-Name: TaggEff_7991.dat.xz	0	0
+#File-Name: TaggEff_7992.dat.xz	0	0
+#File-Name: TaggEff_7993.dat.xz	0	0
+#File-Name: TaggEff_7994.dat.xz	0	0
+#File-Name: TaggEff_7995.dat.xz	0	0
+#File-Name: TaggEff_7996.dat.xz	0	0
+#File-Name: TaggEff_7997.dat.xz	0	0
+#File-Name: TaggEff_7998.dat.xz	0	0
+#File-Name: TaggEff_8000.dat.xz	0	0
+#File-Name: TaggEff_8001.dat.xz	0	0
+#File-Name: TaggEff_8002.dat.xz	0	0
+#File-Name: TaggEff_8003.dat.xz	0	0
+#File-Name: TaggEff_8004.dat.xz	0	0
+#File-Name: TaggEff_8007.dat.xz	0	0
+#File-Name: TaggEff_8010.dat.xz	0	0
+#File-Name: TaggEff_8011.dat.xz	0	0
+#File-Name: TaggEff_8012.dat.xz	0      	0
+#File-Name: TaggEff_8014.dat.xz	0	0
+#File-Name: TaggEff_8015.dat.xz	0	0
+#File-Name: TaggEff_8094.dat.xz	0	0
+#File-Name: TaggEff_8095.dat.xz	0	0
+#File-Name: TaggEff_8096.dat.xz	0	0
+#File-Name: TaggEff_8097.dat.xz	0	0
+#File-Name: TaggEff_8113.dat.xz	0	0
+#File-Name: TaggEff_8114.dat.xz	0	0
+#File-Name: TaggEff_8115.dat.xz	0	0
+#File-Name: TaggEff_8116.dat.xz	0	0
+#File-Name: TaggEff_8117.dat.xz	0	0
+#
+#
+#File-Name: TaggEff_8158.dat.xz	0	0 Not used, tagging efficiency abandoned, check elog.
+#File-Name: TaggEff_8166.dat.xz	0	0 Not used, tagging efficiency abandoned, check elog.
+#
+#
+#File-Name: TaggEff_8212.dat.xz	0	0
+#File-Name: TaggEff_8213.dat.xz	0	0
+#File-Name: TaggEff_8214.dat.xz	0	0
+#
+#
+#File-Name: TaggEff_8242.dat.xz	0	0 No elog entry
+#File-Name: TaggEff_8243.dat.xz	0	0 No elog entry
+#File-Name: TaggEff_8252.dat.xz	0	0 No elog entry
+#File-Name: TaggEff_8253.dat.xz	0	0 No elog entry
+#File-Name: TaggEff_8258.dat.xz	0	0 No elog entry
+#
+#
+#File-Name: TaggEff_8311.dat.xz	0	0
+#File-Name: TaggEff_8312.dat.xz	0	0
+#File-Name: TaggEff_8313.dat.xz	0	0
+#File-Name: TaggEff_8363.dat.xz	0	0
+#File-Name: TaggEff_8364.dat.xz	0	0
+#File-Name: TaggEff_8365.dat.xz	0	0
+#File-Name: TaggEff_8402.dat.xz	0	0
+#File-Name: TaggEff_8403.dat.xz	0	0
+#File-Name: TaggEff_8404.dat.xz	0	0
+#File-Name: TaggEff_8455.dat.xz	0	0
+#File-Name: TaggEff_8456.dat.xz	0	0
+#File-Name: TaggEff_8457.dat.xz	0	0
+#File-Name: TaggEff_8507.dat.xz	0	0
+#File-Name: TaggEff_8508.dat.xz	0	0
+#File-Name: TaggEff_8509.dat.xz	0	0
+##
+##
+## G E on HButanol
+##
+##
+#File-Name: TaggEff_8577.dat.xz	0	0
+#File-Name: TaggEff_8578.dat.xz	0	0
+#File-Name: TaggEff_8579.dat.xz	0	0
+#File-Name: TaggEff_8580.dat.xz	0	0
+#File-Name: TaggEff_8581.dat.xz	0	0
+#File-Name: TaggEff_8582.dat.xz	0	0
+#
+#File-Name: TaggEff_8604.dat.xz	0	0 No elog entry.
+#File-Name: TaggEff_8605.dat.xz	0	0 No elog entry.
+#
+#File-Name: TaggEff_8633.dat.xz	0	0
+#File-Name: TaggEff_8634.dat.xz	0	0 #Not saving!!!
+#File-Name: TaggEff_8635.dat.xz	0	0
+#File-Name: TaggEff_8636.dat.xz	0	0
+#File-Name: TaggEff_8637.dat.xz	0	0
+#File-Name: TaggEff_8672.dat.xz	0	0
+#File-Name: TaggEff_8673.dat.xz	0	0
+#File-Name: TaggEff_8674.dat.xz	0	0
+#
+#File-Name: TaggEff_8678.dat.xz	0	0 No elog entry.
+#
+#File-Name: TaggEff_8730.dat.xz	0	0
+#File-Name: TaggEff_8731.dat.xz	0	0
+#File-Name: TaggEff_8732.dat.xz	0	0
+#File-Name: TaggEff_8733.dat.xz	0	0
+#File-Name: TaggEff_8734.dat.xz	0	0
+#File-Name: TaggEff_8774.dat.xz	0	0
+#File-Name: TaggEff_8775.dat.xz	0	0
+#File-Name: TaggEff_8776.dat.xz	0	0
+#File-Name: TaggEff_8777.dat.xz	0	0
+#File-Name: TaggEff_8778.dat.xz	0	0
+#File-Name: TaggEff_8779.dat.xz	0	0
+#File-Name: TaggEff_8820.dat.xz	0	0
+#File-Name: TaggEff_8821.dat.xz	0	0
+#File-Name: TaggEff_8822.dat.xz	0	0
+#File-Name: TaggEff_8823.dat.xz	0	0
+#File-Name: TaggEff_8829.dat.xz	0	0
+#File-Name: TaggEff_8863.dat.xz	0	0
+#File-Name: TaggEff_8864.dat.xz	0	0
+#File-Name: TaggEff_8865.dat.xz	0	0
+#File-Name: TaggEff_8866.dat.xz	0	0
+#File-Name: TaggEff_8867.dat.xz	0	0
+#File-Name: TaggEff_8876.dat.xz	0	0
+#File-Name: TaggEff_8880.dat.xz	0	0
+#File-Name: TaggEff_8883.dat.xz	0	0
+#File-Name: TaggEff_8919.dat.xz	0	0
+#File-Name: TaggEff_8920.dat.xz	0	0
+#File-Name: TaggEff_8921.dat.xz	0	0
+#File-Name: TaggEff_8922.dat.xz	0	0
+#File-Name: TaggEff_8923.dat.xz	0	0
+#File-Name: TaggEff_8956.dat.xz	0	0
+#File-Name: TaggEff_8957.dat.xz	0	0
+#File-Name: TaggEff_8958.dat.xz	0	0
+#File-Name: TaggEff_8959.dat.xz	0	0
+#File-Name: TaggEff_8960.dat.xz	0	0
+#File-Name: TaggEff_8975.dat.xz	0	0
+#
+#File-Name: TaggEff_8982.dat.xz	0	0 No elog entry.
+#File-Name: TaggEff_8983.dat.xz	0	0 No elog entry.
+#File-Name: TaggEff_8987.dat.xz	0	0 No elog entry.
+#File-Name: TaggEff_8988.dat.xz	0	0 No elog entry.
+#File-Name: TaggEff_8990.dat.xz	0	0 No elog entry.
+#
+#File-Name: TaggEff_8991.dat.xz	0	0 
+#File-Name: TaggEff_8992.dat.xz	0	0
+#File-Name: TaggEff_8993.dat.xz	0	0
+#File-Name: TaggEff_9010.dat.xz	0	0
+#File-Name: TaggEff_9028.dat.xz	0	0
+#File-Name: TaggEff_9029.dat.xz	0	0
+#File-Name: TaggEff_9079.dat.xz	0	0
+#File-Name: TaggEff_9080.dat.xz	0	0
+#File-Name: TaggEff_9135.dat.xz	0	0
+#File-Name: TaggEff_9136.dat.xz	0	0
+#File-Name: TaggEff_9137.dat.xz	0	0
+#File-Name: TaggEff_9138.dat.xz	0	0
+#File-Name: TaggEff_9139.dat.xz	0	0
+#File-Name: TaggEff_9169.dat.xz	0	0
+#File-Name: TaggEff_9170.dat.xz	0	0
+#File-Name: TaggEff_9171.dat.xz	0	0
+#File-Name: TaggEff_9172.dat.xz	0	0
+#File-Name: TaggEff_9173.dat.xz	0	0
+##
+##
+## G E on Proton 2015-09
+##
+##
+##
+## END			
+
+File-Name: TaggEff_11840.dat.xz 0 0

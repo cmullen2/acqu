@@ -1,0 +1,39 @@
+#File-Directory: /home/chris/acqu/acqu_user/data.TaggEff/OutputFiles/
+File-Directory: /w/work14/chris/TaggEff/
+#File-Directory: /w/work14/chris/TaggEff/BadScalReads/
+Energy-File: 1402_EnaG_n.plot.dat
+Output-File: TaggEffInit
+#Output-File: TaggEffBadScalReads
+Prompt-Correction: 1
+
+File: MyCaLib_TaggEff_14665_hist.root	data	BG	0
+File: MyCaLib_TaggEff_14668_hist.root	data	amor	0
+File: MyCaLib_TaggEff_14667_hist.root	data	perp	0
+File: MyCaLib_TaggEff_14666_hist.root	data	para	0
+File: MyCaLib_TaggEff_14669_hist.root	data	BG	0
+
+File: MyCaLib_TaggEff_15116_hist.root data    BG      1
+File: MyCaLib_TaggEff_15118_hist.root data    para    1
+File: MyCaLib_TaggEff_15117_hist.root data    amor    1
+File: MyCaLib_TaggEff_15119_hist.root data    perp    1
+File: MyCaLib_TaggEff_15120_hist.root data    BG      1
+
+File: MyCaLib_TaggEff_15253_hist.root	data	BG	2
+File: MyCaLib_TaggEff_15255_hist.root	data	para	2
+File: MyCaLib_TaggEff_15254_hist.root	data	amor	2
+File: MyCaLib_TaggEff_15257_hist.root	data	BG	2
+File: MyCaLib_TaggEff_15256_hist.root	data	perp	2
+
+File: MyCaLib_TaggEff_15421_hist.root	data	BG	3
+File: MyCaLib_TaggEff_15423_hist.root	data	para	3
+File: MyCaLib_TaggEff_15424_hist.root	data	perp	3
+File: MyCaLib_TaggEff_15422_hist.root	data	amor	3
+File: MyCaLib_TaggEff_15425_hist.root	data	BG	3
+
+File: MyCaLib_TaggEff_15578_hist.root	data	BG	4
+File: MyCaLib_TaggEff_15579_hist.root	data	amor	4
+File: MyCaLib_TaggEff_15580_hist.root	data	para	4
+File: MyCaLib_TaggEff_15581_hist.root	data	perp	4
+File: MyCaLib_TaggEff_15582_hist.root	data	BG	4
+
+

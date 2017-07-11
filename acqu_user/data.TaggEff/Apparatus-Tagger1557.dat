@@ -1,0 +1,38 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   29th Apr 2003
+##--Update	JRM Annand...17th May 2005
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+##----------------------------------------------------------------------------
+#	NMR field       Beam Energy
+Magnet:	1.8880042	1557.0
+#
+#	  Name          Class Name    	Setup file
+#Detector: FPD        	TA2Ladder   	Detector_G_Proton_1_Tagger1557.dat
+#Detector: FPD        	TA2Ladder   	Detector_G_Neutron_Tagger1557.dat
+#Detector: FPD        	TA2Ladder   	Detector_G_Neutron_Tagger1557-modif.dat
+#Detector: FPD        	TA2Ladder   	Detector_PolObs_1_Tagger1557.dat
+#Detector: FPD        	TA2Ladder   	Detector_CarbonBG_1_Tagger1557.dat
+#Detector: FPD        	TA2Ladder   	Detector_CompCar_Tagger1557.dat
+#Detector: FPD        	TA2Ladder   	Detector_CompSigma2z_Tagger1557.dat
+#Detector: FPD        	TA2Ladder   	Detector_G_Proton_2_Tagger1557.dat
+#Detector: FPD        	TA2Ladder   	Detector_Double_D_Tagger1557.dat
+#Detector: FPD        	TA2Ladder   	Detector_G-E_HButanol_Tagger1557.dat
+#Detector: FPD        	TA2Ladder   	Detector_G-E_Proton_09-15_Tagger1557.dat
+#Detector: FPD        	TA2Ladder   	Detector_Tagger1557.ua.dat
+Detector: FPD        	TA2Ladder   	Detector_Tagger1557.dat
+#Detector: FPD        	TA2Ladder   	data.2016.08/AR-Analysis-Tagger-Ladder.dat
+#Detector: FPD        	TA2Ladder   	AR-Analysis-Tagger-Ladder.ua.dat
+#Detector: FPD        	TA2Ladder   	AR-Analysis-Tagger-Ladder.dat
+#Detector: FPD        	TA2Ladder   	Detector_09-15_G-E_Proton_Tagger1557.dat
+Initialise:
+#
+#Data-Cut: 1D Ladder_Time AND histogram 66 78
+#
+#
+#Display: 1D Nhit  	   20 0  20  -1
+#Display: 1D PhotonEnergy  352 0 855  -1
+#Display: 1D PhotonEnergy  352 v2ud_1557_1.88839.plot.ghist
+#Display: 2D Ladder_Hits   352 0 352  -1 Ladder_Time 100 0 200 -1

@@ -1,0 +1,8 @@
+##-----------------------------------------------------------------------
+Input-Streams:	1		32768		0
+File-Directory:  /scratch/roddym/tmp/
+Stream-Spec:	File	Mk2	0	32768	32	0	400
+##-----------------------------------------------------------------------
+File-Name: AcquData.dat.xz    	0       0
+#File-Name: Dummy.dat		0	10
+## END

@@ -1,0 +1,40 @@
+#File-Directory: /home/chris/acqu/acqu_user/data.TaggEff/OutputFiles/
+File-Directory: /w/work14/chris/TaggEff/
+#File-Directory: /w/work14/chris/TaggEff/BadScalReads/
+Energy-File: 1402_EnaG_n.plot.dat
+#Output-File: TaggEffInitUsingCaLib
+Output-File: TaggEffBadScalReads2
+Prompt-Correction: 1
+
+File: ARHistograms_TaggEff_14665.root	data	BG	0
+File: ARHistograms_TaggEff_14668.root	data	amor	0
+File: ARHistograms_TaggEff_14667.root	data	perp	0
+File: ARHistograms_TaggEff_14666.root	data	para	0
+File: ARHistograms_TaggEff_14669.root	data	BG	0
+
+File: ARHistograms_TaggEff_15116.root	data    BG      1
+File: ARHistograms_TaggEff_15118.root	data    para    1
+File: ARHistograms_TaggEff_15117.root	data    amor    1
+File: ARHistograms_TaggEff_15119.root	data    perp    1
+File: ARHistograms_TaggEff_15120.root	data    BG      1
+
+File: ARHistograms_TaggEff_15253.root	data	BG	2
+File: ARHistograms_TaggEff_15255.root	data	para	2
+File: ARHistograms_TaggEff_15254.root	data	amor	2
+File: ARHistograms_TaggEff_15257.root	data	BG	2
+File: ARHistograms_TaggEff_15256.root	data	perp	2
+
+File: ARHistograms_TaggEff_15421.root	data	BG	3
+File: ARHistograms_TaggEff_15423.root	data	para	3
+File: ARHistograms_TaggEff_15424.root	data	perp	3
+File: ARHistograms_TaggEff_15422.root	data	amor	3
+File: ARHistograms_TaggEff_15425.root	data	BG	3
+
+
+#Some of these files were really poor in the Bad Scaler Reads 80,81 terrible.
+File: ARHistograms_TaggEff_15578.root	data	BG	4
+File: ARHistograms_TaggEff_15580.root	data	para	4
+File: ARHistograms_TaggEff_15581.root	data	perp	4
+File: ARHistograms_TaggEff_15579.root	data	amor	4
+File: ARHistograms_TaggEff_15582.root	data	BG	4
+

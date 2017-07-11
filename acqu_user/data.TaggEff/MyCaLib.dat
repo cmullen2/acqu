@@ -1,0 +1,42 @@
+#########################################################################
+#                                                                       #
+# Physics analysis class configuration file                             #
+#                                                                       #
+#########################################################################
+
+
+Reconstruct:
+
+# relative/absolute livetime correction for tagger scalers
+#                    live CB   free CB   live tagg   free tagg  P2
+TaggSc-Live-Corr:    190       191       190         191        203
+
+#
+#
+# CaLib configuration
+#
+
+# General:      dbhost       dbname            dbuser      dbpass        calibration
+Use-CaLib:	/home/chris/acqu/acqu_user/data.2016.08/CaLib.db	  LD2_Aug_16
+# tagger calib:     time    eff  (0=off/1=on)
+#Use-CaLib-TAGG:     1       0
+# CB calib:         energy  time    timewalk    quadr. energy   LED thr.  (0=off/1=on)
+#Use-CaLib-CB:       1       1       0           1               0
+# TAPS calib:       energy  time    quadr. energy   LED thr.    CFD thr.  (0=off/1=on)
+#Use-CaLib-TAPS:     1       1       1               1           0
+# PID calib:        phi     energy  time  (0=off/1=on)
+#Use-CaLib-PID:      1       1       1
+# Veto calib:       energy  time    LED thr.  (0=off/1=on)
+#Use-CaLib-Veto:     1       1       0
+# Bad scaler reads  list    first   last (0=off/1=on)    lists (ALL, NaI, ..., NONE, space-sep. list)
+Use-CaLib-BadScR:   1       1       1                    ALL
+
+# enable tagging efficiency
+CaLib-Tagg-Eff: 1
+
+# bad scaler reads    on/off    max. #scaler reads
+#CaLib-BadScalerReads: 1         9000
+#CaLib-BadScalerReads-NaI: 250 -150 100
+#CaLib-BadScalerReads-Ladder: 300 -150. 150.
+
+Initialise:

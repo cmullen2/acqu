@@ -1,0 +1,76 @@
+File-Directory: /home/chris/acqu/acqu_user/data.TaggEff/OutputFiles/
+Energy-File: 1402_EnaG_n.plot.dat
+Output-File: 1402_TaggEff
+Prompt-Correction: 1
+# File: MyCaLib_TaggEff_14599_hist.root	data	BG	0
+# File: MyCaLib_TaggEff_14600_hist.root	data	amor	0
+# File: MyCaLib_TaggEff_14601_hist.root	data	BG	0
+
+ File: MyCaLib_TaggEff_14665_hist.root	data	BG	0
+ File: MyCaLib_TaggEff_14668_hist.root	data	amor	0
+ File: MyCaLib_TaggEff_14667_hist.root	data	perp	0
+ File: MyCaLib_TaggEff_14666_hist.root	data	para	0
+ File: MyCaLib_TaggEff_14669_hist.root	data	BG	0
+
+ File: MyCaLib_TaggEff_14665_hist.root	data	BG	1
+ File: MyCaLib_TaggEff_14668_hist.root	data	amor	1
+ File: MyCaLib_TaggEff_14667_hist.root	data	perp	1
+ File: MyCaLib_TaggEff_14666_hist.root	data	para	1
+ File: MyCaLib_TaggEff_14669_hist.root	data	BG	1
+
+
+#File: MyCaLib_TaggEff_14752_hist.root	data	BG	2
+#File: MyCaLib_TaggEff_14750_hist.root	data	BG	2
+#File: MyCaLib_TaggEff_14751_hist.root	data	amo	2
+
+#File: MyCaLib_TaggEff_14773_hist.root	data	BG	3
+#File: MyCaLib_TaggEff_14772_hist.root	data	BG	3#This and the 773 run both first bg see logbook
+#File: MyCaLib_TaggEff_14776_hist.root	data	BG	3
+#File: MyCaLib_TaggEff_14774_hist.root	data	para	3
+#File: MyCaLib_TaggEff_14775_hist.root	data	perp	3
+
+#File: MyCaLib_TaggEff_14889_hist.root	data	BG	4
+#File: MyCaLib_TaggEff_14891_hist.root	data	perp	4
+#File: MyCaLib_TaggEff_14890_hist.root	data	para	4
+#File: MyCaLib_TaggEff_14892_hist.root	data	BG	4
+
+#File: MyCaLib_TaggEff_14991_hist.root data    #Hall problem 1 min long bg
+#File: MyCaLib_TaggEff_14992_hist.root	data	BG	5
+#File: MyCaLib_TaggEff_14990_hist.root	data  			#Pb glass issue
+#File: MyCaLib_TaggEff_14995_hist.root	data	BG	5 #see log book
+#File: MyCaLib_TaggEff_14996_hist.root	data	BG	5 #see logbook
+#File: MyCaLib_TaggEff_14993_hist.root	data	amo	5
+#File: MyCaLib_TaggEff_14994_hist.root	data	BG	5 #see logbook
+
+# File: MyCaLib_TaggEff_15025_hist.root	data	BG	6
+# File: MyCaLib_TaggEff_15028_hist.root	data	BG	6
+# File: MyCaLib_TaggEff_15026_hist.root	data	para	6
+# File: MyCaLib_TaggEff_15027_hist.root	data	perp	6
+
+# File: MyCaLib_TaggEff_15046_hist.root	data	BG	7
+# File: MyCaLib_TaggEff_15047_hist.root	data	amo	7
+# File: MyCaLib_TaggEff_15048_hist.root	data	BG	7
+
+# File: MyCaLib_TaggEff_15116_hist.root	data	BG	8
+# File: MyCaLib_TaggEff_15118_hist.root	data	para	8
+# File: MyCaLib_TaggEff_15117_hist.root	data	amo	8
+# File: MyCaLib_TaggEff_15120_hist.root	data	BG	8
+# File: MyCaLib_TaggEff_15119_hist.root	data	perp	8
+
+# File: MyCaLib_TaggEff_15253_hist.root	data	BG	9
+# File: MyCaLib_TaggEff_15255_hist.root	data	para	9
+# File: MyCaLib_TaggEff_15254_hist.root	data	amo	9
+# File: MyCaLib_TaggEff_15257_hist.root	data	BG	9
+# File: MyCaLib_TaggEff_15256_hist.root	data	perp	9
+
+# File: MyCaLib_TaggEff_15421_hist.root	data	BG	10
+# File: MyCaLib_TaggEff_15423_hist.root	data	para	10
+# File: MyCaLib_TaggEff_15424_hist.root	data	perp	10
+# File: MyCaLib_TaggEff_15422_hist.root	data	amo	10
+# File: MyCaLib_TaggEff_15425_hist.root	data	BG	10
+
+# File: MyCaLib_TaggEff_15578_hist.root	data	BG	11
+# File: MyCaLib_TaggEff_15579_hist.root	data	amo	11
+# File: MyCaLib_TaggEff_15580_hist.root	data	para	11
+# File: MyCaLib_TaggEff_15581_hist.root	data	perp	11
+# File: MyCaLib_TaggEff_15582_hist.root	data	BG	11

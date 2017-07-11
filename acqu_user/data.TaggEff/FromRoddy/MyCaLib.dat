@@ -1,0 +1,30 @@
+#########################################################################
+#                                                                       #
+# Physics analysis class configuration file                             #
+#                                                                       #
+#########################################################################
+
+
+Reconstruct:
+
+#
+# CaLib configuration
+#
+
+# General:      dbhost       dbname            dbuser      dbpass        calibration
+#Use-CaLib:      phys-jaguar  calib_may_2009    calib_ro    omega13       LD2_May_09
+# tagger calib:     time    eff  (0=off/1=on)
+#Use-CaLib-TAGG:     1       0
+# CB calib:         energy  time    timewalk    quadr. energy   LED thr.  (0=off/1=on)
+#Use-CaLib-CB:       1       1       0           1               0
+# TAPS calib:       energy  time    quadr. energy   LED thr.    CFD thr.  (0=off/1=on)
+#Use-CaLib-TAPS:     1       1       1               1           0
+# PID calib:        phi     energy  time  (0=off/1=on)
+#Use-CaLib-PID:      1       1       1
+# Veto calib:       energy  time    LED thr.  (0=off/1=on)
+#Use-CaLib-Veto:     1       1       0
+# Bad scaler reads  list    first   last (0=off/1=on)    lists (ALL, NaI, ..., NONE, space-sep. list)
+Use-CaLib-BadScR:   0       1       0                    ALL
+
+
+Initialise:

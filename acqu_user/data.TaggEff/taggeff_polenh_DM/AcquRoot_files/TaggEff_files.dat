@@ -1,0 +1,110 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   13th Jan 2004
+##--Update	JRM Annand... 1st Dec 2004
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Parameter File: FPcommServer.Offline
+## Configuration file for DataServer (data input for analysis)
+##
+##-----------------------------------------------------------------------
+## Number of Input streams (sources of data), Record length to write data
+## and switch 0/1 = no/yes to control data write
+##              Number streams	Record Len	Save Data
+Input-Streams:	1		32768		0
+##
+## Optional directory spec. If not specified File-Names must contain the full
+## directory path
+File-Directory:	scratch/
+##
+## Specify each input stream
+## From disk file, ACQU (Mk1) format, save any output to file (save=1)
+## Input data record length, Output data record length
+##
+##            	Source	Format	Save?	RecLen	Buffers	Swap	MarkID
+Stream-Spec:	File	Mk2	0	32768	32	0	400
+##
+## Now the list of data files to analyse
+##		File Name	1st rec	Last rec
+##
+#File-Name: TaggEff_1907.dat 0 0
+#File-Name: TaggEff_1908.dat 0 0
+#File-Name: TaggEff_1909.dat 0 0
+#File-Name: TaggEff_1910.dat 0 0
+#File-Name: TaggEff_1911.dat 0 0
+#File-Name: TaggEff_1993.dat 0 0
+#File-Name: TaggEff_1994.dat 0 0
+#File-Name: TaggEff_1995.dat 0 0
+#File-Name: TaggEff_1996.dat 0 0
+#File-Name: TaggEff_1997.dat 0 0
+#File-Name: TaggEff_2029.dat 0 0
+#File-Name: TaggEff_2030.dat 0 0
+#File-Name: TaggEff_2031.dat 0 0
+#File-Name: TaggEff_2032.dat 0 0
+#File-Name: TaggEff_2033.dat 0 0
+#File-Name: TaggEff_2062.dat 0 0
+#File-Name: TaggEff_2063.dat 0 0
+#File-Name: TaggEff_2064.dat 0 0
+#File-Name: TaggEff_2065.dat 0 0
+#File-Name: TaggEff_2066.dat 0 0
+#File-Name: TaggEff_2101.dat 0 0
+#File-Name: TaggEff_2102.dat 0 0
+#File-Name: TaggEff_2103.dat 0 0
+#File-Name: TaggEff_2134.dat 0 0
+#File-Name: TaggEff_2135.dat 0 0
+#File-Name: TaggEff_2136.dat 0 0
+#File-Name: TaggEff_2137.dat 0 0
+#File-Name: TaggEff_2138.dat 0 0
+#File-Name: TaggEff_2159.dat 0 0
+#File-Name: TaggEff_2160.dat 0 0
+#File-Name: TaggEff_2161.dat 0 0
+#File-Name: TaggEff_2162.dat 0 0
+#File-Name: TaggEff_2163.dat 0 0
+#File-Name: TaggEff_2186.dat 0 0
+#File-Name: TaggEff_2187.dat 0 0
+#File-Name: TaggEff_2188.dat 0 0
+#File-Name: TaggEff_2189.dat 0 0
+#File-Name: TaggEff_2190.dat 0 0
+#File-Name: TaggEff_2222.dat 0 0
+#File-Name: TaggEff_2223.dat 0 0
+#File-Name: TaggEff_2224.dat 0 0
+#File-Name: TaggEff_2225.dat 0 0
+#File-Name: TaggEff_2226.dat 0 0
+#File-Name: TaggEff_2243.dat 0 0
+#File-Name: TaggEff_2244.dat 0 0
+#File-Name: TaggEff_2245.dat 0 0
+#File-Name: TaggEff_2246.dat 0 0
+#File-Name: TaggEff_2247.dat 0 0
+#File-Name: TaggEff_2285.dat 0 0
+#File-Name: TaggEff_2286.dat 0 0
+#File-Name: TaggEff_2287.dat 0 0
+#File-Name: TaggEff_2313.dat 0 0
+#File-Name: TaggEff_2314.dat 0 0
+#File-Name: TaggEff_2315.dat 0 0
+#File-Name: TaggEff_2316.dat 0 0
+#File-Name: TaggEff_2317.dat 0 0
+#File-Name: TaggEff_2347.dat 0 0
+#File-Name: TaggEff_2348.dat 0 0
+#File-Name: TaggEff_2349.dat 0 0
+#File-Name: TaggEff_2350.dat 0 0
+#File-Name: TaggEff_2351.dat 0 0
+#File-Name: TaggEff_2378.dat 0 0
+#File-Name: TaggEff_2379.dat 0 0
+#File-Name: TaggEff_2380.dat 0 0
+#File-Name: TaggEff_2381.dat 0 0
+#File-Name: TaggEff_2382.dat 0 0
+#File-Name: TaggEff_2383.dat 0 0
+#File-Name: TaggEff_2384.dat 0 0
+#File-Name: TaggEff_2417.dat 0 0
+#File-Name: TaggEff_2418.dat 0 0
+#File-Name: TaggEff_2419.dat 0 0
+#File-Name: TaggEff_2420.dat 0 0
+#File-Name: TaggEff_2421.dat 0 0
+#File-Name: TaggEff_2422.dat 0 0
+#File-Name: TaggEff_2482.dat 0 0
+#File-Name: TaggEff_2483.dat 0 0
+#File-Name: TaggEff_2484.dat 0 0
+#File-Name: TaggEff_2485.dat 0 0
+#File-Name: TaggEff_2486.dat 0 0
+#

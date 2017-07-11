@@ -1,0 +1,79 @@
+# Setup file for Tagging Efficiency analysis
+##-----------------------------------------------------------------------
+##
+## The following give sample specifications for
+## handlers for flash or multihit ADCs or TDCs
+##
+## Catch-TDC, where a reference TDC channel has to be specified
+## The reference TDC channel contains the trigger time which is subtracted
+## from the other specified channels
+## CB TDC's
+##              #hits   start   stop    reference
+MultiADC:       3       1401    1911    1400
+##
+##
+## Apparatus setup....
+## Raw analysis may be performed without Apparati
+##              Name            Class           	Setup file
+Apparatus:      TAGG            TA2Tagger   		Tagger_1557.dat
+##
+## Turn on apparatus-level reconstruction
+##Reconstruct-Analysis:
+##
+## Specify physics analysis
+##			Name	Class		Config File
+##Physics-Analysis:	MDM	TA2PhotoPhysics	CBphysics.dat
+##
+## Do some post initialisation...usually necessary
+Initialise:
+##
+## Setup of extra procedures to run at periodic intervals
+## The procedures are usually held in macro script files
+## Period...every N events
+##		N	Macro File	Macro Procedure
+Period:	100000	PeriodMacro.C	PeriodMacro()
+##
+##
+## Finish...when all input data files processed
+Finish:		Finish.C	FinishTE()
+##
+## Save all accepted events (ie those which pass all data cuts) to a
+## ROOT file. Data saved in RAW format (ie ADC indices and values)
+#Save-Event:
+##
+## Histogram ALL defined single value ADC's
+#Display: All
+##
+## Tagger 
+## 
+## TDCs
+#Display: MultiHit 1432 1783 2000 -10000 10000 0
+##
+## QDCs
+#Display: ADC 800  1183
+#Display: ADC 863  895
+##
+##Main Tagger Scalers
+#Display: Scaler 400 751
+#Display: SumScaler 400 751
+##
+## Microscope 
+##
+## TDCs
+##Display: MultiHit 1784 1900 200000 -100000 100000 0
+##
+## QDCs
+##Display: ADC 1184 1279
+##
+##
+## Pb-Glass, paddle QDCs
+##Display: ADC 1280 1375
+##
+##
+## Display blocks of scalers
+## Clocks etc.
+Display: Scaler 190 191
+Display: SumScaler 190 191
+##
+##
+## END OF FILE
