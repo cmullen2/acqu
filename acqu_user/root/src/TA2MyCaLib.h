@@ -55,8 +55,11 @@ enum {
     ECALIB_PHOTON_RES,
     ECALIB_PARTICLE_RES,
     ECALIB_BADSCR,
+    ECALIB_BADSCR_NAI,
+    ECALIB_BADSCR_LADDER,
     ECALIB_PWO_CHECK,
     ECALIB_PWO_PED,
+    ECALIB_TAGG_EFF,
     ECALIB_TAPS_TIME_CUT,
     ECALIB_TAPS_TIME_CUT_MAXRING
 };
@@ -95,8 +98,11 @@ static const Map_t myCaLibConfigKeys[] = {
     {"CaLib-Photon-Res:"              ,   ECALIB_PHOTON_RES           },        // Photon energy and angle resolutions
     {"CaLib-Particle-Res:"            ,   ECALIB_PARTICLE_RES         },        // Particle energy and angle resolutions
     {"CaLib-BadScalerReads:"          ,   ECALIB_BADSCR               },        // bad scaler reads
+    {"CaLib-BadScalerReads-NaI:"      ,   ECALIB_BADSCR_NAI           },        // bad scaler reads (NaI)
+    {"CaLib-BadScalerReads-Ladder:"   ,   ECALIB_BADSCR_LADDER        },        // bad scaler reads (ladder)
     {"CaLib-PWO-Check:"               ,   ECALIB_PWO_CHECK            },        // PWO check
     {"CaLib-PWO-Ped:"                 ,   ECALIB_PWO_PED              },        // PWO pedestal calibration
+    {"CaLib-Tagg-Eff:"                ,   ECALIB_TAGG_EFF             },        // tagging efficiency calibration
     {"CaLib-TAPS-Time-Cut:"           ,   ECALIB_TAPS_TIME_CUT        },        // TAPS Time Cut
     {"CaLib-TAPS-Time-Cut-MaxRing:"   ,   ECALIB_TAPS_TIME_CUT_MAXRING    },        // Apply TAPS Time Cut for Sector Elements smaller than this
     // Termination
@@ -390,17 +396,26 @@ private:
 
     // ---------------------------------- bad scaler read -----------------------------------
     Int_t fCalib_BadScR;                                    // Bad scaler reads toggle
+    Int_t fCalib_BadScR_NaI_Bins;                           // Bad scaler NaI histogram bins
+    Double_t fCalib_BadScR_NaI_Xmin;                        // Bad scaler NaI histogram xmin
+    Double_t fCalib_BadScR_NaI_Xmax;                        // Bad scaler NaI histogram xmax
+    Int_t fCalib_BadScR_Ladder_Bins;                        // Bad scaler ladder histogram bins
+    Double_t fCalib_BadScR_Ladder_Xmin;                     // Bad scaler ladder histogram xmin
+    Double_t fCalib_BadScR_Ladder_Xmax;                     // Bad scaler ladder histogram xmax
     Int_t fCalib_BadScR_Max_Reads;                          // maximum number of scaler reads supported by histograms
     TH2* fHCalib_BadScR_NaIHits;                            // NaI hits vs. scaler reads
+    Int_t fCalib_BadScR_NaITimeOR_NDiv;                     // number of histograms for NaI TimeOR vs. scaler reads
+    TH2** fHCalib_BadScR_NaITimeOR;                         // NaI TimeOR vs. scaler reads
     TH2* fHCalib_BadScR_BaF2PWOHits;                        // BaF2PWO hits vs. scaler reads
     TH2* fHCalib_BadScR_BaF2Hits;                           // BaF2 hits vs. scaler reads
     TH2* fHCalib_BadScR_PWOHits;                            // PWO hits vs. scaler reads
     TH2* fHCalib_BadScR_PIDHits;                            // PID hits vs. scaler reads
     TH2* fHCalib_BadScR_VetoHits;                           // Veto hits vs. scaler reads
     TH2* fHCalib_BadScR_LadderHits;                         // Ladder hits vs. scaler reads
+    TH2* fHCalib_BadScR_LadderTimeOR;                       // Ladder TimeOR vs. scaler reads
     TH2* fHCalib_BadScR_LadderScalers;                      // Ladder scalers vs. scaler reads
     TH2* fHCalib_BadScR_Scalers;                            // Scalers vs. scaler reads
-    
+
     // ------------------------------------- PWO check --------------------------------------
     Int_t fCalib_PWO_Check;                                 // PWO check toggle
     TH2* fHCalib_PWO_Check_ClusterPos;                      // cluster positions (all clusters)
@@ -427,6 +442,11 @@ private:
     Int_t fCalib_PWO_MaxRing;                               // maximum ring with PWO crystals
     TH1** fHCalib_PWO_Ped;                                  // raw energy histograms for PWO
     TH1** fHCalib_PWO_Veto_Ped;                             // raw energy histograms for PWO-veto
+    
+    // --------------------------------- Tagging efficiency ---------------------------------
+    Int_t fCalib_Tagg_Eff;                                  // tagging efficiency toggle
+    TH1* fHCalib_Tagg_Eff_Ladder_Hits;                      // main ladder hits
+
 
     // ------------------------------------ TAPS Time Cut -------------------------------------------
     Double_t taps_time_cut_min;                             // TAPS time cut low edge

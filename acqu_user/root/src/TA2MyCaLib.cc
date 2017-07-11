@@ -189,7 +189,13 @@ TA2MyCaLib::TA2MyCaLib(const char* name, TA2Analysis* analysis)
 
     // bad scaler reads
     fCalib_BadScR = 0;
-    fCalib_BadScR_Max_Reads = 0;
+    fCalib_BadScR_Max_Reads = 1000;
+    fCalib_BadScR_NaI_Bins = 100;
+    fCalib_BadScR_NaI_Xmin = 0;
+    fCalib_BadScR_NaI_Xmax = 100;
+    fCalib_BadScR_Ladder_Bins = 100;
+    fCalib_BadScR_Ladder_Xmin = 0;
+    fCalib_BadScR_Ladder_Xmax = 100;
 
     // PWO check
     fCalib_PWO_Check = 0;
@@ -197,6 +203,9 @@ TA2MyCaLib::TA2MyCaLib(const char* name, TA2Analysis* analysis)
     // PWO pedestal
     fCalib_PWO_Ped = 0;
     fCalib_PWO_MaxRing = 0;
+    
+    // tagging efficiency
+    fCalib_Tagg_Eff = 0;
 
     taps_time_cut_min = -std::numeric_limits<double>::infinity();
     taps_time_cut_max =  std::numeric_limits<double>::infinity();
@@ -480,6 +489,14 @@ void TA2MyCaLib::SetConfig(Char_t* line, Int_t key)
             if (sscanf(line, "%d%d", &fCalib_BadScR, &fCalib_BadScR_Max_Reads) != 2) error = kTRUE;
             if (fCalib_BadScR) fNCalib++;
             break;
+        case ECALIB_BADSCR_NAI:
+            // Configure bad scaler read (NaI)
+            if (sscanf(line, "%d%lf%lf", &fCalib_BadScR_NaI_Bins, &fCalib_BadScR_NaI_Xmin, &fCalib_BadScR_NaI_Xmax) != 3) error = kTRUE;
+            break;
+        case ECALIB_BADSCR_LADDER:
+            // Configure bad scaler read (ladder)
+            if (sscanf(line, "%d%lf%lf", &fCalib_BadScR_Ladder_Bins, &fCalib_BadScR_Ladder_Xmin, &fCalib_BadScR_Ladder_Xmax) != 3) error = kTRUE;
+            break;
         case ECALIB_PWO_CHECK:
             // Enable PWO check
             if (sscanf(line, "%d", &fCalib_PWO_Check) != 1) error = kTRUE;
@@ -490,7 +507,11 @@ void TA2MyCaLib::SetConfig(Char_t* line, Int_t key)
             if (sscanf(line, "%d", &fCalib_PWO_Ped) != 1) error = kTRUE;
             if (fCalib_PWO_Ped) fNCalib++;
             break;
-
+        case ECALIB_TAGG_EFF:
+            // Enable tagging efficiency calibration
+            if (sscanf(line, "%d", &fCalib_Tagg_Eff) != 1) error = kTRUE;
+            if (fCalib_Tagg_Eff) fNCalib++;
+            break;
         case ECALIB_TAPS_TIME_CUT:
             if( sscanf(line, "%lf %lf", &taps_time_cut_min, &taps_time_cut_max) != 2) error = kTRUE;
             break;
@@ -634,10 +655,15 @@ void TA2MyCaLib::PostInit()
     }
     if (fCalib_Photon_Res)   printf("   - Photon resolutions\n");
     if (fCalib_Particle_Res) printf("   - Particle resolutions\n");
-    if (fCalib_BadScR)       printf("   - Bad scaler reads\n");
+    if (fCalib_BadScR)
+    {
+        printf("   - Bad scaler reads (support for %d reads in histograms)\n", fCalib_BadScR_Max_Reads);
+        printf("     -> NaI histogram    : %d bins from %.2f to %.2f\n", fCalib_BadScR_NaI_Bins, fCalib_BadScR_NaI_Xmin, fCalib_BadScR_NaI_Xmax);
+        printf("     -> Ladder histogram : %d bins from %.2f to %.2f\n", fCalib_BadScR_Ladder_Bins, fCalib_BadScR_Ladder_Xmin, fCalib_BadScR_Ladder_Xmax);
+    }
     if (fCalib_PWO_Check)    printf("   - PWO check\n");
     if (fCalib_PWO_Ped)      printf("   - PWO pedestal\n");
-     
+    if (fCalib_Tagg_Eff)     printf("   - Tagging efficiency\n");
     printf("\n");
     
     // prepare for target position calibration
@@ -1041,8 +1067,19 @@ void TA2MyCaLib::PostInit()
     if (fCalib_BadScR)
     {
         if (fNaI)
+        {
             fHCalib_BadScR_NaIHits       = new TH2F("CaLib_BadScR_NaIHits", "CaLib_BadScR_NaIHits;Scaler reads;NaI hits",
                                                     fCalib_BadScR_Max_Reads, 0, fCalib_BadScR_Max_Reads, fNelemCB, 0, fNelemCB);
+            fCalib_BadScR_NaITimeOR_NDiv = 4;
+            fHCalib_BadScR_NaITimeOR = new TH2*[fCalib_BadScR_NaITimeOR_NDiv];
+            for (Int_t i = 0; i < fCalib_BadScR_NaITimeOR_NDiv; i++)
+            {
+                fHCalib_BadScR_NaITimeOR[i] = new TH2F(TString::Format("CaLib_BadScR_NaITimeOR_%d", i+1).Data(),
+                                                       TString::Format("CaLib_BadScR_NaITimeOR_%d;Scaler reads;NaI TimeOR", i+1).Data(),
+                                                       fCalib_BadScR_Max_Reads, 0, fCalib_BadScR_Max_Reads,
+                                                       fCalib_BadScR_NaI_Bins, fCalib_BadScR_NaI_Xmin, fCalib_BadScR_NaI_Xmax);
+            }
+        }
         if (fBaF2PWO)
         {
             fHCalib_BadScR_BaF2PWOHits   = new TH2F("CaLib_BadScR_BaF2PWOHits", "CaLib_BadScR_BaF2PWOHits;Scaler reads;BaF2PWO hits",
@@ -1062,6 +1099,9 @@ void TA2MyCaLib::PostInit()
         {
             fHCalib_BadScR_LadderHits    = new TH2F("CaLib_BadScR_LadderHits", "CaLib_BadScR_LadderHits;Scaler reads;Ladder hits",
                                                     fCalib_BadScR_Max_Reads, 0, fCalib_BadScR_Max_Reads, fNelemTAGG, 0, fNelemTAGG);
+            fHCalib_BadScR_LadderTimeOR  = new TH2F("CaLib_BadScR_LadderTimeOR", "CaLib_BadScR_LadderTimeOR;Scaler reads;Ladder TimeOR",
+                                                    fCalib_BadScR_Max_Reads, 0, fCalib_BadScR_Max_Reads,
+                                                    fCalib_BadScR_Ladder_Bins, fCalib_BadScR_Ladder_Xmin, fCalib_BadScR_Ladder_Xmax);
             fHCalib_BadScR_LadderScalers = new TH2F("CaLib_BadScR_LadderScalers", "CaLib_BadScR_LadderScalers;Scaler reads;Ladder scalers",
                                                     fCalib_BadScR_Max_Reads, 0, fCalib_BadScR_Max_Reads, fNelemTAGG, 0, fNelemTAGG);
         }
@@ -1121,6 +1161,12 @@ void TA2MyCaLib::PostInit()
             }
             else fHCalib_PWO_Ped[i] = 0;
         }
+    }
+
+    // prepare for tagging efficiency
+    if (fCalib_Tagg_Eff)
+    {
+        fHCalib_Tagg_Eff_Ladder_Hits = new TH1F("CaLib_Tagg_Eff_Ladder_Hits", "CaLib_Tagg_Eff_Ladder_Hits", fNelemTAGG, 0, fNelemTAGG);
     }
 }
 
@@ -2896,10 +2942,15 @@ void TA2MyCaLib::ReconstructPhysics()
             // get number of hits
             UInt_t nhits = fNaI->GetNhits();
             Int_t* hits = fNaI->GetHits();
+            Double_t* time = fNaI->GetTime();
 
             // loop over hits
             for (UInt_t i = 0; i < nhits; i++)
+            {
                 fHCalib_BadScR_NaIHits->Fill(fScalerReadCounter, hits[i]);
+                Int_t div = fNelemCB / fCalib_BadScR_NaITimeOR_NDiv;
+                fHCalib_BadScR_NaITimeOR[hits[i] / div]->Fill(fScalerReadCounter, time[hits[i]]);
+            }
         }
 
         // fill BaF2PWO/BaF2/PWO hits
@@ -2925,7 +2976,7 @@ void TA2MyCaLib::ReconstructPhysics()
             UInt_t nhits = fPID->GetNhits();
             Int_t* hits = fPID->GetHits();
 
-            // loop over CB ADC hits
+            // loop over PID hits
             for (UInt_t i = 0; i < nhits; i++)
                 fHCalib_BadScR_PIDHits->Fill(fScalerReadCounter, hits[i]);
         }
@@ -2937,15 +2988,18 @@ void TA2MyCaLib::ReconstructPhysics()
             UInt_t nhits = fVeto->GetNhits();
             Int_t* hits = fVeto->GetHits();
 
-            // loop over CB ADC hits
+            // loop over veto hits
             for (UInt_t i = 0; i < nhits; i++)
                 fHCalib_BadScR_VetoHits->Fill(fScalerReadCounter, hits[i]);
         }
 
+
         // fill Ladder hits
         for (Int_t i = 0; i < fTaggerPhotonNhits; i++)
+        {
             fHCalib_BadScR_LadderHits->Fill(fScalerReadCounter, fTaggerPhotonHits[i]);
-        
+            fHCalib_BadScR_LadderTimeOR->Fill(fScalerReadCounter, fTaggerPhotonTime[i]);
+        }
     }
     
     
@@ -3239,6 +3293,16 @@ void TA2MyCaLib::ReconstructPhysics()
         }
     }
     label_end_pwo_ped:
+
+
+    // ---------------------------------- Tagging efficiency ---------------------------------
+
+    if (fCalib_Tagg_Eff)
+    {
+        // loop over all ladder/microscope hits
+        for (Int_t i = 0; i < fTaggerPhotonNhits; i++) fHCalib_Tagg_Eff_Ladder_Hits->Fill(fTaggerPhotonHits[i]);
+    }
+
 
     return;
 }
