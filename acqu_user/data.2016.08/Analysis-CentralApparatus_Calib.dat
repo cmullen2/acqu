@@ -58,9 +58,9 @@ Initialise:
 PidDroopSettings: 1 300.0  33.0  100.0  1  1  3 24
 
 
-## PID Droop Parameters
-PidDroopPositionParameters: /scratch/mbashkan/Mainz/New_acqu/acqu/acqu_user/data/PID_Droop_Corr_Aug_16.root
-
+## PID Droop Parameters ## needs changing. 
+#PidDroopPositionParameters: /scratch/mbashkan/Mainz/New_acqu/acqu/acqu_user/data/PID_Droop_Corr_Aug_16.root
+PidDroopPositionParameters: data.2016.08/PID_Droop_Corr_Aug_16.root
 
 
 

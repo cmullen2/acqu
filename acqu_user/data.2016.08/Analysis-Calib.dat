@@ -59,8 +59,8 @@ Reconstruct-Analysis:
 ## Specify physics analysis
 ##			Name		Class			Config File
 ##Physics-Analysis:       Example	TA2GammaDeuterium	TA2GammaDeuterium.dat
-Physics-Analysis:	PHYS	TA2GoAT		data.2016.08/Physics-GoAT.dat
-###Physics-Analysis:   PHYS      TA2MyCaLib	       data.2016.08/Physics-CaLib.dat
+###Physics-Analysis:	PHYS	TA2GoAT		data.2016.08/Physics-GoAT.dat
+Physics-Analysis:   PHYS      TA2MyCaLib	       data.2016.08/Physics-CaLib.dat
 #Physics-Analysis:	PHYS	TA2Pi0Compton	AR-Analysis-Pi0Compton.dat
 #Physics-Analysis:	PHYS	TA2MyPhysics		Physics-GoAT.dat
 ##
@@ -74,14 +74,14 @@ Initialise:
 ##              N       Macro File      Macro Procedure
 Period: 100000   root/macros/PeriodMacro.C   PeriodMacro()
 ##
-## Finish...when all input data files processed
-Finish:		    root/macros/FinishWorker.C	Finish()
+## Finish...when all input data files processed       I think MyFinishMAcro() is Dominiks so use that for CaLib ARHistograms or maybe FinishMacro
+#Finish:		    root/macros/FinishWorker.C	Finish()
 #This was the one for calibrations
-#Finish:		root/macros/MyFinishMacro.C 	MyFinishMacro()
+Finish:		root/macros/MyFinishMacro.C 	MyFinishMacro()
 #Finish:         root/macros/FinishMacro.C   FinishMacro()
 #Finish:	root/macros/FinishTree.C	FinishTree("ARHistograms_XXX.root")
 ##
-#Display: All
+Display: All
 ##
 ## Save all accepted events (ie those which pass all data cuts) to a
 ## ROOT file. Data saved in RAW format (ie ADC indices and values)

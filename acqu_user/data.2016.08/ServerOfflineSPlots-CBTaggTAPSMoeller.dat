@@ -1,0 +1,55 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   13th Jan 2004
+##--Update	JRM Annand... 1st Dec 2004
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Parameter File: FPcommServer.Offline
+## Configuration file for DataServer (data input for analysis)
+##
+##-----------------------------------------------------------------------
+## Number of Input streams (sources of data), Record length to write data
+## and switch 0/1 = no/yes to control data write
+##              Number streams	Record Len	Save Data
+Input-Streams:	1		327680		0
+##
+## Optional directory spec. If not specified File-Names must contain the full
+## directory path
+File-Directory:	/w/work14/mainz/2016-08_Recoil_Pol/
+##
+## Specify each input stream
+## From disk file, ACQU (Mk1) format, save any output to file (save=1)
+## Input data record length, Output data record length
+##
+##            	Source	Format	Save?	RecLen	Buffers	Swap	MarkID
+Stream-Spec:	File	Mk2	0	327680	32	0	400
+##
+## Now the list of data files to analyse
+## Tagger test data files
+##		File Name	1st rec	Last rec
+## 2nA
+#File-Name:	CBTaggTAPS_2681.dat	0	0
+#beginhere 
+#File-Name:      CBTaggTAPS_15156.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15157.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15158.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15159.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15161.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15162.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15163.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15164.dat.xz   0       0
+File-Name:      CBTaggTAPS_15165.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15166.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15167.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15168.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15169.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15171.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15172.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15173.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15215.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15216.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15217.dat.xz   0       0
+#File-Name:      CBTaggTAPS_15218.dat.xz   0       0
+# 20 runs
+## END

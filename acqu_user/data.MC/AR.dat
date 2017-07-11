@@ -59,13 +59,24 @@ Branch:   mc_rnd_id     8
 #TreeFile: %%FILE%%
 #TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/BeamAsym/PosPolarisation/A2OutPosPol.root
 #TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/BeamAsym/NegPolarisation/A2OutNegPol.root
+#
+#
 #TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/A2OutPolNeg_PolQF.root
 #TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/A2OutPolPos_PolQF.root
-#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/A2OutPolNeg_Pol.root
+#
+#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/1Mil/A2OutPolNeg_Pol.root
+#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/1Mil/A2OutPolPos_Pol.root
+#
+#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/1MilAy1/A2OutPolNeg_Pol.root
+TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/1MilAy1/A2OutPolPos_Pol.root
+#
+#
 #This was prev.
-#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/A2OutPolPos_Pol.root
-TreeFile: /w/work14/chris/EdinGeant/Geant_10e7_PN_300_1557_1.root
+#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/1MilAy1/A2OutPolNeg_Pol.root
+#TreeFile: /w/work14/chris/EdinGeant/Geant_10e7_PN_300_1557_1.root
 #TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/TestA2OutPolPos_Pol.root
+#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Proton/TestingScattering/1MilAy1/A2OutPolNeg_Pol.root
+#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/Test/A2OutPolPos_Pol.root
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -82,9 +93,23 @@ BatchDir: %%OUTDIR%%/
 #Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/BeamAsym/PosPolarisation/
 #Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/BeamAsym/NegPolarisation/
 #this was prev.
-#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/
+#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/PolQF/1MilAy1/Neg/
 #Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/
-Directory: /w/work14/chris/EdinGeant/Out/
+#Directory: /w/work14/chris/EdinGeant/Out/SeparateMickeys/
+#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Proton/TestingScattering/1MilAy1/Neg/
+#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/Test/AcquRootOut/
+#
+#
+#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/PolQF/1MilAy1/Neg/
+Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/PolQF/1MilAy1/Pos/
+#
+#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/PolQF/1Mil/Neg/
+#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/PolQF/1Mil/Pos/
+#
+#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/PolQF/Neg/
+#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/PolQF/Pos/
+#
+#
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
