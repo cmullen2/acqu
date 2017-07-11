@@ -13,7 +13,7 @@
 ##-----------------------------------------------------------------------
 Foam-Model:	SAID
 ##		#events/run	Random seed	#runs
-Number-Throws:	100000		888899		1
+Number-Throws:	1000000		888899		1
 ##
 ## Baryon resonances
 ##		Name	PDG code
@@ -43,7 +43,8 @@ Foam:	Beam	  	-1 -1 -1 0 -1
 P-Distr: Beam Cos(Theta)   TMath::Gaus(x,1.0,0.000001)	  0.9999975 1.0  2000
 ##
 ##	Mass	Radius	Length	Center (x,y,z)
-Target: 0.938 	5.0	10.0   	0.0 0.0 0.0
+Target: 0.938 	5.0	10.0   	0.0 0.0 -6.5
+#Target: 0.938 	5.0	10.0   	0.0 0.0 7.0 Original, matches calibration
 ##
 ## The reaction "particle"
 ##	  Name		PDG/Res	Decay?	Track?	Parent	Opt
@@ -70,5 +71,7 @@ Particle: Gamma_2       22      0       1       Pi0     NULL
 #Ntuple-Output:	/scratch/chris/AcquMC/GP_PPi0/SecondaryTest/BIC/BIC_PPi0_AcquMC_OutputNtuple
 #Tree-Output:	/w/work14/chris/AcquMC/GP_PPi0/PPi0_AcquMC_OutputTree
 #Ntuple-Output:	/w/work14/chris/AcquMC/GP_PPi0/PPi0_AcquMC_OutputNtuple
-Tree-Output:	/w/work14/chris/ForRoddy/NewSim/Foamout/PPi0_OutputTree
-Ntuple-Output:	/w/work14/chris/ForRoddy/NewSim/Foamout/PPi0_OutputNtuple
+#Tree-Output:	/w/work14/chris/ForRoddy/NewSim/Foamout/PPi0_OutputTree
+#Ntuple-Output:	/w/work14/chris/ForRoddy/NewSim/Foamout/PPi0_OutputNtuple
+Tree-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/FoamOut/Proton/TestingScattering/1Mil/PPi0_OutputTree
+Ntuple-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/FoamOut/Proton/TestingScattering/1Mil/PPi0_OutputNtuple

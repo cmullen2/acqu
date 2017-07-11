@@ -14,7 +14,9 @@ Max-Cluster:	16			15.0
 # Apply an energy scale
 Energy-Scale: 1.05
 #
-Shift-Coord: TZ 7
+Shift-Coord: TZ 6.5
+#below is same shift as calibration
+#Shift-Coord: TZ 7
 # Energy resolution using the form A*(E^B): A, B,   Use to smear MC data (0/1 = off/on) 
 #Energy-Resolution: 0.027 0.75 1
 #

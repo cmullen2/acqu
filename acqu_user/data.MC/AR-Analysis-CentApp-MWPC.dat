@@ -17,7 +17,10 @@ Layers-In-Chamber:	2	0	3
 ## Chamber 1
 Layers-In-Chamber:	4	1	5
 ##
-Shift-Coord: TZ 7
+Shift-Coord: TZ 6.5
+#The line below is same as was used for calibration
+#Shift-Coord: TZ 7
+#
 ## Misc. parameters of the detector
 ## In the TA2DaphneMWPC case...
 ## MI max # intersect positions, MT max # tracks,

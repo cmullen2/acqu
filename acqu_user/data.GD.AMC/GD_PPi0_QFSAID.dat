@@ -13,7 +13,7 @@
 ##-----------------------------------------------------------------------
 Foam-Model:	SAID
 ##		#events/run	Random seed	#runs
-Number-Throws:	100000		888888		1
+Number-Throws:	100000		888888		100
 ##
 ## Baryon resonances
 ##		Name	PDG code
@@ -29,8 +29,9 @@ Foam-Distribution:	3	0		data/ppi0_145-1500.db
 ##		Polarisation Vectors, Xvec was neg for neg pol
 #For Beam Asym
 #Beam-Pol: 	-0.707 0.707 0.00   
+Beam-Pol: 	0.707 0.707 0.00   
 #For Scattered Asym
-Beam-Pol: 	0.00 0.00 0.00   
+#Beam-Pol: 	0.00 0.00 0.00   
 Target-Pol:	0.00 0.00 0.00   
 Recoil-Pol:	0.00 0.00 0.00
 ##
@@ -45,7 +46,9 @@ Foam:	Beam	  	-1 -1 -1 0 -1
 P-Distr: Beam Cos(Theta)   TMath::Gaus(x,1.0,0.000001)	  0.9999975 1.0  2000
 ##CAM altered the radius and length below as requested!
 ##		Mass		Radius	Length	Center (x,y,z)
-Target: 	1000010020 	5.0	10.0   	0.0 0.0 7.0
+Target: 	1000010020 	5.0	10.0   	0.0 0.0 -6.5
+#below is original shift of 7 which is used for calibration
+#Target: 	1000010020 	5.0	10.0   	0.0 0.0 7.0
 ##
 ## The reaction "particle"
 ##	  Name		PDG/Res	Decay?	Track?	Parent	 Opt
@@ -72,6 +75,15 @@ Particle: Gamma_2	22	0	1	Pi0	NULL
 #Tree-Output:    /scratch/jrma/GD_PPi0_QFSAID_1MT	2
 #Ntuple-Output:  /scratch/jrma/GD_PPi0_QFSAID_1MN
 #Particle-Output:  /scratch/jrma/GD_PPi0_QFSAID_1MP
+
+Tree-Output:   /w/work14/chris/ForSPlots/Simulations/FoamOut/PosPol/PosPol    
+Ntuple-Output:   /w/work14/chris/ForSPlots/Simulations/FoamOut/PosPol/PosPolNtuple
+
+#Tree-Output:   /w/work14/chris/ForSPlots/Simulations/FoamOut/NegPol/NegPol
+#Ntuple-Output:   /w/work14/chris/ForSPlots/Simulations/FoamOut/NegPol/NegPolNtuple
+
+
+
 #Tree-Output:	/scratch/chris/AcquMC/GD_PPi0/POL/Proton/POL_PPi0_AcquMC_OutputTreeProtonBad
 #Ntuple-Output:	/scratch/chris/AcquMC/GD_PPi0/POL/Proton/POL_PPi0_AcquMC_OutputNtupleProtonBad
 #Tree-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/FoamOut/Deuterium/BeamAsym/PosPolarisation/PosPol
@@ -82,6 +94,6 @@ Particle: Gamma_2	22	0	1	Pi0	NULL
 #Tree-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/FoamOut/Deuterium/ScatAsym/ScatAsymPol
 #Ntuple-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/FoamOut/Deuterium/ScatAsym/ScatAsymPol
 #
-Tree-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/Testless
-Ntuple-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/Testless
+#Tree-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/Test/ScatAsymPol
+#Ntuple-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/Test/ScatAsymPol
 #
