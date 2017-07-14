@@ -22,7 +22,7 @@ using namespace std;
 
 Double_t GausOnBase(Double_t *, Double_t *);
 Double_t efit(const Double_t *);
-void fitData(Char_t *fname, Char_t *outfile = NULL, Double_t beamMeV = 1557.0, Double_t colliDist_m = 2.5,Double_t colliRad_mm = 1.0, Int_t nVec=3);
+void fitData(Char_t *fname, Char_t *outfile = NULL, Double_t beamMeV = 1557.0, Double_t colliDist_m = 2.5,Double_t colliRad_mm = 1.0, Int_t nVec=2);
 void drawAnother(Double_t beamMeV = 1557.0, Double_t edgeMeV = 350.0, Double_t spreadMeV = 10.0, 
 		 Double_t colliDist_m = 2.5, Double_t colliRad_mm = 1.0, Int_t nVec = 4, Char_t *opt="");
 void enhFromHuman(Double_t beamMeV = 1557.0, Double_t edgeMeV = 350.0, Double_t spreadMeV = 10.0, 
@@ -427,15 +427,16 @@ void fitData(Char_t *fname, Char_t *outfile, Double_t beamMeV, Double_t colliDis
       
   
     
-    // find a reasonable minumum spot to set to 1 for the baseline.
-    // the lowest 5 channel mean between 0.2 and 0.95 of the range ##### ??? 0.05 or 0.2? (below)
-    //histD->Smooth(3);
+    //CAM changes 13/07/17 
+    // Required to change the baseline determination due to the tagger channels being switched off during taggEff runs in Aug2016
+    // Changed to 0.55 since the first tagger section ends at 16 and 352*0.5=17.6 and n-2 gives 15.6 which gives content 0 so messes average
+    // whereas 0.55*352=19.36 so should get n-2 17 which has some content
     lowmean=1000000.0;
     Double_t highmean=0;
     Double_t highmeannew=0;
     
-    for(int n=(int)(0.05*(float)nBins);n<=(int)(0.95*(float)nBins);n++){
-    //for(int n=histD->GetMaximumBin()-100;n<=histD->GetMaximumBin()+100;n++){
+    for(int n=(int)(0.055*(float)nBins);n<=(int)(0.95*(float)nBins);n++){
+      //for(int n=histD->GetMaximumBin()-100;n<=histD->GetMaximumBin()+100;n++){
       
       if((histD->GetBinContent(n)>0.0)&&(histD->GetBinContent(n-2)>0.0)&&(histD->GetBinContent(n+2)>0.0)&&(histD->GetBinContent(n-1)>0.0)&&(histD->GetBinContent(n+1)>0.0)){
 	if((histD->Integral(n-2,n+2)<lowmean)){
@@ -446,12 +447,33 @@ void fitData(Char_t *fname, Char_t *outfile, Double_t beamMeV, Double_t colliDis
 	
       }
     }
+
+
+    // find a reasonable minumum spot to set to 1 for the baseline.
+    // the lowest 5 channel mean between 0.2 and 0.95 of the range ##### ??? 0.05 or 0.2? (below)
+    //histD->Smooth(3);
+    // lowmean=1000000.0;
+    // Double_t highmean=0;
+    // Double_t highmeannew=0;
+    
+    // for(int n=(int)(0.05*(float)nBins);n<=(int)(0.95*(float)nBins);n++){
+    // //for(int n=histD->GetMaximumBin()-100;n<=histD->GetMaximumBin()+100;n++){
+      
+    //   if((histD->GetBinContent(n)>0.0)&&(histD->GetBinContent(n-2)>0.0)&&(histD->GetBinContent(n+2)>0.0)&&(histD->GetBinContent(n-1)>0.0)&&(histD->GetBinContent(n+1)>0.0)){
+    // 	if((histD->Integral(n-2,n+2)<lowmean)){
+	  
+    // 	  lowmean=histD->Integral(n-2,n+2);
+	  
+    // 	}
+	
+    //   }
+    // }
     //}
     
     cout << "High mean new = " << highmeannew << endl;
     cout << "Minimum bin = " << histD->GetBinContent(histD->GetMinimumBin()) << endl;
     
-    histD->Scale(5.0/(lowmean));
+    histD->Scale( (5.0/(lowmean))*1 );
     cout << "Low Mean = " << lowmean << endl;
     //   sprintf(tempname,"%s.enh.root",filename[f]);
     //   histD->SaveAs(tempname);
@@ -467,7 +489,7 @@ void fitData(Char_t *fname, Char_t *outfile, Double_t beamMeV, Double_t colliDis
     //Now try to make some guesses at the initial parameters
     gausFit->SetRange(histD->GetBinCenter(histD->GetMaximumBin()),histD->GetBinCenter(histD->GetMaximumBin())+100.0);
     gausFit->SetParameter(1,histD->GetBinCenter(histD->GetMaximumBin()));
-    gausFit->SetParameter(2,10.0);
+    gausFit->SetParameter(2,10.0); //CAM13/07/17 commenting out secondary and tertiary peak fitting
     gausFit->SetParameter(3,1.0);
     histD->Fit(gausFit,"rN");
     
@@ -511,9 +533,11 @@ void fitData(Char_t *fname, Char_t *outfile, Double_t beamMeV, Double_t colliDis
     
     //Set the range of the fit to be some sensible amount below peak and just past the 2nd peak.
     fitMinBin=histE->FindBin(histD->GetBinCenter(histD->GetMaximumBin())-LOWFIT);
-    
+    fitMinBin=40;
     fitMaxBin    = histE->FindBin( (par[E0MEV]/(( ( ( 2.0/4.0 )*(( par[E0MEV]/histD->GetBinCenter(histD->GetMaximumBin()) ) -1.0 ) ) +1.0 )) ) + 200.0 );
-    //cout << "fitMaxBin" << fitMaxBin << endl;
+    // fitMaxBin = 138;
+    cout << "fitMinBin" << fitMinBin << endl;
+    cout << "fitMaxBin" << fitMaxBin << endl;
     
     min = ROOT::Math::Factory::CreateMinimizer("Minuit2", "Simple");
     

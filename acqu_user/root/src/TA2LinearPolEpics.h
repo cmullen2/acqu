@@ -17,7 +17,9 @@
 #include "TA2Apparatus.h"  
 #include "TA2Tagger.h"
 #include "TEPICSmodule.h"
-
+#include "TCanvas.h"
+#include "TLatex.h"
+#include "TLine.h"
 enum { ETablePara	=0,	//for pol lookup table
        ETablePerp	=1,
        ETableAmo	=2,
@@ -40,10 +42,12 @@ class TA2LinearPolEpics : public TA2Apparatus {
  protected:
   TA2System *fAnalysis;
   Int_t    fInitLevel;		//To allow multiple passes at Init
-
+//   TTimer  *timer = new TTimer("gSystem->ProcessEvents();", 50, kFALSE);
+// 	TCanvas *c1 = new TCanvas("c1","c1",800,1200);
+//   TFile *fout;
   Int_t    fTaggerChannels;	// no of tagger scalers
   Int_t    fNormChannel;	// Channel to use for normalisation
-  Double_t fNormEnergy;		// Photon energy for normalisation for  "enhancement"
+  Double_t fNormEnergy[100];		// Photon energy for normalisation for  "enhancement"
   Double_t *fEnergyCalib;	// Photon energy map in increasing photon energies
   Double_t *fLadderPhotonEnergy;	// Photon energy map in ladder element order;
   Double_t  *fEnergyBins;
@@ -69,9 +73,11 @@ class TA2LinearPolEpics : public TA2Apparatus {
   Int_t    fNScalerBuffers;
   Int_t    fScalerEvent;
   
-  Double_t fEdge;		// for position of coherent edge chans
-  Double_t fEdgeSetting;	// for nominal edge setting
-  Double_t fEdgeRange;	        // how much it can drift from the nominal setting 
+  Double_t fEdge;		// for position of coherent edge chans in original enhancment
+  Double_t fEdge_fit;		// for position of coherent edge chans in fitted enhancment
+
+  Double_t fEdgeSetting[100];	// for nominal edge setting
+  Double_t fEdgeRange[100];	        // how much it can drift from the nominal setting 
   Double_t fLastEdge;		// for position of coherent edge chans
   Int_t    fPlane;              // for plane
   Int_t    fRadiator;           // radiator
@@ -79,8 +85,8 @@ class TA2LinearPolEpics : public TA2Apparatus {
   Char_t   fEdgeString[10];     // mostly epics (but fit to force if epics not in data)
   Int_t    fForcePlane;         // override the plane setting from EPICS and force to para or perp
   Int_t    fForceFit;           // override the edge setting from EPICS and use fit
-  Double_t fEdgeMin;            // range in which to try and fit coherent edge
-  Double_t fEdgeMax;
+  Double_t fEdgeMin[100];            // range in which to try and fit coherent edge
+  Double_t fEdgeMax[100];
   Int_t    fDiamondID;          //id of rads in epics
   Int_t    fAmoID;
   Int_t    fIsDiamond;
@@ -102,10 +108,19 @@ class TA2LinearPolEpics : public TA2Apparatus {
   Int_t    fRunRangeMin[100];
   Int_t    fRunRangeMax[100];
   Int_t    fRunPlanes[100];
-  Char_t   fRunRefFiles[100][80];
+  Char_t   fRunRefFiles[1000][800];
   Int_t    fRunRangeIndex;
   Int_t    fLastRunRangeIndex;
-  
+  Double_t fEdgeSettingIndex;
+  Double_t fEdgeRangeIndex;
+
+  Int_t    appNRunRanges;
+  Int_t    appRunRangeMin[100];
+  Int_t    appRunRangeMax[100];
+ Int_t     appRunRangeIndex;
+ Double_t  fNormEnergyIndex;
+ Double_t  fEdgeMinIndex;
+ Double_t  fEdgeMaxIndex;
 
   Double_t polTable[2][352];           //where its [plane][edge][E_id][field]
   
@@ -153,6 +168,7 @@ class TA2LinearPolEpics : public TA2Apparatus {
   Double_t fDInc;		//dummy variables to set up 1D and 2D scaler hists
   Double_t fDCoh;
   Double_t fDEnh;
+  Int_t fDScaler;
   Double_t fDCohPara;
   Double_t fDEnhPara;
   Double_t fDCohPerp;
@@ -204,8 +220,15 @@ class TA2LinearPolEpics : public TA2Apparatus {
   TH1F *fHCohPerp;
   TH1F *fHEnhPerp;
   TH1F *fHEdge;
+  TH2F *fHEnh_scaler;
   TH1F *fHEdgePerp;
+  TH1F *fHEdgePerp_novo;
+  TH1F *fHEdgePerp_gaus;
+  TH1F *fHEdgePerp_fit;
   TH1F *fHEdgePara;
+  TH1F *fHEdgePara_novo;
+  TH1F *fHEdgePara_gaus;
+  TH1F *fHEdgePara_fit;
   TH1F *fHEdgeDistPara;
   TH1F *fHEdgeDistPerp;
   TH1F *fHEdgeEpics;
@@ -214,6 +237,8 @@ class TA2LinearPolEpics : public TA2Apparatus {
   TH1F *fHEdgeDistParaEpics;
   TH1F *fHEdgeDistPerpEpics;
   TH1F *fHPolTableEnh;
+  TH2F *fHPolTablePol_scaler;
+  TH2F *fHPolTableEnh_scaler;
   TH1F *fHPolTablePol;
   TH1F *fHPolMean;
   TH1F *fHPolCount;
@@ -234,7 +259,7 @@ class TA2LinearPolEpics : public TA2Apparatus {
   Int_t  	LoadAmoRef(Char_t *refFilename);//load the amorphoes reference scalers
   Int_t		GetPolPlane(){return fPlane;};  //para,perp or unknown
   Double_t	GetEdge(){return fEdge;};       //coherent edge
-  Double_t	GetEdgeSetting(){return fEdgeSetting;};  //coherent edge
+  Double_t	GetEdgeSetting(){return fEdgeSettingIndex;};  //coherent edge
   Double_t	*GetPolTable(){return fCurrentPolTable;};       //get pol for given photon energy
   Double_t	*GetEnhTable(){return fCurrentEnhTable;};       //get pol for given photon energy
   Double_t	*GetPolTable_TC(){return fCurrentPolTable_TC;};       //get pol for Tagger channels

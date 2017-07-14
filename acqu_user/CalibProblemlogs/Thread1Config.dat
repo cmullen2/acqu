@@ -1,0 +1,74 @@
+## Online file for running Tagger + CB + TAPS
+########################################################################
+##
+## Batch mode operation...redirect output directory for log files etc.
+BatchDir: /scratch/chris/RealData/AcquOutput/
+##
+##        Tree Name     	# branches	Process Type
+Name:     RawEvent_AR_Save	3		Raw
+##        Branch Name		Buffer size
+Branch:   RawEvent_Hits		32768
+Branch:	  RawEvent_Scalers	4192
+Branch:	  Mk1_Header        120000
+##
+## Directory to save any created ROOT files (include final / )
+
+
+#Directory: /w/work14/chris/ForSPlots/EmptyTarget/August2016/AcquOutput/Moeller/
+#Directory: /w/work14/chris/ForSPlots/EmptyTarget/August2016/AcquOutput/Para/
+#Directory: /w/work14/chris/ForSPlots/EmptyTarget/August2016/AcquOutput/Perp/
+
+Directory: /w/work14/chris/ForSPlots/EmptyTarget/Sept2016/AcquOutput/Moeller/
+#Directory: /w/work14/chris/ForSPlots/EmptyTarget/Sept2016/AcquOutput/Para/
+#Directory: /w/work14/chris/ForSPlots/EmptyTarget/Sept2016/AcquOutput/Perp/
+
+
+#Directory: /w/work14/chris/ForSPlots/NPi0Analysis/AcquOutput/Moeller/
+#Directory: /w/work14/chris/ForSPlots/NPi0Analysis/AcquOutput/Para/
+#Directory: /w/work14/chris/ForSPlots/NPi0Analysis/AcquOutput/Perp/
+
+#Directory: /w/work14/chris/ForSPlots/PPi0Analysis/AcquOutput/Moeller/
+#Directory: /w/work14/chris/ForSPlots/PPi0Analysis/AcquOutput/Para/
+#Directory: /w/work14/chris/ForSPlots/PPi0Analysis/AcquOutput/Perp/
+
+
+
+
+#Directory: /w/work14/chris/Comparison/Test/
+#Directory: /w/work14/chris/Comparison/CBEandCBTandTagT/AcquRootOut/
+#Directory: /w/work14/chris/Run101016/AcquOutput/Para/
+#Directory: /scratch/chris/RealData/AcquOutput/Perp/
+#Directory: /scratch/chris/RealData/AcquOutput/Testing/
+#Directory: /scratch/chris/Bull/
+##
+## Normally don't attempt to set eventsize manually
+##EventSize: 32768
+##
+## Analysis mode.
+Analysis: TA2UserAnalysis
+##
+## Analysis setup file
+AnalysisSetup: data.2016.08/Analysis-Calib.dat
+##
+## Specify non-clearing scalers
+#ScalerNoClear: 12 139
+#ScalerNoClear: 48 171
+##
+## Fragmented scaler blocks JRMA 01/10/12
+## 2 blocks, 192 scalers from CB, 364 scalers from Tagger (no CATCH)
+#SplitScaler: 2 192 364
+#SplitScaler: 2 256 364
+##
+## Set Server file
+#ServerSetup: data.2016.08/ServerOfflineSPlots-CBTaggTAPSMoeller.dat
+#ServerSetup: data.2016.08/ServerOfflineSPlots-CBTaggTAPSPARA.dat
+#ServerSetup: data.2016.08/ServerOfflineSPlots-CBTaggTAPSPERP.dat
+#ServerSetup: data.2016.08/ServerOfflineSPlots-CBTaggTAPSEmptyAug.dat
+
+
+
+#ServerSetup: data.2016.08/ServerOffline-CBTaggTAPSPARA.dat
+#ServerSetup: data.2016.08/ServerOffline-CBTaggTAPSPERP.dat
+#ServerSetup: ServerOffline-CBTaggTAPSPARA.dat
+
+ServerSetup: Thread1Server.dat

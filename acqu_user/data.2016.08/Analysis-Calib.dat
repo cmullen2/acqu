@@ -48,6 +48,7 @@ BitPattern:  data.2016.08/Analysis-TriggerPat.dat
 Apparatus:      CB             	TA2CentralApparatus	data.2016.08/Analysis-CentralApparatus_Calib.dat
 Apparatus:      TAPS            TA2Taps	 		data.2016.08/Analysis-TAPS.dat
 Apparatus:      TAGG            TA2Tagger               data.2016.08/Analysis-Tagger.dat
+Apparatus:      LinPol    	TA2LinearPolEpics       AR-Analysis-LinPol-PARA.dat
 #Apparatus:      CB              TA2CrystalBall          Apparatus-CB.dat
 #Apparatus:      TAPS            TA2Calorimeter          Apparatus-TAPS.dat 
 Apparatus:      MWPC            TA2GenericApp           data.2016.08/Apparatus-MWPC.dat
@@ -59,8 +60,11 @@ Reconstruct-Analysis:
 ## Specify physics analysis
 ##			Name		Class			Config File
 ##Physics-Analysis:       Example	TA2GammaDeuterium	TA2GammaDeuterium.dat
-###Physics-Analysis:	PHYS	TA2GoAT		data.2016.08/Physics-GoAT.dat
-Physics-Analysis:   PHYS      TA2MyCaLib	       data.2016.08/Physics-CaLib.dat
+#
+Physics-Analysis:	PHYS	TA2GoAT		data.2016.08/Physics-GoAT.dat
+#Physics-Analysis:   PHYS      TA2MyCaLib	       data.2016.08/Physics-CaLib.dat
+#
+#
 #Physics-Analysis:	PHYS	TA2Pi0Compton	AR-Analysis-Pi0Compton.dat
 #Physics-Analysis:	PHYS	TA2MyPhysics		Physics-GoAT.dat
 ##
@@ -75,13 +79,14 @@ Initialise:
 Period: 100000   root/macros/PeriodMacro.C   PeriodMacro()
 ##
 ## Finish...when all input data files processed       I think MyFinishMAcro() is Dominiks so use that for CaLib ARHistograms or maybe FinishMacro
-#Finish:		    root/macros/FinishWorker.C	Finish()
+Finish:		    root/macros/FinishWorker.C	Finish()
 #This was the one for calibrations
-Finish:		root/macros/MyFinishMacro.C 	MyFinishMacro()
+#Finish:		root/macros/MyFinishMacro.C 	MyFinishMacro()
 #Finish:         root/macros/FinishMacro.C   FinishMacro()
 #Finish:	root/macros/FinishTree.C	FinishTree("ARHistograms_XXX.root")
 ##
-Display: All
+#Removing for lin pol 12/07/17 CAM
+#Display: All
 ##
 ## Save all accepted events (ie those which pass all data cuts) to a
 ## ROOT file. Data saved in RAW format (ie ADC indices and values)

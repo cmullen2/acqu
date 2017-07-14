@@ -20,8 +20,8 @@ Branch:	  Mk1_Header        120000
 
 
 
-Directory: /w/work14/chris/Run101016/AcquOutput/ADC/2016-09/
-
+#Directory: /w/work14/chris/Run101016/AcquOutput/LinPol/
+Directory: /w/work14/chris/Run101016/AcquOutput/Para/LinPolTests/
 #Directory: /w/work14/chris/ForSPlots/EmptyTarget/Sept2016/AcquOutput/Moeller/
 #Directory: /w/work14/chris/ForSPlots/EmptyTarget/Sept2016/AcquOutput/Para/
 #Directory: /w/work14/chris/ForSPlots/EmptyTarget/Sept2016/AcquOutput/Perp/
@@ -69,10 +69,10 @@ AnalysisSetup: data.2016.08/Analysis-Calib.dat
 #ServerSetup: data.2016.08/ServerOfflineSPlots-CBTaggTAPSPERP.dat
 #ServerSetup: data.2016.08/ServerOfflineSPlots-CBTaggTAPSEmptyAug.dat
 #ServerSetup: data.2016.08/ServerOfflineSPlots-CBTaggTAPSEmptySept.dat
-ServerSetup: data.2016.08/ServerOfflineEmptyTest.dat
+#ServerSetup: data.2016.08/ServerOfflineEmptyTest.dat
+#ServerSetup: data.2016.08/ServerOffline-CBTaggTAPSMoellerLinPol.dat
 
 
-
-#ServerSetup: data.2016.08/ServerOffline-CBTaggTAPSPARA.dat
+ServerSetup: data.2016.08/ServerOffline-CBTaggTAPSPARA.dat
 #ServerSetup: data.2016.08/ServerOffline-CBTaggTAPSPERP.dat
 #ServerSetup: ServerOffline-CBTaggTAPSPARA.dat

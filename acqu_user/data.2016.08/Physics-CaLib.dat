@@ -86,7 +86,7 @@ Use-CaLib-BadScR:   0       1       0                    ALL
 #
 
 # target position calibration
-#CaLib-Target-Position: 1
+CaLib-Target-Position: 1
 
 # CB energy calibration
 CaLib-CB-Energy: 1
@@ -103,7 +103,7 @@ CaLib-CB-Time: 1
 
 # CB time walk calibration
 #              on/off  pi0_min  pi0_max  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max
-#CaLib-CB-Walk: 1       110      160      -45         -30         -400     -200     200      400      -70     70
+CaLib-CB-Walk: 1       110      160      -45         -30         -400     -200     200      400      -70     70
 
 # CB-TAPS LED calibration
 #CaLib-CB-TAPS-LED: 1
@@ -116,7 +116,7 @@ CaLib-TAPS-Energy-BG-Subtr:   1       -70        -40         -250     -100     5
 
 # TAPS quadratic energy correction
 #                on/off  pi0_min  pi0_max  eta_min  eta_max
-#CaLib-TAPS-Quad: 1       110      160      490      610
+CaLib-TAPS-Quad: 1       110      160      490      610
 
 # TAPS time calibration
 CaLib-TAPS-Time: 1
@@ -132,7 +132,7 @@ CaLib-PID-Phi: 1
 
 # PID energy calibration
 #                   on/off  pi0_min  pi0_max  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max
-#CaLib-PID-Energy:   1       120      150      -3.        5         -200     -100      100       200      -70     70
+CaLib-PID-Energy:   1       120      150      -3.        5         -200     -100      100       200      -70     70
 
 # PID energy calibration (traditional)
 #CaLib-PID-Energy-Trad: 1
@@ -141,7 +141,7 @@ CaLib-PID-Phi: 1
 #CaLib-PID-Droop: 1
 
 # PID time calibration
-#CaLib-PID-Time: 1
+CaLib-PID-Time: 1
 
 # veto-crystal correlation
 CaLib-Veto-Corr: 1
