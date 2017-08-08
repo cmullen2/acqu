@@ -54,29 +54,11 @@ Branch:   mc_rnd_id     8
 #ROOT file(s) (GEANT4 output) to be analysed. Add more lines for more files
 #
 #TreeFile: scratch/geant.root
-#TreeFile: $HOME/TestFiles/AcquIn/POL_PPi0_OutputA2SimProtonBad.root
-#TreeFile: /scratch/chrism/RealData/CBTaggTAPS_14917.dat.xz
-#TreeFile: %%FILE%%
-#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/BeamAsym/PosPolarisation/A2OutPosPol.root
-#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/BeamAsym/NegPolarisation/A2OutNegPol.root
+#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/1MilAy1/A2OutPolPos_Pol.root
+#TreeFile: /home/chris/acqu/acqu_user/data.MC/GP_PPi0PERP_90062.root 
+TreeFile:   /w/work14/chris/LatestAnalysisRuns/Sims/SimsJan17/a2geantOut/Deuterium/BeamAsym/PosPolarisation/A2OutPosPol.root
 #
 #
-#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/A2OutPolNeg_PolQF.root
-#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/A2OutPolPos_PolQF.root
-#
-#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/1Mil/A2OutPolNeg_Pol.root
-#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/1Mil/A2OutPolPos_Pol.root
-#
-#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/1MilAy1/A2OutPolNeg_Pol.root
-TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/1MilAy1/A2OutPolPos_Pol.root
-#
-#
-#This was prev.
-#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/1MilAy1/A2OutPolNeg_Pol.root
-#TreeFile: /w/work14/chris/EdinGeant/Geant_10e7_PN_300_1557_1.root
-#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/TestA2OutPolPos_Pol.root
-#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Proton/TestingScattering/1MilAy1/A2OutPolNeg_Pol.root
-#TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/Test/A2OutPolPos_Pol.root
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -89,25 +71,7 @@ BatchDir: %%OUTDIR%%/
 #Directory to save any created ROOT files (include final '/')
 #Directory: $HOME/TestFiles/AcquOut/ProtonBad/
 #Directory: %%OUTDIR%%/
-#Directory: /scratch/chrism/RealData/AcquOutput/
-#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/BeamAsym/PosPolarisation/
-#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/BeamAsym/NegPolarisation/
-#this was prev.
-#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/PolQF/1MilAy1/Neg/
-#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/
-#Directory: /w/work14/chris/EdinGeant/Out/SeparateMickeys/
-#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Proton/TestingScattering/1MilAy1/Neg/
-#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/Test/AcquRootOut/
-#
-#
-#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/PolQF/1MilAy1/Neg/
-Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/PolQF/1MilAy1/Pos/
-#
-#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/PolQF/1Mil/Neg/
-#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/PolQF/1Mil/Pos/
-#
-#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/PolQF/Neg/
-#Directory: /scratch/chris/Simulations/16d11m16y/AcquMC/AcquRootOut/Deuterium/ScatAsym/PolQF/Pos/
+Directory: /w/work14/chris/LatestAnalysisRuns/Sims/SimsJan17/AcquOutput/Deuterium/BeamAsym/PosPolarisation/
 #
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

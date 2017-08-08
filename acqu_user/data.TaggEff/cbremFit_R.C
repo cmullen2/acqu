@@ -473,7 +473,7 @@ void fitData(Char_t *fname, Char_t *outfile, Double_t beamMeV, Double_t colliDis
     cout << "High mean new = " << highmeannew << endl;
     cout << "Minimum bin = " << histD->GetBinContent(histD->GetMinimumBin()) << endl;
     
-    histD->Scale( (5.0/(lowmean))*1 );
+    histD->Scale( (5.0/(lowmean))*0.7 );  //CAM Changed scaling factors to check systematics
     cout << "Low Mean = " << lowmean << endl;
     //   sprintf(tempname,"%s.enh.root",filename[f]);
     //   histD->SaveAs(tempname);
@@ -535,7 +535,7 @@ void fitData(Char_t *fname, Char_t *outfile, Double_t beamMeV, Double_t colliDis
     fitMinBin=histE->FindBin(histD->GetBinCenter(histD->GetMaximumBin())-LOWFIT);
     fitMinBin=40;
     fitMaxBin    = histE->FindBin( (par[E0MEV]/(( ( ( 2.0/4.0 )*(( par[E0MEV]/histD->GetBinCenter(histD->GetMaximumBin()) ) -1.0 ) ) +1.0 )) ) + 200.0 );
-    // fitMaxBin = 138;
+    //fitMaxBin = 138;
     cout << "fitMinBin" << fitMinBin << endl;
     cout << "fitMaxBin" << fitMaxBin << endl;
     

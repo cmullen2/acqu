@@ -28,15 +28,15 @@ void DoAllFits()
    // parallel input stream. The parallel output tables get appended to the end of the 
    // perpendicular ones so need to be done in order (perp fits followed by para fits).
    
-   //istringstream(s); // Perp input list stream
-   //fitData(s.data());
+   istringstream(s); // Perp input list stream
+   fitData(s.data());
    
    TString names(s);
    names+=".table";
    cout << "Saved to " << names.Data() << endl;
    
-   istringstream(t); // Para input list stream
-   fitData(t.data(),names.Data());
+ //  istringstream(t); // Para input list stream
+ //  fitData(t.data(),names.Data());
    
  }
   
