@@ -350,7 +350,7 @@ void MyFinishMacro()
             delete f;
         }
     }
-
+	std::cout <<" Ending MyFinishMacro  " << std::endl;
     gSystem->Exit(0);
 }
 
