@@ -36,7 +36,9 @@ TaggSc-Live-Corr:    190       191       190         191        203
 # General:          dbhost        dbname          dbuser      dbpass         calibration
 #Use-CaLib:          phys-jaguar   calib_may_2016  calib_ro    omega13    D-Butanol_May_16
 #Use-CaLib:      $HOME/acqu/CaLib_DB/Aug_16/CaLib.db                       LD2_Aug_16
-Use-CaLib:	/home/chris/acqu/acqu_user/data.2016.08/CaLib.db	  LD2_Aug_16
+#
+#Use-CaLib:	/home/chris/acqu/acqu_user/data.2016.08/CaLib.db	  LD2_Aug_16
+Use-CaLib:	/home/chris/acqu/acqu_user/data.2016.08/CaLibSept16.db	  LD2_Sept_16
 # tagger calib:     time    eff                                            (0=off/1=on)
 Use-CaLib-TAGG:     1       0
 # CB calib:         energy  time    timewalk    quadr. energy    LED thr.  (0=off/1=on)
@@ -89,7 +91,7 @@ Use-CaLib-BadScR:   0       1       0                    ALL
 CaLib-Target-Position: 1
 
 # CB energy calibration
-CaLib-CB-Energy: 1
+#CaLib-CB-Energy: 1
 
 # CB quadratic energy correction
 #              on/off  pi0_min  pi0_max  eta_min  eta_max
@@ -99,14 +101,14 @@ CaLib-CB-Quad: 1       105      165      500      620
 CaLib-CB-Time: 1
 
 # CB rise time calibration  pi0_min   pi0_max
-#CaLib-CB-RiseTime: 1        110       160
+CaLib-CB-RiseTime: 1        110       160
 
 # CB time walk calibration
 #              on/off  pi0_min  pi0_max  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max
 CaLib-CB-Walk: 1       110      160      -45         -30         -400     -200     200      400      -70     70
 
 # CB-TAPS LED calibration
-#CaLib-CB-TAPS-LED: 1
+CaLib-CB-TAPS-LED: 1
 
 # TAPS energy calibration
 CaLib-TAPS-Energy: 1
@@ -119,10 +121,10 @@ CaLib-TAPS-Energy-BG-Subtr:   1       -70        -40         -250     -100     5
 CaLib-TAPS-Quad: 1       110      160      490      610
 
 # TAPS time calibration
-CaLib-TAPS-Time: 1
+#CaLib-TAPS-Time: 1
 
 # TAPS PSA calibration
-#CaLib-TAPS-PSA: 1
+CaLib-TAPS-PSA: 1
 
 # TAPS LED calibration
 #CaLib-TAPS-LED: 1
@@ -135,7 +137,7 @@ CaLib-PID-Phi: 1
 CaLib-PID-Energy:   1       120      150      -3.        5         -200     -100      100       200      -70     70
 
 # PID energy calibration (traditional)
-#CaLib-PID-Energy-Trad: 1
+CaLib-PID-Energy-Trad: 1
 
 # PID droop calibration
 #CaLib-PID-Droop: 1
@@ -147,10 +149,10 @@ CaLib-PID-Time: 1
 CaLib-Veto-Corr: 1
 
 # Veto energy
-#CaLib-Veto-Energy: 1
+CaLib-Veto-Energy: 1
 
 # Veto time
-#CaLib-Veto-Time: 1
+CaLib-Veto-Time: 1
 
 # tagger time calibration
 CaLib-Tagger-Time: 1
@@ -159,7 +161,7 @@ CaLib-Tagger-Time: 1
 CaLib-BadScalerReads: 1
 
 # PWO check
-#CaLib-PWO-Check: 1
+CaLib-PWO-Check: 1
 
 Initialise:
 

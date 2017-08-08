@@ -60,7 +60,12 @@ Misc:	runs	15483	15584		data/LadderScalers/LadderScalers_15584.dat		para		      
 Misc:	runs	15585	15687		data/LadderScalers/LadderScalers_15687.dat		para		      650.0        50.0
 Misc:	runs	15688	15741		data/LadderScalers/LadderScalers_15741.dat		para		      650.0        50.0
 Misc:	runs	15742	15808		data/LadderScalers/LadderScalers_15808.dat		para		      650.0        50.0
-Misc:	runs	15809	15883		data/LadderScalers/LadderScalers_15883.dat		para		      650.0        50.0
+#Misc:	runs	15809	15883		data/LadderScalers/LadderScalers_15883.dat		para		      650.0        50.0
+
+Misc:	runs	15809	16275		data/LadderScalers/LadderScalers_15883.dat		para		      650.0        50.0
+
+
+
 
 #for positive target polarization
 #Misc:	runs	11166	11193		data/LadderScalers/LadderScalers_11167.dat		para		      650.0        50.0
@@ -109,7 +114,7 @@ Misc:	runs	15809	15883		data/LadderScalers/LadderScalers_15883.dat		para		      
 ### parameter sets for polarization of beam
 
 
-#CAM parameters for 630 edge Aug16 unpol target: using 15116 for para and 15421 for perp
+#CAM parameters for 630 edge Aug16 unpol target: using 15116 for para and 15421 for perp(in folder data.TaggEff/Sets/  it is the .table ones there, no folders lower)
 Misc:		poltable  14552  15883   params para  0.005813 0.000215 6.489353 0.019026 1557.000000 2.000000 2.829191 0.826843 0.000000 0.000000 2.142409
 Misc:		poltable  14552  15883   params perp  0.005833 0.000224 6.232303 0.023747 1557.000000 2.000000 2.886448 0.856210 0.000000 0.000000 2.309956
  

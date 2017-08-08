@@ -18,10 +18,16 @@ Branch:	  Mk1_Header        120000
 #Directory: /w/work14/chris/ForSPlots/EmptyTarget/August2016/AcquOutput/Para/
 #Directory: /w/work14/chris/ForSPlots/EmptyTarget/August2016/AcquOutput/Perp/
 
+#July2017 NewStorageHierarchy
+#Directory: /w/work14/chris/LatestAnalysisRuns/Data/DataJul17/AcquOutput/EmptyTarget/Perp/
+Directory: /w/work14/chris/LatestAnalysisRuns/Data/DataJul17/AcquOutput/Perp/
+
+
 
 
 #Directory: /w/work14/chris/Run101016/AcquOutput/LinPol/
-Directory: /w/work14/chris/Run101016/AcquOutput/Para/LinPolTests/
+#Directory: /w/work14/chris/Run101016/AcquOutput/Para/LinPolTests/
+#Directory: /w/work14/chris/Run101016/AcquOutput/Perp/LinPolTests/
 #Directory: /w/work14/chris/ForSPlots/EmptyTarget/Sept2016/AcquOutput/Moeller/
 #Directory: /w/work14/chris/ForSPlots/EmptyTarget/Sept2016/AcquOutput/Para/
 #Directory: /w/work14/chris/ForSPlots/EmptyTarget/Sept2016/AcquOutput/Perp/
@@ -73,6 +79,6 @@ AnalysisSetup: data.2016.08/Analysis-Calib.dat
 #ServerSetup: data.2016.08/ServerOffline-CBTaggTAPSMoellerLinPol.dat
 
 
-ServerSetup: data.2016.08/ServerOffline-CBTaggTAPSPARA.dat
-#ServerSetup: data.2016.08/ServerOffline-CBTaggTAPSPERP.dat
+#ServerSetup: data.2016.08/ServerOffline-CBTaggTAPSPARA.dat
+ServerSetup: data.2016.08/ServerOffline-CBTaggTAPSPERP.dat
 #ServerSetup: ServerOffline-CBTaggTAPSPARA.dat
