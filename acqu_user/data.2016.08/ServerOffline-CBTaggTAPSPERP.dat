@@ -17,6 +17,7 @@ Input-Streams:	1		327680		0
 ## Optional directory spec. If not specified File-Names must contain the full
 ## directory path
 File-Directory:	/w/work14/mainz/2016-08_Recoil_Pol/
+#File-Directory:	/w/work14/mainz/2016-09_Recoil_Pol/
 ##
 ## Specify each input stream
 ## From disk file, ACQU (Mk1) format, save any output to file (save=1)
@@ -93,6 +94,6 @@ File-Name:      CBTaggTAPS_14917.dat.xz   0       0
 #File-Name:      CBTaggTAPS_15274.dat.xz   0       0
 
 #endhere
-#File-Name:	CBTaggTAPS_14920.dat.xz	0	0
+#File-Name:	CBTaggTAPS_16232.dat.xz	0	0
 #File-Name:	CBTaggTAPS_14922.dat.xz 0	0
 ## END

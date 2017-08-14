@@ -12,7 +12,7 @@ Branch:	  RawEvent_Scalers	4192
 Branch:	  Mk1_Header        120000
 ##
 ## Directory to save any created ROOT files (include final / )
-Directory: /w/work14/chris/Run101016/AcquOutput/ADC/Sept/
+#Directory: /w/work14/chris/Run101016/AcquOutput/ADC/Sept/
 #Directory: /w/work14/chris/Run101016/AcquOutput/ADC/
 
 
@@ -20,7 +20,7 @@ Directory: /w/work14/chris/Run101016/AcquOutput/ADC/Sept/
 #Directory: /scratch/chris/RealData/AcquOutput/Perp/
 #Directory: /scratch/chris/RealData/AcquOutput/Testing/
 #Directory: /scratch/chris/Bull/
-#Directory: /scratch/chris/temp/
+Directory: /scratch/chris/temp/
 ##
 ## Normally don't attempt to set eventsize manually
 ##EventSize: 32768
