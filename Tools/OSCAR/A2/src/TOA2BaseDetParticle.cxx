@@ -396,8 +396,31 @@ Bool_t TOA2BaseDetParticle::CalculatePSA(Double_t* psaR, Double_t* psaA)
         // calculation and checks were successful here
         return kTRUE;
     }
+
     else return kFALSE;
 }
+
+//______________________________________________________________________________
+Double_t TOA2BaseDetParticle::CalculateAngle(TOA2BaseDetParticle* p)
+{
+    // Calculate the angle between the direction of this particle and the
+    // particle 'p'.
+
+    TVector3 p1(fX, fY, fZ);
+    TVector3 p2(p->GetX(), p->GetY(), p->GetZ());
+    return p1.Angle(p2);
+}
+
+//______________________________________________________________________________
+Double_t TOA2BaseDetParticle::CalculateAngle(TLorentzVector* p4)
+{
+    // Calculate the angle between the direction of this particle and the
+    // 4-vector 'p4'.
+
+    TVector3 p(fX, fY, fZ);
+    return p.Angle(p4->Vect());
+}
+
 
 //______________________________________________________________________________
 void TOA2BaseDetParticle::Print(Option_t* option) const

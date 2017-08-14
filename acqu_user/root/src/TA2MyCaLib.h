@@ -216,10 +216,21 @@ private:
     Double_t fCalib_TAPS_Energy_BG2_Max;                    // upper bound for tagger hits in background window 2
     Double_t fCalib_TAPS_Energy_MM_Min;                     // lower bound of the missing mass cut 
     Double_t fCalib_TAPS_Energy_MM_Max;                     // upper bound of the missing mass cut 
+    Double_t fCalib_TAPS_Energy_CB_TAPS_Min;                // lower bound of CB-TAPS timing
+    Double_t fCalib_TAPS_Energy_CB_TAPS_Max;                // upper bound of CB-TAPS timing
     TH2* fHCalib_TAPS_IM_Neut_BG_Subtr;                     // CB-TAPS invariant mass (from neutral hits) vs element
     TH2* fHCalib_TAPS_Energy_MM;                            // pi0 missing mass for g + p -> p + pi0 identification
     TH1* fHCalib_TAPS_Energy_Rand_Time_CB;                  // CB-tagger time difference for random subtraction
-      
+    TH1* fHCalib_TAPS_Energy_Time_Diff_BaF2;                // CB-BaF2 photon time difference
+    TH1* fHCalib_TAPS_Energy_Time_Diff_PWO;                 // CB-PWO photon time difference
+    TH1* fHCalib_TAPS_Energy_Time_Diff_PWO_BaF2;            // BaF2-PWO photon time difference
+    TH2* fHCalib_TAPS_Energy_Ediff_OpenAng;                 // opening angle vs. energy difference of pi0 photons
+    TH2* fHCalib_TAPS_Energy_P_Theta;                       // lab theta angle vs. momentum of pi0s
+    TH2* fHCalib_TAPS_Energy_P_Theta_NoW;                   // lab theta angle vs. momentum of pi0s
+    TH2* fHCalib_TAPS_Energy_IM_P;                          // invariant mass vs pi0 momentum
+    TH2** fHCalib_TAPS_Energy_Quad;                         // quadratic correction
+    TH2* fHCalib_TAPS_Energy_Weights;                       // event weights
+
     // ------------------------------------- TAPS time ------------------------------------- 
     Int_t fCalib_TAPS_Time;                                 // TAPS time calibration toggle
     TH2* fHCalib_TAPS_Time;                                 // TAPS time vs element

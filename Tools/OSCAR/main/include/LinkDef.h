@@ -41,6 +41,8 @@
 #pragma link C++ class TOA2DetParticle+; 
 #pragma link C++ class TOA2RecParticle+; 
 #pragma link C++ class TOA2RecMeson2g+;
+#pragma link C++ class TOA2RecMultiParticle+;
+#pragma link C++ class TOA2RecPi0Pi0+;
 #pragma link C++ class TOA2PSA+; 
 
 // Module Main
@@ -58,6 +60,7 @@
 #pragma link C++ class TONumberReader+; 
 #pragma link C++ class TOArray2D-;
 #pragma link C++ class TOKinCut+;
+#pragma link C++ class TOPairCombinations+;
 
 #endif
 

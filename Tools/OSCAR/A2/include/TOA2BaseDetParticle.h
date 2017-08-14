@@ -62,7 +62,7 @@ public:
     TOA2BaseDetParticle();
     TOA2BaseDetParticle(const TOA2BaseDetParticle& orig);
     virtual ~TOA2BaseDetParticle() { }
- 
+
     void Calculate4Vector(TLorentzVector* p4, Double_t mass);
     void Calculate4Vector(TLorentzVector* p4, Double_t mass, Double_t energy);
     Bool_t Calculate4VectorTOFTagger(TLorentzVector* p4, Double_t mass, Double_t taggerTime, Bool_t isMC = kFALSE);
@@ -72,6 +72,8 @@ public:
     Double_t CalculateTOFCB(Double_t cbTime, Bool_t isMC = kFALSE);
     Double_t CalculateTOFTAPS(Double_t tapsTime, Bool_t isMC = kFALSE);
     Bool_t CalculatePSA(Double_t* psaR, Double_t* psaA);
+    Double_t CalculateAngle(TOA2BaseDetParticle* p);
+    Double_t CalculateAngle(TLorentzVector* p4);
 
     void SetPDG_ID(PDG_t id) { fPDG_ID = id; }
     void SetDetector(A2Detector_t d) { fDetector = d; }

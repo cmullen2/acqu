@@ -13,6 +13,8 @@
 
 #include "TA2MyCaLib.h"
 
+#include "TOA2RecPi0Pi0.h"
+
 #include <limits>
 
 //______________________________________________________________________________
@@ -308,14 +310,15 @@ void TA2MyCaLib::SetConfig(Char_t* line, Int_t key)
             break;
         case ECALIB_TAPS_ENERGY_BG_SUBTR:
             // Enable TAPS energy calibration (BG subtr.)
-            if (sscanf(line, "%d%lf%lf%lf%lf%lf%lf%lf%lf", 
+            if (sscanf(line, "%d%lf%lf%lf%lf%lf%lf%lf%lf%lf%lf",
                        &fCalib_TAPS_Energy_BG_Subtr,
                        &fCalib_TAPS_Energy_Prompt_Min, &fCalib_TAPS_Energy_Prompt_Max,
                        &fCalib_TAPS_Energy_BG1_Min,    &fCalib_TAPS_Energy_BG1_Max,
                        &fCalib_TAPS_Energy_BG2_Min,    &fCalib_TAPS_Energy_BG2_Max,
-                       &fCalib_TAPS_Energy_MM_Min,     &fCalib_TAPS_Energy_MM_Max) != 9) error = kTRUE;
+                       &fCalib_TAPS_Energy_MM_Min,     &fCalib_TAPS_Energy_MM_Max,
+                       &fCalib_TAPS_Energy_CB_TAPS_Min, &fCalib_TAPS_Energy_CB_TAPS_Max) != 11) error = kTRUE;
             if (fCalib_TAPS_Energy_BG_Subtr) fNCalib++;
-            break;
+	break;
         case ECALIB_TAPS_TIME:
             // Enable TAPS time calibration
             if (sscanf(line, "%d", &fCalib_TAPS_Time) != 1) error = kTRUE;
@@ -595,6 +598,7 @@ void TA2MyCaLib::PostInit()
         printf("     -> Random subtraction prompt  : %8.2f to %8.2f ns\n", fCalib_TAPS_Energy_Prompt_Min, fCalib_TAPS_Energy_Prompt_Max);
         printf("     -> Random subtraction BG 1    : %8.2f to %8.2f ns\n", fCalib_TAPS_Energy_BG1_Min, fCalib_TAPS_Energy_BG1_Max);
         printf("     -> Random subtraction BG 2    : %8.2f to %8.2f ns\n", fCalib_TAPS_Energy_BG2_Min, fCalib_TAPS_Energy_BG2_Max);
+        printf("     -> CB-TAPS timing             : %8.2f to %8.2f ns\n", fCalib_TAPS_Energy_CB_TAPS_Min, fCalib_TAPS_Energy_CB_TAPS_Max);
     }
     if (fCalib_TAPS_Time)   printf("   - TAPS time\n");
     if (fCalib_TAPS_Quad)         
@@ -809,6 +813,20 @@ void TA2MyCaLib::PostInit()
                                           2000, -1000, 1000, fNelemTAGG, 0, fNelemTAGG);
         fHCalib_TAPS_Energy_Rand_Time_CB = new TH1F("CaLib_TAPS_Energy_Rand_Time_CB", "CaLib_TAPS_Energy_Rand_Time_CB;CB-tagger time [ns];Counts", 
                                                     8000, -1000, 1000);
+        fHCalib_TAPS_Energy_Time_Diff_BaF2 = new TH1F("CaLib_TAPS_Energy_Time_Diff_BaF2", "CaLib_TAPS_Energy_Time_Diff_BaF2;CB-BaF2 time [ns];Counts",
+                                                      2000, -200, 200);
+        fHCalib_TAPS_Energy_Time_Diff_PWO = new TH1F("CaLib_TAPS_Energy_Time_Diff_PWO", "CaLib_TAPS_Energy_Time_Diff_PWO;CB-PWO time [ns];Counts",
+                                                     2000, -200, 200);
+        fHCalib_TAPS_Energy_Time_Diff_PWO_BaF2 = new TH1F("CaLib_TAPS_Energy_Time_Diff_PWO_BaF2", "CaLib_TAPS_Energy_Time_Diff_PWO_BaF2;BaF2-PWO time [ns];Counts",
+                                                          2000, -200, 200);
+        fHCalib_TAPS_Energy_Ediff_OpenAng = new TH2F("CaLib_TAPS_Energy_Ediff_OpenAng", "CaLib_TAPS_Energy_Ediff_OpenAng;#DeltaE [MeV];Opening angle [deg]",
+                                                      250, 0, 1000, 90, 0, 180);
+        fHCalib_TAPS_Energy_P_Theta = new TH2F("CaLib_TAPS_Energy_P_Theta", "CaLib_TAPS_Energy_P_Theta;#pi^{0} momentum [MeV];Lab #theta angle [deg]",
+                                               250, 0, 1000, 90, 0, 180);
+        fHCalib_TAPS_Energy_P_Theta_NoW = new TH2F("CaLib_TAPS_Energy_P_Theta_NoW", "CaLib_TAPS_Energy_P_Theta_NoW;#pi^{0} momentum [MeV];Lab #theta angle [deg]",
+                                                   250, 0, 1000, 90, 0, 180);
+        fHCalib_TAPS_Energy_IM_P = new TH2F("CaLib_TAPS_Energy_IM_P", "CaLib_TAPS_Energy_IM_P;2#gamma invariant mass [MeV];#pi^{0} momentum [MeV]",
+                                            250, 0, 500, 750, 0, 1500);
     }
     
     // prepare for TAPS time calibration
@@ -1809,7 +1827,8 @@ void TA2MyCaLib::ReconstructPhysics()
     
     
     // ----------------------------- TAPS energy (BG subtr.) ------------------------------ 
-    
+ 
+    /*   
     if (fCalib_TAPS_Energy_BG_Subtr)
     {
         // look for two neutral clusters
@@ -1892,6 +1911,264 @@ void TA2MyCaLib::ReconstructPhysics()
         
         } // if: two neutral + 1 charged hit
  
+    }
+    label_end_taps_energy_bg_subtr:
+    */
+
+    if (fCalib_TAPS_Energy_BG_Subtr)
+    {
+        Int_t nPi0;
+        TOA2RecParticle* recPi0[2];
+        TLorentzVector p4Pions;
+        Int_t nRand = 0;
+        TOA2DetParticle* pRand[4];
+
+        // reconstruction classes
+        TOA2RecMeson2g pi0(fNNeutral, TOGlobals::kPi0Mass);
+        TOA2RecPi0Pi0 pi0pi0(fNNeutral);
+
+        // look for two neutral clusters with 1 cluster in TAPS
+        if (fNNeutral == 2 && (fNCharged == 0 || fNCharged == 1) &&
+            ((fPartNeutral[0]->GetDetector() == kCBDetector   && fPartNeutral[1]->GetDetector() == kTAPSDetector) ||
+             (fPartNeutral[0]->GetDetector() == kTAPSDetector && fPartNeutral[1]->GetDetector() == kCBDetector)))
+        {
+            // reconstruct pi0
+            if (!pi0.Reconstruct(fNNeutral, fPartNeutral)) goto label_end_taps_energy_bg_subtr;
+
+            // set stuff
+            nPi0 = 1;
+            recPi0[0] = &pi0;
+            p4Pions = *recPi0[0]->Get4Vector();
+        }
+        // look for 4 neutral clusters
+        else if (fNNeutral == 4 && (fNCharged == 0 || fNCharged == 1))
+        {
+            // reconstruct 2pi0
+            if (!pi0pi0.Reconstruct(fNNeutral, fPartNeutral)) goto label_end_taps_energy_bg_subtr;
+
+            // set stuff
+            nPi0 = 2;
+            recPi0[0] = pi0pi0.GetReconstructedParticle(0);
+            recPi0[1] = pi0pi0.GetReconstructedParticle(1);
+            p4Pions = *recPi0[0]->Get4Vector() + *recPi0[1]->Get4Vector();
+        }
+        // leave otherwise
+        else
+        {
+            goto label_end_taps_energy_bg_subtr;
+        }
+
+        // reconstruct random background subtraction particle in CB
+        // and calculate BaF2 photon reference time
+        Double_t refTimeBaF2 = 0;
+        Int_t nRefBaF2 = 0;
+        for (Int_t i = 0; i < nPi0; i++)
+        {
+            Double_t im = recPi0[i]->Get4Vector()->M();
+            for (Int_t j = 0; j < 2; j++)
+            {
+                if (recPi0[i]->GetDetectedProduct(j)->GetDetector() == kCBDetector)
+                {
+                    pRand[nRand++] = recPi0[i]->GetDetectedProduct(j);
+                }
+                else
+                {
+                    // BaF2 and pi0 invariant mass cut
+                    if (!TOA2Detector::IsTAPSPWO(recPi0[i]->GetDetectedProduct(j)->GetCentralElement(), fTAPSType) &&
+                        im > 110 && im < 160)
+                    {
+                        refTimeBaF2 += recPi0[i]->GetDetectedProduct(j)->GetTime();
+                        nRefBaF2++;
+                    }
+                }
+            }
+        }
+        refTimeBaF2 /= (Double_t)nRefBaF2;
+        if (!nRand) goto label_end_taps_energy_bg_subtr;
+        TOA2RecParticle recPart(nRand);
+        recPart.Reconstruct(nRand, pRand);
+        Double_t refTime = recPart.GetAverageTime(kCBDetector);
+
+        // pi0pi0 case: at least one pi0 with TAPS photons
+        if (nPi0 == 2)
+        {
+            // check if first pi0 has TAPS photons
+            if (recPi0[0]->GetNDetectorHits(kTAPSDetector) > 0)
+            {
+                // check if the second pi0 has TAPS photons as well
+                if (recPi0[1]->GetNDetectorHits(kTAPSDetector) == 0)
+                    nPi0 = 1;
+            }
+            else
+            {
+                // check if the second pi0 has TAPS photons
+                if (recPi0[1]->GetNDetectorHits(kTAPSDetector) > 0)
+                {
+                    // only use the second pi0
+                    recPi0[0] = recPi0[1];
+                    nPi0 = 1;
+                }
+                else
+                {
+                    // no TAPS photons here
+                    goto label_end_taps_energy_bg_subtr;
+                }
+            }
+        }
+
+        // target 4-vector
+        TLorentzVector p4Target(0., 0., 0., TOGlobals::kProtonMass);
+
+        // tagger loop
+        for (Int_t i = 0; i < fTaggerPhotonNhits; i++)
+        {
+            Int_t tagg_element = fTaggerPhotonHits[i];
+
+            // skip bad tagger channels
+            if (IsBadTaggerChannel(tagg_element)) continue;
+
+            // calculate background subtraction factor
+            Double_t subtr_weight = GetBGSubtractionWeight(recPart, fTaggerPhotonTime[i],
+                                                           fCalib_TAPS_Energy_Prompt_Min, fCalib_TAPS_Energy_Prompt_Max,
+                                                           fCalib_TAPS_Energy_BG1_Min, fCalib_TAPS_Energy_BG1_Max,
+                                                           fCalib_TAPS_Energy_BG2_Min, fCalib_TAPS_Energy_BG2_Max,
+                                                           fCalib_TAPS_Energy_Prompt_Min, fCalib_TAPS_Energy_Prompt_Max,
+                                                           fCalib_TAPS_Energy_BG1_Min, fCalib_TAPS_Energy_BG1_Max,
+                                                           fCalib_TAPS_Energy_BG2_Min, fCalib_TAPS_Energy_BG2_Max);
+
+            // fill tagger coincidence time
+            FillTaggerCoincidence(recPart, fTaggerPhotonTime[i], fHCalib_TAPS_Energy_Rand_Time_CB, 0);
+
+            // skip useless background events (not belonging to the background windows)
+            if (subtr_weight == 0) continue;
+
+            // beam 4-vector
+            TLorentzVector p4Beam(0., 0., fTaggerPhotonEnergy[i], fTaggerPhotonEnergy[i]);
+
+            // missing mass
+            Double_t mm = (p4Beam + p4Target - p4Pions).M() - TOGlobals::kProtonMass;
+
+            // missing mass cut
+            Bool_t mmOk = kFALSE;
+            if (mm > fCalib_TAPS_Energy_MM_Min && mm < fCalib_TAPS_Energy_MM_Max) mmOk = kTRUE;
+
+            // fill invariant mass
+            if (mmOk)
+            {
+                // loop over good pi0s
+                for (Int_t j = 0; j < nPi0; j++)
+                {
+                    // invariant mass cut
+                    Double_t im = recPi0[j]->Get4Vector()->M();
+                    Bool_t imOk = kFALSE;
+                    if (im > 100 && im < 160) imOk = kTRUE;
+
+                    // check kinematic properties of pi0s
+                    fHCalib_TAPS_Energy_IM_P->Fill(im, recPi0[j]->Get4Vector()->P(), subtr_weight);
+                    Double_t dEnergy = TMath::Abs(recPi0[j]->GetDetectedProduct(0)->GetEnergy() -
+                                                  recPi0[j]->GetDetectedProduct(1)->GetEnergy());
+                    Double_t ang = recPi0[j]->GetDetectedProduct(0)->CalculateAngle(recPi0[j]->GetDetectedProduct(1));
+
+                    // apply event weights
+                    Double_t ev_weight = 1;
+                    //if (fIsMC && fHCalib_TAPS_Energy_Weights)
+                    //{
+                    //    ev_weight = TOHUtils::GetBinContentClosest2(fHCalib_TAPS_Energy_Weights,
+                    //                                                 recPi0[j]->Get4Vector()->P(), recPi0[j]->Get4Vector()->Theta()*TMath::RadToDeg());
+                    //    if (ev_weight == 0) continue;
+                    //}
+
+                    // loop over photons
+                    for (Int_t k = 0; k < 2; k++)
+                    {
+                        Int_t elem = recPi0[j]->GetDetectedProduct(k)->GetCentralElement();
+
+                        // only TAPS photons
+                        if (recPi0[j]->GetDetectedProduct(k)->GetDetector() == kTAPSDetector)
+                        {
+                            // quadratic correction
+                            Double_t quad_y = TOGlobals::kPi0Mass*TOGlobals::kPi0Mass /
+                                              (2.*recPi0[j]->GetDetectedProduct(1-k)->GetEnergy()*(1 - TMath::Cos(ang)));
+
+                            // check for PWO
+                            if (TOA2Detector::IsTAPSPWO(elem, fTAPSType))
+                            {
+                                Double_t dTime = recPi0[j]->GetDetectedProduct(k)->GetTime() - refTime;
+                                Double_t dTimeBaF2 = recPi0[j]->GetDetectedProduct(k)->GetTime() + refTimeBaF2;
+                                fHCalib_TAPS_Energy_Time_Diff_PWO->Fill(dTime, ev_weight*subtr_weight);
+                                Bool_t refBaF2Ok = kTRUE;
+                                if (nRefBaF2)
+                                {
+                                    if (fIsMC)
+                                    {
+                                        fHCalib_TAPS_Energy_Time_Diff_PWO_BaF2->Fill(dTimeBaF2, ev_weight*subtr_weight);
+                                        refBaF2Ok = kFALSE;
+                                    }
+                                    else
+                                    {
+                                        if (TMath::Abs(dTime) < 5) fHCalib_TAPS_Energy_Time_Diff_PWO_BaF2->Fill(dTimeBaF2, subtr_weight);
+                                        if (TMath::Abs(dTimeBaF2) > 1) refBaF2Ok = kFALSE;
+                                    }
+                                }
+                                if (fIsMC)
+                                {
+                                    fHCalib_TAPS_IM_Neut_BG_Subtr->Fill(im, elem, ev_weight*subtr_weight);
+                                    //fHCalib_TAPS_Energy_Quad[elem]->Fill(recPi0[j]->GetDetectedProduct(k)->GetEnergy(), quad_y, ev_weight*subtr_weight);
+                                }
+                                else
+                                {
+                                    if (dTime > fCalib_TAPS_Energy_CB_TAPS_Min && dTime < fCalib_TAPS_Energy_CB_TAPS_Max && refBaF2Ok)
+                                    {
+                                        fHCalib_TAPS_IM_Neut_BG_Subtr->Fill(im, elem, subtr_weight);
+                                        //fHCalib_TAPS_Energy_Quad[elem]->Fill(recPi0[j]->GetDetectedProduct(k)->GetEnergy(), quad_y, subtr_weight);
+                                    }
+                                }
+                                if (imOk)
+                                {
+                                    fHCalib_TAPS_Energy_Ediff_OpenAng->Fill(dEnergy, ang*TMath::RadToDeg(), ev_weight*subtr_weight);
+                                    fHCalib_TAPS_Energy_P_Theta->Fill(recPi0[j]->Get4Vector()->P(), recPi0[j]->Get4Vector()->Theta()*TMath::RadToDeg(), ev_weight*subtr_weight);
+                                    fHCalib_TAPS_Energy_P_Theta_NoW->Fill(recPi0[j]->Get4Vector()->P(), recPi0[j]->Get4Vector()->Theta()*TMath::RadToDeg(), subtr_weight);
+                                }
+                            }
+                            else
+                            {
+                                Double_t dTime = -(recPi0[j]->GetDetectedProduct(k)->GetTime() + refTime);
+                                fHCalib_TAPS_Energy_Time_Diff_BaF2->Fill(dTime, ev_weight*subtr_weight);
+                                if (fIsMC)
+                                {
+                                    fHCalib_TAPS_IM_Neut_BG_Subtr->Fill(im, elem, ev_weight*subtr_weight);
+                                    //fHCalib_TAPS_Energy_Quad[elem]->Fill(recPi0[j]->GetDetectedProduct(k)->GetEnergy(), quad_y, ev_weight*subtr_weight);
+                                }
+                                else
+                                {
+                                    if (dTime > fCalib_TAPS_Energy_CB_TAPS_Min && dTime < fCalib_TAPS_Energy_CB_TAPS_Max)
+                                    {
+                                        fHCalib_TAPS_IM_Neut_BG_Subtr->Fill(im, elem, subtr_weight);
+                                        //fHCalib_TAPS_Energy_Quad[elem]->Fill(recPi0[j]->GetDetectedProduct(k)->GetEnergy(), quad_y, subtr_weight);
+                                    }
+                                }
+                                if (imOk)
+                                {
+                                    fHCalib_TAPS_Energy_Ediff_OpenAng->Fill(dEnergy, ang*TMath::RadToDeg(), ev_weight*subtr_weight);
+                                    fHCalib_TAPS_Energy_P_Theta->Fill(recPi0[j]->Get4Vector()->P(), recPi0[j]->Get4Vector()->Theta()*TMath::RadToDeg(), ev_weight*subtr_weight);
+                                    fHCalib_TAPS_Energy_P_Theta_NoW->Fill(recPi0[j]->Get4Vector()->P(), recPi0[j]->Get4Vector()->Theta()*TMath::RadToDeg(), subtr_weight);
+                                }
+
+                            } // else: photon in BaF2
+
+                        } // if: photon in TAPS
+
+                    } // for: loop over photons
+
+                } // for: loop over good pi0s
+
+            } // if: missing mass ok
+
+            // fill missing mass
+            fHCalib_TAPS_Energy_MM->Fill(mm, tagg_element, subtr_weight);
+
+        } // tagger loop
+
     }
     label_end_taps_energy_bg_subtr:
 
