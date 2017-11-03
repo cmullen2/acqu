@@ -12,7 +12,13 @@ TA2GoAT::TA2GoAT(const char* Name, TA2Analysis* Analysis) : TA2AccessSQL(Name, A
                                                                     treeScalers(0),
                                                                     treeMoeller(0),
                                                                     treeSetupParameters(0),
-                                                                    nParticles(0),
+								    fNMC(0),
+                                                                    truthPlab(0),
+								    truthElab(0),
+								    truthVertex(0),
+								    truthBeam(0),
+								    //dircos(0), //incompatible types
+								    nParticles(0),
                                                                     clusterEnergy(0),
                                                                     theta(0),
                                                                     phi(0),
@@ -162,6 +168,14 @@ void    TA2GoAT::LoadVariable()
     TA2DataManager::LoadVariable("energySum",     &energySum,    EDSingleX);
 
 
+    TA2DataManager::LoadVariable("truthElab",       truthElab,       EDMultiX);
+    TA2DataManager::LoadVariable("truthPlab",       truthPlab,       EDMultiX);//CAM: Will likely need to change
+   // TA2DataManager::LoadVariable("dircos",       dircos,       EDMultiX);
+    TA2DataManager::LoadVariable("truthVertex",       truthVertex,       EDMultiX);
+    TA2DataManager::LoadVariable("truthBeam",       truthBeam,       EDMultiX);
+
+
+
 
     TA2DataManager::LoadVariable("MWPC0PosX",   MWPC0PosX,   EDMultiX);
     TA2DataManager::LoadVariable("MWPC1PosX",   MWPC1PosX,   EDMultiX);
@@ -265,6 +279,12 @@ void    TA2GoAT::PostInit()
     MWPC1PosZ         = new Double_t[TA2GoAT_MAX_PARTICLE];
     
 
+    truthElab          = new Double_t[TA2GoAT_MAX_PARTICLE];
+    truthPlab          = new Double_t[TA2GoAT_MAX_PARTICLE];
+    truthVertex        = new Double_t[TA2GoAT_MAX_PARTICLE];
+    truthBeam          = new Double_t[TA2GoAT_MAX_PARTICLE];
+   // dircos        = new Double_t[TA2GoAT_MAX_PARTICLE];
+
 
     taggedChannel    = new Int_t[TA2GoAT_MAX_TAGGER];
     taggedTime       = new Double_t[TA2GoAT_MAX_TAGGER];
@@ -320,7 +340,8 @@ void    TA2GoAT::PostInit()
     treeTrigger	        = new TTree("trigger",           "trigger");
     treeDetectorHits    = new TTree("detectorHits",      "detectorHits");
     treeSetupParameters = new TTree("setupParameters",   "setupParameters");
-    treeMWPCHitsChris        = new TTree("MWPCHitsChris",           "MWPCHitsChris");
+    treeMWPCHitsChris   = new TTree("MWPCHitsChris",           "MWPCHitsChris");
+    treeTruth          = new TTree("Truth",           "Truth");
 
     treeTracks->Branch("nTracks", &nParticles, "nTracks/I");
     treeTracks->Branch("clusterEnergy", clusterEnergy, "clusterEnergy[nTracks]/D");
@@ -401,6 +422,20 @@ void    TA2GoAT::PostInit()
 	treeMWPCHitsChris->Branch("Chamber2Y", Chamber2Y, "Chamber2Y[nChamberHitsin2]/D");
 	treeMWPCHitsChris->Branch("Chamber2Z", Chamber2Z, "Chamber2Z[nChamberHitsin2]/D");
     }
+
+    if(fIsMC){ 
+
+	cout << "fIsMC" << endl;
+	treeTruth->Branch("fNMC", &fNMC, "fNMC/I");  
+	treeTruth->Branch("truthElab", truthElab, "truthElab[fNMC]/D");  
+	treeTruth->Branch("truthPlab", truthPlab, "truthPlab[fNMC]/D");
+	treeTruth->Branch("truthVertex", truthVertex, "truthVertex[3]/D");
+	treeTruth->Branch("truthBeam", truthBeam, "truthBeam[5]/D");
+	treeTruth->Branch("dircos", dircos, "dircos[fNMC][3]/F");
+
+}
+
+
     if(fBaF2PWO)
     {
         treeDetectorHits->Branch("nBaF2Hits", &nBaF2Hits, "nBaF2Hits/I");
@@ -868,12 +903,53 @@ void    TA2GoAT::Reconstruct()
     nParticles = nCB + nTAPS;
     TA2Particle part;
 
+
+	//truth information, using fNMC 
+     if(fIsMC){
+    fNMC = *(Int_t*) (fEvent[EI_npart]);
+    etot = (Float_t*) (fEvent[EI_elab]);
+    ptot = (Float_t*) (fEvent[EI_plab]);
+    dircosin = (Float_t*) (fEvent[EI_dircos]);
+    vertices = (Float_t*) (fEvent[EI_vertex]);
+    beamies = (Float_t*) (fEvent[EI_beam]);
+ 
+//cout << beamies[0] << " beamies 1,2 " << beamies[1] << " vertex 2 " << beamies[2]
+//cout <<" beamer3  " << beamies[3] <<"  beamer4->   "<< beamies[4] <<" fiver-> " <<beamies[5]<< "    "  <<beamies[6]<< endl;
+    
+    for(Int_t i=0; i<fNMC; i++){
+	elab = etot[i];
+	plab = ptot[i];
+	dircos[i][0]=dircosin[i*3];
+	dircos[i][1]=dircosin[(i*3)+1];
+	dircos[i][2]=dircosin[(i*3)+2];
+	truthElab[i] = elab;
+	truthPlab[i] = plab;
+
+	if (i<3){
+	verti =vertices[i] ;
+	truthVertex[i] =verti ;
+}
+
+    for(Int_t jj=0; jj<5; jj++){
+	beamer=beamies[jj];
+	truthBeam[jj] = beamer;
+}
+
+
+}
+
+
+
+}
+
+
     // Mikhails code
     
     MnChamberHitsin1 = fMWPC->GetNinters(0); 
     MChamber1Hits = fMWPC->GetInters(0); 
     MChamber2Hits = fMWPC->GetInters(1);
     MnChamberHitsin2 = fMWPC->GetNinters(1);
+
 
     for(Int_t i=0; i<nParticles; i++)
     {
@@ -936,6 +1012,8 @@ void    TA2GoAT::Reconstruct()
 	  }
 	}
  
+
+
 
         // Store other values which don't have this "no-value" option
         detectors[i]	= part.GetDetectors();
@@ -1044,6 +1122,8 @@ void    TA2GoAT::Reconstruct()
 
 
 	}
+
+
 
 	if(fBaF2PWO)
 	{
@@ -1180,6 +1260,11 @@ void    TA2GoAT::Reconstruct()
     Chamber1Y[nChamberHitsin1] = EBufferEnd;
     Chamber1Z[nChamberHitsin1] = EBufferEnd;
 
+    //truth filling;  end buffer
+    truthElab[fNMC]=EBufferEnd;
+    truthPlab[fNMC]=EBufferEnd;
+   // truthVertex[3]=EBufferEnd;
+
     taggedChannel[nTagged] 	  = EBufferEnd;
     taggedTime[nTagged] 	  = EBufferEnd;
     taggedEnergy[nTagged] 	  = EBufferEnd;
@@ -1211,6 +1296,7 @@ void    TA2GoAT::Reconstruct()
 	if(treeDetectorHits)	treeDetectorHits->Fill();
     if(treeVertex)          treeVertex->Fill();
     if(treeMWPCHitsChris)	treeMWPCHitsChris->Fill();
+    if(treeTruth)		treeTruth->Fill();
 
 	//increment event number
 	eventNumber++;	
@@ -1520,6 +1606,12 @@ void    TA2GoAT::Finish()
     {
 	treeMWPCHitsChris->Write();
 	delete treeMWPCHitsChris;
+    }
+
+    if(treeTruth)
+    {
+	treeTruth->Write();
+	delete treeTruth; 
     }
 
     if(treeVertex)

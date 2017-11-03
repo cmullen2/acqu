@@ -1354,7 +1354,7 @@ void TA2MyPhysics::Reconstruct()
         // read particle IDs and 4-momenta
         Int_t* g3_ID = (Int_t*) (fEvent[EI_idpart]);
         Float_t* etot = (Float_t*) (fEvent[EI_elab]);
-        Float_t* ptot = (Float_t*) (fEvent[EI_plab]);
+        Float_t* ptot = (Float_t*) (fEvent[EI_plab]); //Cam 2017Oct needed for truth
         Float_t dircos[fNMC][3];
         fMCBranchDirCos->SetAddress(dircos);
         fMCBranchDirCos->GetEntry(fEventCounter - fEventOffset);

@@ -45,6 +45,7 @@ private:
         TTree*      treeMoeller;        // Moeller information (filled each moeller read)
         TTree*      treeSetupParameters;// Calibration parameters (filled once)
  	TTree*	    treeMWPCHitsChris;	// Hit positions in the wire chambers
+	TTree*	    treeTruth;		//Simulation information (Elab,Plab, dircos,vertex)
 
     	char        outputFolder[256];
     	char        inputName[64];
@@ -95,7 +96,26 @@ private:
         Double_t*   Chamber2Y;
         Double_t*   Chamber2Z;
 
+	//Truth information from simulation
+	Double_t*    truthElab;
+	Double_t*    truthPlab;
+	Double_t*    truthVertex;
+	Double_t*    truthBeam;
+	
+	Float_t*     etot;
+	Float_t*     ptot;
+	Float_t*     vertices;
+	Float_t*     beamies;
+	
+	Double_t     elab;
+	Double_t     plab;
+	Double_t     verti;
+	Double_t     beamer;	
 
+	Float_t*     dircosin;
+	Double_t*    truthDircos[4][3];
+	Float_t      dircos[4][3];
+	
 
 	//Mikhail's Wire Chamber Hits info
 
@@ -179,6 +199,7 @@ private:
         //MC
         Long64_t    MCEventID;
         Long64_t    MCRndID;
+    	Int_t fNMC;                                             // number of MC particles
 
 		// Display histograms
 		TH2*		Check_CBdE_E;
