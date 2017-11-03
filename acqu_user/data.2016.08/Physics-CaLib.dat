@@ -88,17 +88,17 @@ Use-CaLib-BadScR:   0       1       0                    ALL
 #
 
 # target position calibration
-CaLib-Target-Position: 1
+#CaLib-Target-Position: 1
 
 # CB energy calibration
 #CaLib-CB-Energy: 1
 
 # CB quadratic energy correction
 #              on/off  pi0_min  pi0_max  eta_min  eta_max
-CaLib-CB-Quad: 1       105      165      500      620    
+#CaLib-CB-Quad: 1       105      165      500      620    
 
 # CB time calibration
-CaLib-CB-Time: 1
+#CaLib-CB-Time: 1
 
 # CB rise time calibration  pi0_min   pi0_max
 #CaLib-CB-RiseTime: 1        110       160
@@ -111,14 +111,14 @@ CaLib-CB-Time: 1
 #CaLib-CB-TAPS-LED: 1
 
 # TAPS energy calibration
-CaLib-TAPS-Energy: 1
+#CaLib-TAPS-Energy: 1
 # TAPS energy calibration (BG subtr.)
 #                             on/off  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max  time CB-TAPS
-CaLib-TAPS-Energy-BG-Subtr:   1       -70        -40         -200     -100     50      200      -70     70        45  70
+#CaLib-TAPS-Energy-BG-Subtr:   1       -70        -40         -200     -100     50      200      -70     70        45  70
 
 # TAPS quadratic energy correction
 #                on/off  pi0_min  pi0_max  eta_min  eta_max
-CaLib-TAPS-Quad: 1       110      160      490      610
+#CaLib-TAPS-Quad: 1       110      160      490      610
 
 # TAPS time calibration
 #CaLib-TAPS-Time: 1
@@ -130,7 +130,7 @@ CaLib-TAPS-Quad: 1       110      160      490      610
 #CaLib-TAPS-LED: 1
 
 # PID Phi calibration
-CaLib-PID-Phi: 1
+#CaLib-PID-Phi: 1
 
 # PID energy calibration
 #                   on/off  pi0_min  pi0_max  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max
@@ -143,19 +143,19 @@ CaLib-PID-Energy-Trad: 1
 #CaLib-PID-Droop: 1
 
 # PID time calibration
-CaLib-PID-Time: 1
+#CaLib-PID-Time: 1
 
 # veto-crystal correlation
-#CaLib-Veto-Corr: 1
+CaLib-Veto-Corr: 1
 
 # Veto energy
-#CaLib-Veto-Energy: 1
+CaLib-Veto-Energy: 1
 
 # Veto time
-#CaLib-Veto-Time: 1
+CaLib-Veto-Time: 1
 
 # tagger time calibration
-CaLib-Tagger-Time: 1
+#CaLib-Tagger-Time: 1
 
 # bad scaler reads
 #CaLib-BadScalerReads: 1
