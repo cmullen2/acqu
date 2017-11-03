@@ -28,7 +28,7 @@ Foam-Distribution:	3	0		data.AMC/ppi0_145-1500.db
 Foam-Limits:	0	0.2 	1
 ##
 ##		Polarisation Vectors
-Beam-Pol: 	0.00 0.00 0.00   
+Beam-Pol: 	0.700 0.700 0.00   
 Target-Pol:	0.00 0.00 0.00   
 Recoil-Pol:	0.00 0.00 0.00
 ##
@@ -73,5 +73,9 @@ Particle: Gamma_2       22      0       1       Pi0     NULL
 #Ntuple-Output:	/w/work14/chris/AcquMC/GP_PPi0/PPi0_AcquMC_OutputNtuple
 #Tree-Output:	/w/work14/chris/ForRoddy/NewSim/Foamout/PPi0_OutputTree
 #Ntuple-Output:	/w/work14/chris/ForRoddy/NewSim/Foamout/PPi0_OutputNtuple
-Tree-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/FoamOut/Proton/TestingScattering/1Mil/PPi0_OutputTree
-Ntuple-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/FoamOut/Proton/TestingScattering/1Mil/PPi0_OutputNtuple
+
+
+Tree-Output:	/scratch/chris/PPi0_OutputTreePol
+Ntuple-Output:	/scratch/chris/PPi0_OutputNtuplePol
+#Tree-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/FoamOut/Proton/TestingScattering/1Mil/PPi0_OutputTree
+#Ntuple-Output:	/scratch/chris/Simulations/16d11m16y/AcquMC/FoamOut/Proton/TestingScattering/1Mil/PPi0_OutputNtuple

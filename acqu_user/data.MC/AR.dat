@@ -71,7 +71,8 @@ BatchDir: %%OUTDIR%%/
 #Directory to save any created ROOT files (include final '/')
 #Directory: $HOME/TestFiles/AcquOut/ProtonBad/
 #Directory: %%OUTDIR%%/
-Directory: /w/work14/chris/LatestAnalysisRuns/Sims/SimsJan17/AcquOutput/Deuterium/BeamAsym/PosPolarisation/
+#Directory: /w/work14/chris/LatestAnalysisRuns/Sims/SimsJan17/AcquOutput/Deuterium/BeamAsym/PosPolarisation/
+Directory: /w/work14/chris/
 #
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
