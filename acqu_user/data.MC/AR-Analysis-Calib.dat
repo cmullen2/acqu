@@ -1,56 +1,41 @@
 #########################################################################
 #                                                                       #
-# Physics analysis class configuration file                             #
+# GoAT analysis class configuration file                                #
 #                                                                       #
 #########################################################################
 
-
 Reconstruct:
 
-#Run-Number: 12694 
-
-#Last-Event: 500000
-
-# L1 trigger bits
-#         CB      TAPS OR  TAPS M2  Pulser  TAPS Pulser 
-L1-Bits:  0x8000  0x0040   0x0080   0x4000  0x8000
-# Read CB sum with the bit specified above from L2 instead of L1
-L1-CBSum-in-L2:
-
-# L2 trigger multiplicity bits
-#               M1(+)   M2      M3      M4+
-L2-Multi-Bits:  0x0200  0x0400  0x0800  0x1000
-
-# Beam helicity settings (41480 is hel state 0, 41477 is hel state 1)
-Beam-Pol-ADC: 7
-Beam-Pol-Bits: 41477 41480
-
-# relative/absolute livetime correction for tagger scalers
-#                    live CB   free CB   live tagg   free tagg  P2
-TaggSc-Live-Corr:    190       191       190         191        203
-
 #
-# CaLib configuration
+# CaLib configuration, off for MC
 #
+
+#RootTree-Output-Folder:		~
+RootTree-Input-Name:		A2G4
+RootTree-File-Name:		Acqu
+
+# Optional argument to include tagged photon energies in the tagger tree
+# GoAT currently handles this with an included histogram, reducing file size
+#
+#Save-Tagged-Energy: 1
+
+
 
 # General:          dbhost        dbname          dbuser      dbpass         calibration
-#Use-CaLib:          phys-jaguar   calib_may_2016  calib_ro    omega13    D-Butanol_May_16
-#Use-CaLib:      $HOME/acqu/CaLib_DB/Aug_16/CaLib.db                       LD2_Aug_16
-#
 Use-CaLib:	/home/chris/acqu/acqu_user/data.2016.08/CaLib.db	  LD2_Aug_16
-#Use-CaLib:	/home/chris/acqu/acqu_user/data.2016.08/CaLibSept16.db	  LD2_Sept_16
+
 # tagger calib:     time    eff                                            (0=off/1=on)
-Use-CaLib-TAGG:     1       0
+Use-CaLib-TAGG:     0       0
 # CB calib:         energy  time    timewalk    quadr. energy    LED thr.  (0=off/1=on)
-Use-CaLib-CB:       1       1       1          1                1
+Use-CaLib-CB:       0       0       0          0                0
 # TAPS calib:       energy  time    quadr. energy   LED thr.     CFD thr.  (0=off/1=on)
-Use-CaLib-TAPS:     1       1       0               0            0
+Use-CaLib-TAPS:     0       0       0               0            0
 # PID calib:        phi     energy  time                                   (0=off/1=on)
-Use-CaLib-PID:      1       0       1
+Use-CaLib-PID:      0       0       0
 # Veto calib:       energy  time    LED thr.                               (0=off/1=on)
-Use-CaLib-Veto:     1       1       0
+Use-CaLib-Veto:     0       0       0
 # Bad scaler reads  list    first   last (0=off/1=on)    lists (ALL, NaI, ..., NONE, space-sep. list)
-Use-CaLib-BadScR:   0       1       0                    ALL
+Use-CaLib-BadScR:   0       0       0                    ALL
 
 #
 # software trigger configuration
@@ -108,7 +93,7 @@ Use-CaLib-BadScR:   0       1       0                    ALL
 #CaLib-CB-Walk: 1       110      160      -25         25         -200    -90       90        200      -70     70
 
 # CB-TAPS LED calibration
-CaLib-CB-TAPS-LED: 1
+#CaLib-CB-TAPS-LED: 1
 
 # TAPS energy calibration
 #CaLib-TAPS-Energy: 1
@@ -163,5 +148,20 @@ CaLib-PID-Energy-Trad: 1
 # PWO check
 #CaLib-PWO-Check: 1
 
+
+
 Initialise:
 
+Display: 1D nParticles 	  15 0 15 
+Display: 1D clusterEnergy 85 0 850
+Display: 1D theta         180 0 180
+Display: 1D phi	          360 -180 180
+Display: 1D time 	  200 -100 100 
+Display: 1D nTagged	  100 0 100 
+Display: 1D taggedEnergy  160 0 1600 
+Display: 1D taggedChannel 352 0 352 
+Display: 1D taggedTime    200 -100 100
+Display: 1D vetoEnergy    25 0 25 
+Display: 1D MWPC0Energy   500 0 500 
+Display: 1D MWPC1Energy   500 0 500
+Display: 1D energySum     2000 0 2000

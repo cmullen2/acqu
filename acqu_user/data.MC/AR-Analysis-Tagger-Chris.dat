@@ -431,7 +431,7 @@ Initialise:
 Display:  1D    ScalerAcc  352      0   352
 Display:  1D    TimeOR     2000   -1000   1000
 #Display:  1D    Time       2000   -96   138   0   352
-Display:  1D    Eelect     352       v2u_plot/883.ehist
+#Display:  1D    Eelect     352       v2u_plot/883.ehist
 #
 #Display: 2D    TimeOR  200  -96  138  -1  Hits 272  0  272  -1
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

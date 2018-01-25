@@ -296,11 +296,18 @@ void MyFinishMacro()
     // check for physics analysis
     if (!gAR->GetAnalysis()->GetPhysics())
     {
+
+    printf("\nCAM Entry One ...\n");
+
         // build the output file name depending on the type of analysis
         if (gAR->IsOnline())
             outFileName.Form("%sARHistograms_%s.root", gAR->GetTreeDir(), ExtractPureFileName(gAR->GetFileName()));
         else
             outFileName.Form("%sARHistograms_%s.root", gAR->GetTreeDir(), ExtractPureFileName(gAR->GetTreeFile()->GetName()));
+
+
+
+    printf("\nCAM Entry Two ...\n");
 
         // create output file and save objects
         TFile* f = new TFile(outFileName.Data(), "recreate");
@@ -310,12 +317,13 @@ void MyFinishMacro()
         delete f;
     }
     else
-    {
+    { 
+    printf("\nCAM Entry 3 ...\n");
         // get the run number
         TA2MyPhysics* ana = (TA2MyPhysics*)gAR->GetAnalysis()->GetPhysics();
         Int_t run = 0;
         if (ana) run = ana->GetRunNumber();
-
+   printf("\n CAM ENTRY 4 ... \n");
         // Correct tagger scalers for different dead-times in the tagger DAQ and
         // the CB DAQ, respectively.
         // On September 24 2008 a new pair of scalers was installed for this purpose
@@ -326,10 +334,13 @@ void MyFinishMacro()
         // Check if output file is already open
         TFile* f;
         if (f = ana->GetOutputFile())
-        {
+        {   printf("\nCAM ENtry 5 ... %s  \n", ana->GetOutputFile());
             // Save histograms to file and close it
             f->Write();
+           printf("\nCAM ENtry 6 ... \n");
+            // Save histograms to file and close it
             f->cd();
+           printf("\nCAM ENtry 7 ... \n");
             gROOT->GetList()->Write();
             printf("Saved all histograms to %s\n", f->GetName());
             delete f;

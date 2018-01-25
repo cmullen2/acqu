@@ -56,7 +56,7 @@ Branch:   mc_rnd_id     8
 #TreeFile: scratch/geant.root
 #TreeFile: /scratch/chris/Simulations/16d11m16y/AcquMC/a2geantOut/Deuterium/ScatAsym/1MilAy1/A2OutPolPos_Pol.root
 #TreeFile: /home/chris/acqu/acqu_user/data.MC/GP_PPi0PERP_90062.root 
-TreeFile:   /w/work14/chris/LatestAnalysisRuns/Sims/SimsJan17/a2geantOut/Deuterium/BeamAsym/PosPolarisation/A2OutPosPol.root
+#TreeFile:   /w/work14/chris/LatestAnalysisRuns/Sims/SimsJan17/a2geantOut/Deuterium/BeamAsym/PosPolarisation/A2OutPosPol.root
 #
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -64,7 +64,8 @@ TreeFile:   /w/work14/chris/LatestAnalysisRuns/Sims/SimsJan17/a2geantOut/Deuteri
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ## Batch mode operation...redirect output directory for log files etc.
 #BatchDir: ./
-BatchDir: %%OUTDIR%%/
+#BatchDir: %%OUTDIR%%/
+BatchDir: /scratch/chris/temp/
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -72,8 +73,8 @@ BatchDir: %%OUTDIR%%/
 #Directory: $HOME/TestFiles/AcquOut/ProtonBad/
 #Directory: %%OUTDIR%%/
 #Directory: /w/work14/chris/LatestAnalysisRuns/Sims/SimsJan17/AcquOutput/Deuterium/BeamAsym/PosPolarisation/
-Directory: /w/work14/chris/
-#
+#Directory: /w/work14/chris/
+Directory: /scratch/chris/temp/
 #
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #

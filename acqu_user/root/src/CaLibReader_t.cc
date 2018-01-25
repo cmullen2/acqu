@@ -502,10 +502,11 @@ Bool_t CaLibReader_t::ApplyCBcalib(TA2Detector* det)
 
         Info("ApplyCBcalib", "CB time calibration was applied");
     }
-
+   
     // CB time walk calibration
     if (fCBwalk)
     {
+
         Double_t tw0[nElem], tw1[nElem], tw2[nElem], tw3[nElem];
         Double_t tw4[4];
         
@@ -515,6 +516,7 @@ Bool_t CaLibReader_t::ApplyCBcalib(TA2Detector* det)
             !ReadParameters("cb_walk2", tw2, nElem) ||
             !ReadParameters("cb_walk3", tw3, nElem))
         {
+
             DisableCBcalib();
             fWasError = kTRUE;
             return kFALSE;

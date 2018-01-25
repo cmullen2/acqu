@@ -944,7 +944,7 @@ void TA2MyCaLib::PostInit()
             {
                 sprintf(name, "CaLib_PID_dE_E_%03d", i);
                 sprintf(title, "CaLib_PID_dE_E_%03d;CB cluster energy [MeV];PID energy [Channel];CB cluster theta [deg]", i);
-                fHCalib_PID_dE_E[i] = new TH3F(name, title,  500, 0, 1000, 500, 0, 2000, 14, 20, 160);
+                fHCalib_PID_dE_E[i] = new TH3F(name, title,  500, 0, 1000, 500, 0, 2000, 14, 20, 160);  //CAM Changed 2000 pid range to 20
             }
         }
     }

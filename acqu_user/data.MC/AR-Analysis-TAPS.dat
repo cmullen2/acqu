@@ -35,7 +35,7 @@ TAPS_SimpleReconstruct: 0
 #DeltaE vs. E between Veto and BaF2-Clusters configuration. When a cut is set
 #active, the appendant TCut with name specified below must exist in ROOT file.
 #TAPS_dEvE_Active:  0
-TAPS_dEvE_Cuts:  data/cuts/TAPS_DeltaE-E.root
+TAPS_dEvE_Cuts:  data.MC/cuts/TAPS_DeltaE-E.root
 TAPS_dEvE_Proton:   0
 TAPS_dEvE_ChPion:   0
 TAPS_dEvE_Electron: 0
@@ -51,7 +51,7 @@ TAPS_dEvE_Electron_CutName:  pie
 #TAPS and Tagger dime difference.
 #If TAPS_TOF_onlyPhoton: 1 then all uncharged hits are photons. You might
 #define a neutron-TOF-cut, then set TAPS_TOF_onlyPhoton: 0
-#TAPS_TOF_Cuts:  data/cuts/TAPS_TOF2.root
+#TAPS_TOF_Cuts:  data.MC/cuts/TAPS_TOF2.root
 TAPS_TOF_Nucleon:     0
 TAPS_TOF_onlyPhoton:  1
 #TAPS_TOF_Nucleon_CutName:  nucleon

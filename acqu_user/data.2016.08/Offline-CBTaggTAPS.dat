@@ -20,8 +20,8 @@ Branch:	  Mk1_Header        120000
 
 #July2017 NewStorageHierarchy
 #Directory: /w/work14/chris/LatestAnalysisRuns/Data/DataJul17/AcquOutput/EmptyTarget/Perp/
-Directory: /w/work14/chris/LatestAnalysisRuns/Data/DataJul17/AcquOutput/Perp/
-
+#Directory: /w/work14/chris/LatestAnalysisRuns/Data/DataJul17/AcquOutput/Perp/
+Directory: /scratch/chris/TestingCalibration/
 
 
 
