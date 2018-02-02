@@ -48,7 +48,7 @@ Use-CaLib-TAPS:     1       1       0               0            0
 # PID calib:        phi     energy  time                                   (0=off/1=on)
 Use-CaLib-PID:      1       0       1
 # Veto calib:       energy  time    LED thr.                               (0=off/1=on)
-Use-CaLib-Veto:     1       1       0
+Use-CaLib-Veto:     0       1       0
 # Bad scaler reads  list    first   last (0=off/1=on)    lists (ALL, NaI, ..., NONE, space-sep. list)
 Use-CaLib-BadScR:   0       1       0                    ALL
 
@@ -108,26 +108,26 @@ Use-CaLib-BadScR:   0       1       0                    ALL
 #CaLib-CB-Walk: 1       110      160      -25         25         -200    -90       90        200      -70     70
 
 # CB-TAPS LED calibration
-CaLib-CB-TAPS-LED: 1
+#CaLib-CB-TAPS-LED: 1
 
 # TAPS energy calibration
-#CaLib-TAPS-Energy: 1
+CaLib-TAPS-Energy: 1
 # TAPS energy calibration (BG subtr.)
 #                             on/off  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max  time CB-TAPS
 #CaLib-TAPS-Energy-BG-Subtr:   1       -70        -40         -200     -100     50      200      -70     70        45  70
 
 # TAPS quadratic energy correction
 #                on/off  pi0_min  pi0_max  eta_min  eta_max
-#CaLib-TAPS-Quad: 1       110      160      490      610
+CaLib-TAPS-Quad: 1       110      160      490      610
 
 # TAPS time calibration
 #CaLib-TAPS-Time: 1
 
 # TAPS PSA calibration
-#CaLib-TAPS-PSA: 1
+CaLib-TAPS-PSA: 1
 
 # TAPS LED calibration
-#CaLib-TAPS-LED: 1
+CaLib-TAPS-LED: 1
 
 # PID Phi calibration
 #CaLib-PID-Phi: 1
@@ -137,7 +137,7 @@ CaLib-CB-TAPS-LED: 1
 #CaLib-PID-Energy:   1       110      150      -10        10         -200     -100      100       200      -70     70
 
 # PID energy calibration (traditional)
-CaLib-PID-Energy-Trad: 1
+#CaLib-PID-Energy-Trad: 1
 
 # PID droop calibration
 #CaLib-PID-Droop: 1

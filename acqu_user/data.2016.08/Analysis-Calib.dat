@@ -87,7 +87,7 @@ Finish:		root/macros/MyFinishMacro.C 	MyFinishMacro()
 #Finish:	root/macros/FinishTree.C	FinishTree("ARHistograms_XXX.root")
 ##
 #Removing for lin pol 12/07/17 CAM
-#Display: All
+Display: All
 ##
 ## Save all accepted events (ie those which pass all data cuts) to a
 ## ROOT file. Data saved in RAW format (ie ADC indices and values)
