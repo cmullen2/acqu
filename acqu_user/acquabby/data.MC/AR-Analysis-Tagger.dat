@@ -1,0 +1,32 @@
+#------------------------------------------------------------------------------
+#                     Configuration file for TA2Tagger
+#          (AcquRoot 4v4 user package Tagger apparatus class)
+#------------------------------------------------------------------------------
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Set-up of magnetic field and MAMI electron beam energy (needed for correct
+#calculation of emitted photon energy).
+#         NMR field    MAMI beam energy
+Magnet:  1.05715      1557
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Detector systems in Tagger apparatus
+#          Name      Class Name      Setup file
+Detector:  FPD       TA2Ladder	     AR-Analysis-Tagger-Ladder.dat
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Standard AcquRoot options
+Reconstruct:
+ParticleID:   16
+Initialise:
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Display some basic histograms
+#Display: 1D PhotonEnergy 352 v2u_plot/883.ghist -1
+#Display: 1D PhotonEnergy 352 v2u_plot/450.ghist -1
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#

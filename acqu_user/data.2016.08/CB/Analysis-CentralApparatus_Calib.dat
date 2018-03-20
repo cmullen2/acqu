@@ -1,0 +1,144 @@
+## SVN info: $Id: CentralApparatus.dat 119 2013-03-11 11:45:08Z mushkar $
+##-----------------------------------------------------------------------
+##
+## Specify list of detectors which constitute the Crystal Ball apparatus
+##	  Name       Class Name		Setup file
+#_______________________________________________________________
+# 
+Detector: NaI        TA2CalArray        data.2016.08/CB/Analysis-NaI.dat
+#Detector: PID        TA2PlasticPID      Analysis-PID_Calib.dat
+Detector:       PID     TA2PlasticPID   data.2016.08/PID/Detector-PID-EqGain.dat
+#Detector: PID        TA2PlasticPID      Analysis-PID.dat
+#Detector: CylMWPC    TA2CylMwpc         Analysis-MWPC.dat
+#Detector: CylMWPC    TA2CylMwpc         AR-Analysis-CentApp-MWPC-1.dat-Set15
+Detector: CylMWPC    TA2CylMwpc         data.2016.08/MWPC/AR-Analysis-CentApp-MWPC_Aug16.dat
+#Detector: CylMWPC    TA2CylMwpc         CylMwpc_may2013.dat
+#_______________________________________________________________
+#
+## Data reconstruction method for Crystal Ball 
+Reconstruct:
+##
+## PDG database	# particles
+ParticleID: 	16
+##
+## Do some post-initialisation.
+## Should usually be done before display is setup
+Initialise:
+##
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Allows an overall time adjustment of PID timing
+#Misc: PIDTimeShift 0.0
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Allows an overall position shift for CB NaI crystals
+#May be useful for misaligned target positions
+#Misc: PosShift +0.0 +0.0 +0.0
+#Shift-Coord: TZ 6
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#DeltaE-E cuts for PID/NaI
+#Misc: PIDCuts 48
+#Options are:
+#1. PID element this cut is used for
+#2. PDG ID of particle, if DeltaE-E is inside the cut region
+#3. Name of cut, cuts can be reused for multiple PID elements
+#4. ROOT file containing the cut, files can be reused for multiple PID elements
+#            1. 2.   3.        4.
+
+##
+## Droop correction for light attenuation inside PID strips
+##     Lpid     Npoints         DroopPosition ...               DroopFactor
+# Droop: 300.    7              0 120 140 160 180 200 300        0.76 0.80 0.85 0.92 0.97 0.99 1.00
+##
+
+## PID Droop Settings 
+## UsePidDroop PID_Length[mm]  PID_Radius[mm] PID_Target_Position[mm] Droop_Param PID_direction PID_Type
+PidDroopSettings: 1 300.0  33.0  100.0  1  1  3 24
+
+
+## PID Droop Parameters ## needs changing. 
+#PidDroopPositionParameters: /scratch/mbashkan/Mainz/New_acqu/acqu/acqu_user/data/PID_Droop_Corr_Aug_16.root
+PidDroopPositionParameters: data.2016.08/PID/PID_Droop_Corr_Aug_16.root
+
+
+
+## ElDroop correction for light attenuation inside PID strips
+## ElDroop: 1.
+#ElDroop:   0  30   1.48  1.41  1.34  1.28  1.23  1.18  1.13  1.09  1.05  1.01  0.981  0.949  0.919  0.89  0.864  0.839  0.816  0.793  0.772#  0.752  0.733  0.715  0.698  0.682  0.666  0.651  0.637  0.623  0.61  0.598 
+#ElDroop:   1  30   1.4  1.34  1.29  1.24  1.19  1.15  1.11  1.07  1.04  1.01  0.975  0.946  0.919  0.893  0.869  0.846  0.824  0.803  0.784#  0.765  0.747  0.73  0.714  0.698  0.683  0.669  0.655  0.642  0.629  0.617 
+#ElDroop:   2  30   1.13  1.12  1.11  1.09  1.08  1.07  1.06  1.04  1.03  1.02  1.01  0.999  0.989  0.979  0.968  0.958  0.949  0.939  0.93 # 0.921  0.912  0.903  0.894  0.886  0.877  0.869  0.861  0.853  0.845  0.838 
+#ElDroop:   3  30   1.15  1.13  1.11  1.09  1.07  1.05  1.03  1.01  0.994  0.978  0.962  0.946  0.931  0.917  0.903  0.889  0.876  0.863  0.#85  0.838  0.826  0.815  0.803  0.793  0.782  0.772  0.762  0.752  0.742  0.733 
+#ElDroop:   4  30   1.25  1.21  1.18  1.15  1.12  1.09  1.07  1.04  1.02  0.998  0.976  0.956  0.936  0.917  0.899  0.881  0.864  0.848  0.8#32  0.817  0.803  0.789  0.775  0.762  0.749  0.737  0.725  0.714  0.703  0.692 
+#ElDroop:   5  30   1.37  1.32  1.28  1.23  1.19  1.16  1.12  1.09  1.06  1.03  0.999  0.973  0.948  0.924  0.901  0.88  0.859  0.84  0.821 # 0.803  0.786  0.769  0.754  0.738  0.724  0.71  0.696  0.684  0.671  0.659 
+#ElDroop:   6  30   1.35  1.31  1.27  1.23  1.2  1.16  1.13  1.1  1.08  1.05  1.02  0.999  0.976  0.954  0.933  0.913  0.894  0.875  0.857  #0.84  0.824  0.808  0.793  0.778  0.764  0.751  0.737  0.725  0.712  0.701 
+#ElDroop:   7  30   1.35  1.31  1.27  1.23  1.19  1.16  1.12  1.09  1.06  1.04  1.01  0.984  0.96  0.938  0.916  0.895  0.876  0.857  0.839 # 0.821  0.805  0.789  0.773  0.758  0.744  0.73  0.717  0.704  0.692  0.68 
+#ElDroop:   8  30   1.2  1.17  1.15  1.13  1.11  1.09  1.08  1.06  1.04  1.03  1.01  0.994  0.979  0.964  0.95  0.936  0.923  0.91  0.897  0#.885  0.873  0.861  0.85  0.839  0.828  0.817  0.807  0.797  0.787  0.778 
+#ElDroop:   9  30   1.16  1.14  1.12  1.1  1.08  1.06  1.04  1.03  1.01  0.995  0.979  0.965  0.95  0.936  0.923  0.91  0.897  0.885  0.873 # 0.861  0.85  0.839  0.828  0.817  0.807  0.797  0.787  0.778  0.768  0.759 
+#ElDroop:   10  30   1.36  1.31  1.27  1.22  1.19  1.15  1.11  1.08  1.05  1.02  0.995  0.969  0.944  0.921  0.898  0.877  0.857  0.837  0.8#19  0.801  0.784  0.768  0.752  0.738  0.723  0.709  0.696  0.683  0.671  0.659 
+#ElDroop:   11  30   1.26  1.23  1.2  1.17  1.14  1.11  1.08  1.06  1.03  1.01  0.989  0.968  0.948  0.928  0.91  0.892  0.875  0.858  0.842#  0.827  0.812  0.798  0.784  0.771  0.758  0.746  0.734  0.722  0.711  0.7 
+#ElDroop:   12  30   1.26  1.22  1.19  1.16  1.13  1.1  1.08  1.05  1.03  1.01  0.986  0.966  0.946  0.927  0.909  0.891  0.874  0.858  0.84#2  0.827  0.812  0.798  0.785  0.772  0.759  0.747  0.735  0.723  0.712  0.701 
+#ElDroop:   13  30   1.24  1.21  1.18  1.15  1.12  1.09  1.07  1.05  1.02  1  0.979  0.958  0.939  0.92  0.902  0.885  0.868  0.852  0.836  #0.822  0.807  0.793  0.78  0.767  0.754  0.742  0.73  0.719  0.708  0.697 
+#ElDroop:   14  30   1.35  1.3  1.25  1.21  1.17  1.13  1.1  1.06  1.03  1  0.973  0.947  0.922  0.898  0.876  0.854  0.834  0.815  0.796  0#.778  0.761  0.745  0.73  0.715  0.7  0.687  0.673  0.661  0.648  0.636 
+#ElDroop:   15  30   1.11  1.1  1.08  1.07  1.05  1.04  1.02  1.01  0.997  0.985  0.972  0.96  0.948  0.936  0.925  0.914  0.903  0.892  0.8#82  0.872  0.862  0.853  0.843  0.834  0.825  0.816  0.807  0.799  0.791  0.783 
+#ElDroop:   16  30   1.29  1.25  1.21  1.17  1.14  1.1  1.07  1.04  1.01  0.984  0.959  0.934  0.911  0.89  0.869  0.849  0.83  0.811  0.794#  0.777  0.761  0.746  0.731  0.717  0.703  0.69  0.678  0.665  0.654  0.642 
+#ElDroop:   17  30   1.2  1.17  1.14  1.12  1.09  1.07  1.05  1.02  1  0.983  0.964  0.946  0.928  0.911  0.894  0.878  0.863  0.848  0.834 # 0.82  0.807  0.794  0.781  0.769  0.757  0.746  0.735  0.724  0.714  0.703 
+#ElDroop:   18  30   1.21  1.19  1.16  1.14  1.11  1.09  1.07  1.05  1.03  1.01  0.991  0.973  0.956  0.939  0.923  0.908  0.893  0.878  0.8#64  0.85  0.837  0.824  0.812  0.8  0.788  0.777  0.766  0.755  0.745  0.735 
+#ElDroop:   19  30   1.15  1.13  1.11  1.09  1.08  1.06  1.05  1.03  1.02  1.01  0.992  0.979  0.966  0.954  0.942  0.93  0.918  0.907  0.89#6  0.885  0.875  0.865  0.855  0.845  0.836  0.826  0.817  0.808  0.8  0.791 
+#ElDroop:   20  30   1.43  1.37  1.31  1.26  1.21  1.17  1.13  1.09  1.05  1.02  0.986  0.956  0.928  0.901  0.877  0.853  0.831  0.809  0.7#89  0.77  0.752  0.734  0.718  0.702  0.686  0.672  0.658  0.645  0.632  0.619 
+#ElDroop:   21  30   1.09  1.08  1.08  1.07  1.06  1.05  1.04  1.03  1.02  1.02  1.01  1  0.992  0.984  0.977  0.969  0.962  0.955  0.948  0#.941  0.934  0.927  0.921  0.914  0.907  0.901  0.895  0.889  0.882  0.876 
+#ElDroop:   22  30   1.1  1.09  1.08  1.08  1.07  1.06  1.05  1.04  1.03  1.02  1.02  1.01  1  0.993  0.985  0.977  0.97  0.963  0.956  0.94#9  0.942  0.935  0.928  0.921  0.915  0.908  0.902  0.896  0.889  0.883 
+#ElDroop:   23  30   1.28  1.25  1.22  1.19  1.16  1.13  1.11  1.08  1.06  1.04  1.02  0.996  0.976  0.957  0.939  0.921  0.904  0.888  0.87#2  0.857  0.842  0.828  0.814  0.801  0.788  0.775  0.763  0.752  0.74  0.729 
+
+## Angle-difference limits (in rad.)  for hits correlation
+## 		MaxPhiMwpcNaI	MaxPhiTrackPid	MaxPhiPidNaI	MaxPhiMwpcInterNaI	MaxPhiMwpcInterPid
+# AngleLimits:	20.		50.		100.		30.			50.
+AngleLimits:	20.             50.             15.             60.                     50.
+##
+##
+##		MaxTrack	MaxRpsvertex	MaxZpsvertex	MinZpsvertex
+# TrackLimits:	10		30.		500.		-500.
+TrackLimits:	10		70.		1000.		-1000.
+##
+
+
+#
+Display: 2D EclNaI 500 0 500 0   EhitPid 200 0 1200 0
+Display: 2D EclNaI 500 0 500 1   EhitPid 200 0 1200 1
+Display: 2D EclNaI 500 0 500 2   EhitPid 200 0 1200 2
+Display: 2D EclNaI 500 0 500 3   EhitPid 200 0 1200 3
+Display: 2D EclNaI 500 0 500 4   EhitPid 200 0 1200 4
+Display: 2D EclNaI 500 0 500 5   EhitPid 200 0 1200 5
+Display: 2D EclNaI 500 0 500 6   EhitPid 200 0 1200 6
+Display: 2D EclNaI 500 0 500 7   EhitPid 200 0 1200 7
+Display: 2D EclNaI 500 0 500 8   EhitPid 200 0 1200 8
+Display: 2D EclNaI 500 0 500 9   EhitPid 200 0 1200 9
+Display: 2D EclNaI 500 0 500 10   EhitPid 200 0 1200 10
+Display: 2D EclNaI 500 0 500 11   EhitPid 200 0 1200 11
+Display: 2D EclNaI 500 0 500 12   EhitPid 200 0 1200 12
+Display: 2D EclNaI 500 0 500 13   EhitPid 200 0 1200 13
+Display: 2D EclNaI 500 0 500 14   EhitPid 200 0 1200 14
+Display: 2D EclNaI 500 0 500 15   EhitPid 200 0 1200 15
+Display: 2D EclNaI 500 0 500 16   EhitPid 200 0 1200 16
+Display: 2D EclNaI 500 0 500 17   EhitPid 200 0 1200 17
+Display: 2D EclNaI 500 0 500 18   EhitPid 200 0 1200 18
+Display: 2D EclNaI 500 0 500 19   EhitPid 200 0 1200 19
+Display: 2D EclNaI 500 0 500 20   EhitPid 200 0 1200 20
+Display: 2D EclNaI 500 0 500 21   EhitPid 200 0 1200 21
+Display: 2D EclNaI 500 0 500 22   EhitPid 200 0 1200 22
+Display: 2D EclNaI 500 0 500 23   EhitPid 200 0 1200 23
+
+Display: 2D EOR 400 0 400 -1 DeltaEOR 100 0 6 -1
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Display phi correlation between PID and NaI for charged particles
+Display: 1D DeltaPhi 360 -180 180
+Display: 2D PID_Hits 24 0 24 -1              NaI_ClPhi 180 -180 180 -1
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+
+
+
+

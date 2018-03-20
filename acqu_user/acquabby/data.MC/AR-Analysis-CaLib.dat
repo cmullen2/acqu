@@ -1,0 +1,189 @@
+#########################################################################
+#                                                                       #
+# Physics analysis class configuration file                             #
+#                                                                       #
+#########################################################################
+
+
+Reconstruct:
+
+# L1 trigger bits
+#         CB      TAPS OR  TAPS M2  Pulser  TAPS Pulser 
+L1-Bits:  0x8000  0x0040   0x0080   0x4000  0x8000
+# Read CB sum with the bit specified above from L2 instead of L1
+L1-CBSum-in-L2:
+
+# L2 trigger multiplicity bits
+#               M1(+)   M2      M3      M4+
+L2-Multi-Bits:  0x0200  0x0400  0x0800  0x1000
+
+# Beam helicity settings (41480 is hel state 0, 41477 is hel state 1)
+Beam-Pol-ADC: 7
+Beam-Pol-Bits: 41477 41480
+
+# Pizza detector droop correction
+#Pizza-Droop-Corr: $acqu/data/Oct_16/Calib/Pizza_Droop_Corr_He4_Oct_16.root
+
+# relative/absolute livetime correction for tagger scalers
+#                    live CB   free CB   live tagg   free tagg  P2
+TaggSc-Live-Corr:    190       191       190         191        203
+
+# General:      dbhost       dbname            dbuser      dbpass        calibration
+#Use-CaLib:      phys-jaguar  calib_jul_2014    calib_ro    omega13       LH2_Oct_14
+# General:      dbfile                                                   calibration
+Use-CaLib:      $HOME/CaLib/db/jan17.db                    Eta-4He_Jan_17
+# tagger calib:     time    eff  (0=off/1=on)
+Use-CaLib-TAGG:     0       0
+# CB calib:         energy  time    timewalk    quadr. energy   LED thr.  (0=off/1=on)
+Use-CaLib-CB:       0       0       0           0               0
+# TAPS calib:       energy  time    quadr. energy   LED thr.    CFD thr.  (0=off/1=on)
+Use-CaLib-TAPS:     0       0       0               0           0
+# PID calib:        phi     energy  time  (0=off/1=on)
+Use-CaLib-PID:      0       0       0
+# Veto calib:       energy  time    LED thr.  (0=off/1=on)
+Use-CaLib-Veto:     0       0       0
+# Pizza calib:      phi     energy  time  (0=off/1=on)
+Use-CaLib-Pizza:    0       0       0
+# Bad scaler reads  list    first   last (0=off/1=on)    lists (ALL, NaI, ..., NONE, space-sep. list)
+Use-CaLib-BadScR:   0       0       0                    ALL
+
+#
+# software trigger configuration
+#
+
+## total multiplicity
+#Trigger-Total-Mult: 2
+#
+## TAPS alone multiplicity
+#Trigger-TAPS-Mult: 9999
+#
+## CB thresholds: total CB sum / CB segment sum
+#Trigger-CB-Thresholds: 320 5
+#
+## TAPS LED1 thresholds
+#Trigger-TAPS-LED1-Threshold: 5
+#
+## TAPS LED2 thresholds
+#Trigger-TAPS-LED2-Threshold: 9999
+#
+## TAPS excluded rings
+#Trigger-TAPS-Excluded-Rings: $acqu/data/May_09/Calib/trig_excl_taps_rings
+#
+## Bad tagger channels
+#Bad-Tagger-Channels: $acqu/data/Feb_17/Calib/tagg_bad
+#
+## Bad CB cluster centers
+#Bad-CB-Clusters: $acqu/data/May_09/Calib/cb_bad
+#
+## Bad TAPS cluster centers
+#Bad-TAPS-Clusters: $acqu/data/May_09/Calib/taps_bad
+
+#
+# TA2MyCaLib calibration configuration
+#
+
+# target position calibration
+#CaLib-Target-Position: 1
+
+# CB energy calibration
+#CaLib-CB-Energy: 1
+
+# CB energy calibration (BG subtr.)
+#                           on/off  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max
+#CaLib-CB-Energy-BG-Subtr:   1       -50         -20         -300     -150     150      300      -100   100
+
+# CB quadratic energy correction
+#              on/off  pi0_min  pi0_max  eta_min  eta_max
+#CaLib-CB-Quad: 1       105      165      500      620    
+
+# CB time calibration
+#CaLib-CB-Time: 1
+
+# CB rise time calibration  pi0_min   pi0_max
+#CaLib-CB-RiseTime: 1        110       160
+
+# CB time walk calibration
+#              on/off  pi0_min  pi0_max  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max
+#CaLib-CB-Walk: 1       110      160      -50         -20         -300     -150     150      300      -100    100
+#                   on/off  pi0_min  pi0_max  phi_min  phi_max  protonE_min  protonE_max
+#CaLib-CB-Walk-EPT:  1       115      155      170      190      250          400 
+
+# CB-TAPS LED calibration
+#CaLib-CB-TAPS-LED: 1
+
+# TAPS energy calibration
+#CaLib-TAPS-Energy: 1
+
+# TAPS energy calibration (BG subtr.)
+#                             on/off  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max
+#CaLib-TAPS-Energy-BG-Subtr:   1       -50         -20          -300     -150    150      300      -100   100
+
+# TAPS quadratic energy correction
+#                on/off  pi0_min  pi0_max  eta_min  eta_max
+#CaLib-TAPS-Quad: 1       110      160      490      610
+
+# TAPS time calibration
+#CaLib-TAPS-Time: 1
+
+# TAPS PSA calibration
+#CaLib-TAPS-PSA: 1
+
+# TAPS LED calibration
+#CaLib-TAPS-LED: 1
+
+# PID Phi calibration
+#CaLib-PID-Phi: 1
+
+# PID energy calibration
+#                   on/off  pi0_min  pi0_max  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max
+#CaLib-PID-Energy:   1       120      150      -3.        5         -200     -100      100       200      -70     70
+
+# PID energy calibration (traditional)
+#CaLib-PID-Energy-Trad: 1
+
+# PID time calibration
+#CaLib-PID-Time: 1
+
+# PID check
+#CaLib-PID-Check: 1
+
+# veto-crystal correlation
+CaLib-Veto-Corr: 1
+
+# Veto energy
+#CaLib-Veto-Energy: 1
+
+# Veto time
+#CaLib-Veto-Time: 1
+
+# tagger time calibration
+#CaLib-Tagger-Time: 1
+
+# bad scaler reads
+#CaLib-BadScalerReads: 1 1000
+
+# PWO check
+#CaLib-PWO-Check: 1
+
+# Pizza detector check
+#CaLib-Pizza-Check: 1
+
+# Pizza detector Phi calibration
+#CaLib-Pizza-Phi: 1
+
+# Pizza detector energy calibration (traditional)
+#CaLib-Pizza-Energy-Trad: 1
+
+# Pizza detector time calibration
+#CaLib-Pizza-Time: 1
+
+# Pizza time walk calibration
+#                 on/off  pi0_min  pi0_max  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max  mm_min  mm_max
+#CaLib-Pizza-Walk: 1       110      160      -5          5          -200     -50       50       200      0       100
+
+# trigger debugging
+#               on/off  prompt_min  prompt_max  bg1_min  bg1_max  bg2_min  bg2_max
+#CaLib-Trigger:  1       40          80          -300     -100     200      400
+
+Initialise:
+

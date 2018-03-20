@@ -1,0 +1,194 @@
+##-----------------------------------------------------------------------
+##--Author	JRM Annand   	29th Apr 2003
+##--Update	Ken Livingston	19th Mar 2014
+##--Description
+##                *** Acqu++ <-> Root ***
+## Online/Offline Analysis of Sub-Atomic Physics Experimental Data 
+##
+## Parameter File: LinearPolapparatus.dat (specified in LinearPolanalysis.dat)
+## or equivalent
+##
+##-----------------------------------------------------------------------
+#
+# Data reconstruction method 
+Reconstruct:
+#x1
+### Basic setup - needs changed to suit run period
+## edge can be fit|epics
+## plane can be file|epics: if file - need "runs:" lines below here.
+## scaler_ref can be overridden by specific run settings in the "runs: lines"
+#			runMin  runMax   norm_energy   edgeMin  edgeMax          tagger ladder   scaler_ref	  	                 buffers       edge	plane  deadband(MeV)
+#for positive target polarization?	
+#650 tneg
+Misc:	app    17747     17757            700.00          320.0    390.0	TAGG	FPD	data/LadderScalers/LadderScaler_17760.dat  5        	fit     file   0.2	
+#650 tneg				
+#Misc:	app    17811     17812            700.00          320.0    390.0	TAGG	FPD	data/LadderScalers/LadderScaler_17809.dat  5        	fit     file   0.2
+#650 tneg				
+#Misc:	app    17851     17853            700.00          420.0    495.0	TAGG	FPD	data/LadderScalers/LadderScaler_17809.dat  5        	fit     file   0.2
+#450 tneg
+#Misc:	app    17869     17872            700.00          420.0    495.0        TAGG    FPD     data/LadderScalers/LadderScaler_17865.dat  5        	fit     file   0.2
+#450 tpos				
+#Misc:	app    17900     17911            700.00          420.0    495.0        TAGG    FPD     data/LadderScalers/LadderScaler_17898.dat  5        	fit     file   0.2
+#650 tpos
+#Misc:	app    17917     17917            700.00          420.0    495.0        TAGG    FPD     data/LadderScalers/LadderScaler_17916.dat  5        	fit     file   0.2
+#850 tpos
+##Misc:	app    17947     17948            700.00          420.0    495.0        TAGG    FPD     data/LadderScalers/LadderScaler_17937.dat  5        	fit     file   0.2
+#19937 LADDER SCALER MISSING- MUST RECREATE	
+#
+#	
+#
+#
+#Specify run ranges for para perp amo, and corresponding scaler reference files.
+#Should list all the run ranges here
+#Will use plane info if "plane" is set to "file" in "Misc: app" above
+#Misc: runs     runMin  runMax          scaler_ref                                      		                                                                           plane(para|perp|amo)  edge_setting  edge_range(+-meV)
+#for positive target polarization
+Misc:	runs	17747	17757		data/LadderScalers/LadderScaler_17760.dat		perp		      350.0        50.0
+#Misc:	runs	17811	17812		data/LadderScalers/LadderScaler_17809.dat		perp		      350.0        50.0
+#Misc:	runs	17851	17853		data/LadderScalers/LadderScaler_17809.dat		perp		      450.0        50.0
+#Misc:	runs	17869	17872		data/LadderScalers/LadderScaler_17865.dat		perp		      450.0        50.0
+#Misc:	runs	17900	17911		data/LadderScalers/LadderScaler_17898.dat		perp		      450.0        50.0
+#Misc:	runs	17917	17917		data/LadderScalers/LadderScaler_17916.dat		perp		      450.0        50.0
+#Misc:	runs	17947	17948		data/LadderScalers/LadderScaler_17937.dat		perp		      450.0        50.0
+#
+#
+#
+#
+#
+#Misc:	runs	11166	11193	/disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11167.dat	perp	650.0	50.0
+#Misc:   runs    11194    11224           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11209.dat         	perp                  650.0        50.0
+#Misc:   runs    11225    11260           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11240.dat         	perp                  650.0        50.0
+#Misc:   runs    11262   11330           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11290.dat         	perp                  450.0        50.0
+#Misc:   runs    11457    11468           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11453.dat         	perp                  450.0        50.0
+#Misc:   runs    11468    11520           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11483.dat         	perp                  450.0        50.0
+#Misc:   runs    11524    11564           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11537.dat         	perp                  650.0        50.0
+#Misc:   runs    11565    11616           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11589.dat         	perp                  650.0        50.0
+#Misc:   runs    11617    11672           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11644.dat         	perp                  650.0        50.0
+#Misc:   runs    11679    11751           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11709.dat         	perp                  850.0        50.0
+#
+#Helium and Carbon data
+#Misc:   runs    11752    11778           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11758.dat         	perp                  850.0        50.0
+#Misc:   runs    11779    11791           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11785.dat         	perp                  850.0        50.0
+#Misc:   runs    11792    11803           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11797.dat         	perp                  850.0        50.0
+#Misc:   runs    11804    11818           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11811.dat         	perp                  850.0        50.0
+#Misc:   runs    11819    11837           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11828.dat         	perp                  850.0        50.0
+#Misc:   runs    11838    11849           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11843.dat         	perp                  850.0        50.0
+#Misc:   runs    11850    11866           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11858.dat         	perp                  850.0        50.0
+#Misc:   runs    11867    11896           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11884.dat         	perp                  850.0        50.0
+#Misc:   runs    11897    11914           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11902.dat         	perp                  850.0        50.0
+#Misc:   runs    11915    11927           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11922.dat         	perp                  850.0        50.0
+#Misc:   runs    11928    11938           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11933.dat         	perp                  850.0        50.0
+#Misc:   runs    11939    11980           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11965.dat         	perp                  850.0        50.0
+#Misc:   runs    11981    12013           /disk/nobackup/001/spieker/Mainz1/acqu/acqu_user/data.2015.09/LadderScalers/LadderScalers_11991.dat         	perp                  850.0        50.0
+#
+# The "pvnames" and "rads" are required if "edge" or "plane" are set to epics in the  "Misc:	app"
+### Names of the epics channels for the variables required
+#               edge            radiator            plane            goni axes ......
+#defaults to:	BEAM:CBREM:Edge BEAM:CBREM:Radiator BEAM:CBREM:Plane BEAM:GONI:Axis_1 BEAM:GONI:Axis_2 BEAM:GONI:Axis_3 BEAM:GONI:Axis_4 BEAM:GONI:Axis_5
+#Misc:	pvnames BEAM:CBREM:Edge BEAM:CBREM:Radiator BEAM:CBREM:Plane BEAM:GONI:Axis_1 BEAM:GONI:Axis_2 BEAM:GONI:Axis_3 BEAM:GONI:Axis_4 BEAM:GONI:Axis_5
+#Misc:	pvnames A2LinPolCohEdge A2LinPolCohRadiator A2LinPolCohPlane A2GoniAxis1 A2GoniAxis2 A2GoniAxis3 A2GoniAxis4 A2GoniAxis5
+#
+### Value of epics radiator variable to specify radiator
+#               diamond		amo
+#defaults to:   4               2
+#Misc:   rads    4               2
+#
+#
+#
+#
+# These lines will specify the parameters for the ploarization tables for run ranges.
+# A different set of parameters should be defined for para and perp 
+### parameter sets for polarization of beam
+#
+#
+#
+################################################################PARAMETER TABLES#############################################################################
+#
+#paramters for 350 MeV edge tnegativ
+Misc:   	poltable  17747    17757 params para  0.002586 0.000174 15.569243 0.008582 1557.000000 3.000000 5.580125 1.046825 0.445922 0.000000 6.246502 
+Misc:   	poltable  17747    17757 params perp  0.002573 0.000156 15.472115 0.008977 1557.000000 3.000000 5.865173 1.139476 0.438520 0.000000 7.703008  
+#
+Misc:   	poltable  17811    17812 params para  0.002527 0.000163 13.657013 0.010541 1557.000000 3.000000 5.612281 1.015416 0.384410 0.000000 5.055033 
+Misc:   	poltable  17811    17812 params perp  0.002524 0.000140 15.342379 0.009301 1557.000000 3.000000 6.210719 1.169993 0.541060 0.000000 7.298538 
+#
+#parameters for 450MeV edge 
+# 
+Misc:   	poltable  17851    17853 params para  0.003633 0.000177 15.523103 0.008341 1557.000000 3.000000 4.444482 0.926283 0.455082 0.000000 4.077184
+Misc:   	poltable  17851    17853 params perp  0.003480 0.000158 10.789858 0.006174 1557.000000 3.000000 4.786690 1.058286 0.429327 0.000000 5.565008  
+#
+Misc:   	poltable  17869    17872 params para  0.003633 0.000177 15.523103 0.008341 1557.000000 3.000000 4.444482 0.926283 0.455082 0.000000 4.077184
+Misc:   	poltable  17869    17872 params perp  0.003480 0.000158 10.789858 0.006174 1557.000000 3.000000 4.786690 1.058286 0.429327 0.000000 5.565008  
+#
+Misc:   	poltable  17900    17911 params para  0.003633 0.000177 15.523103 0.008341 1557.000000 3.000000 4.444482 0.926283 0.455082 0.000000 4.077184
+Misc:   	poltable  17900    17911 params perp  0.003480 0.000158 10.789858 0.006174 1557.000000 3.000000 4.786690 1.058286 0.429327 0.000000 5.565008
+#
+Misc:   	poltable  17917    17917 params para  0.003633 0.000177 15.523103 0.008341 1557.000000 3.000000 4.444482 0.926283 0.455082 0.000000 4.077184 
+Misc:   	poltable  17917    17917 params perp  0.003480 0.000158 10.789858 0.006174 1557.000000 3.000000 4.786690 1.058286 0.429327 0.000000 5.565008 
+#
+Misc:   	poltable  17947    17948 params para  0.003633 0.000177 15.523103 0.008341 1557.000000 3.000000 4.444482 0.926283 0.455082 0.000000 4.077184
+Misc:   	poltable  17947    17948 params perp  0.003480 0.000158 10.789858 0.006174 1557.000000 3.000000 4.786690 1.058286 0.429327 0.000000 5.565008   
+#
+#
+###################################################################EXAMPLES##################################################################################
+#
+#paramters for 650 MeV edge tnegativ
+#Misc:   	poltable  11166    11260 params para  0.006107 0.000187 1.598077 0.123641 1557.000000 3.000000 3.307089 0.618379 0.626039 0.000000 1.649273
+#Misc:   	poltable  11166    11260 params perp  0.006204 0.000172 2.000668 0.225850 1557.000000 3.000000 3.379224 0.543443 0.649997 0.000000 1.585149
+#
+#paramters for 450 MeV edge tnegativ
+#                  		run range     type   	 plane  params: 
+#Misc:   	poltable  11261    11330 params para   0.003521 0.000173 1.759157 0.058490 1557.000000 3.000000 4.139624 0.742814 0.265161 0.000000 2.180203
+#Misc:   	poltable  11261    11330 params perp   0.003483 0.000176 15.092973 0.006357 1557.000000 3.000000 4.175570 0.769848 0.298345 0.000000 1.689498
+#
+#paramters for 450 MeV edge tpositiv
+#Misc:   	poltable  11457    11520 params para   0.003521 0.000173 1.759157 0.058490 1557.000000 3.000000 4.139624 0.742814 0.265161 0.000000 2.180203
+#Misc:   	poltable  11457    11520 params perp   0.003483 0.000176 15.092973 0.006357 1557.000000 3.000000 4.175570 0.769848 0.298345 0.000000 1.689498
+#
+#paramters for 650 MeV edge tpositiv
+#Misc:   	poltable  11524    11672 params para   0.006107 0.000187 1.598077 0.123641 1557.000000 3.000000 3.307089 0.618379 0.626039 0.000000 1.649273
+#Misc:   	poltable  11524    11672 params perp   0.006204 0.000172 2.000668 0.225850 1557.000000 3.000000 3.379224 0.543443 0.649997 0.000000 1.585149
+#
+#paramters for 850 MeV edge tpositiv butanol
+#Misc:   	poltable  11679    12013 params para  0.010352 0.000231 2.865770 0.016623 1557.000000 3.000000 2.419290 0.582892 2.012977 0.000000 4.379409
+#Misc:   	poltable  11679    12013 params perp  0.010393 0.000162 15.569027 0.332325 1557.000000 3.000000 2.678191 0.683513 2.061408 0.000000 4.235271
+#
+#paramters for 850 MeV edge tpositiv butanol
+#Misc:   	poltable  11664    11664 params para  0.010352 0.000231 2.865770 0.016623 1557.000000 3.000000 2.419290 0.582892 2.012977 0.000000 4.379409
+#Misc:   	poltable  11664    11664 params perp  0.010393 0.000162 15.569027 0.332325 1557.000000 3.000000 2.678191 0.683513 2.061408 0.000000 4.235271
+#
+#
+#
+# Do some post-initialisation.
+# Should usually be done before display is setup
+Initialise:
+# Histograms of apparatus-level variables
+# histogram name should be preceeded by 1D or 2D (for dimension of spectrum)
+#
+#           Name        				chan/low/high   min/max condition(opt)
+Display: 1D Incoherent			352 0  352 -1
+Display: 1D Coherent			352 0  352 -1
+Display: 1D Enhancement			352 0  352 -1
+Display: 2D Enhancement			352 0  352 -1 Scaler 500 0 500 -1
+Display: 1D CoherentPara		352 0  352 -1
+Display: 1D EnhancementPara		352 0  352 -1
+Display: 1D CoherentPerp		352 0  352 -1
+Display: 1D EnhancementPerp		352 0  352 -1
+Display: 1D CohEnergy			4000 0 4000 -1
+Display: 1D CohEdgePara			4000 0 4000 -1
+Display: 1D CohEdgePerp			4000 0 4000 -1
+Display: 1D CohEdgeDistPara		200  0 200 -1
+Display: 1D CohEdgeDistPerp		200  0 200 -1
+Display: 1D CohEdgeEpics		4000 0 4000 -1
+Display: 1D CohEdgeParaEpics		4000 0 4000 -1
+Display: 1D CohEdgePerpEpics		4000 0 4000 -1
+Display: 1D CohEdgeDistParaEpics	200  0 200 -1
+Display: 1D PolTableEnh			352 0  352 -1
+Display: 2D PolTableEnh			352 0  352 -1 Scaler 500 0 500 -1
+Display: 1D PolTablePol			352 0  352 -1
+Display: 2D PolTablePol			352 0  352 -1 Scaler 500 0 500 -1
+Display: 1D PolMean			352 0  352 -1
+Display: 1D PolCount			352 0  352 -1
+#
+# 2nd pass of Init to pick up ptrs to histograms
+Initialise:
+#
