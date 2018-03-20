@@ -16,7 +16,7 @@ Input-Streams:	1		327680		0
 ##
 ## Optional directory spec. If not specified File-Names must contain the full
 ## directory path
-File-Directory:	/w/work14/mainz/2016-08_Recoil_Pol/
+File-Directory:	/w/work0/mainz/2016-08_Recoil_Pol/
 #File-Directory:	/w/work14/mainz/2016-09_Recoil_Pol/
 ##
 ## Specify each input stream

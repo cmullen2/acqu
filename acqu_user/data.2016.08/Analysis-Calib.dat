@@ -38,21 +38,21 @@ MultiADC: 1 10000 10100
 #
 ## Stuff to monitor time dependence of counting rates and the hit pattern
 ## coming from the trigger box....the parameter is the setup file name
-RateMonitor: data.2016.08/Analysis-TriggerRate.dat
-BitPattern:  data.2016.08/Analysis-TriggerPat.dat
+RateMonitor: data.2016.08/Trigger/Analysis-TriggerRate.dat
+BitPattern:  data.2016.08/Trigger/Analysis-TriggerPat.dat
 ##
 ## Apparatus setup....
 ## Raw analysis may be performed without Apparati
 ##              Name            Class           	Setup file
 #Apparatus:      TAGG            TA2Tagger               Analysis-Tagger.dat
-Apparatus:      CB             	TA2CentralApparatus	data.2016.08/Analysis-CentralApparatus_Calib.dat
-Apparatus:      TAPS            TA2Taps	 		data.2016.08/Analysis-TAPS.dat
-Apparatus:      TAGG            TA2Tagger               data.2016.08/Analysis-Tagger.dat
-#Apparatus:      LinPol    	TA2LinearPolEpics       AR-Analysis-LinPol-PARA.dat
-#Apparatus:      LinPol    	TA2LinearPolEpics       AR-Analysis-LinPol-PERP.dat
+Apparatus:      CB             	TA2CentralApparatus	data.2016.08/CB/Analysis-CentralApparatus_Calib.dat
+Apparatus:      TAPS            TA2Taps	 		data.2016.08/TAPS/Analysis-TAPS.dat
+Apparatus:      TAGG            TA2Tagger               data.2016.08/Tagger/Analysis-Tagger.dat
+#Apparatus:      LinPol    	TA2LinearPolEpics       data.2016.08/LinPol/AR-Analysis-LinPol-PARA.dat
+#Apparatus:      LinPol    	TA2LinearPolEpics       data.2016.08/LinPol/AR-Analysis-LinPol-PERP.dat
 #Apparatus:      CB              TA2CrystalBall          Apparatus-CB.dat
 #Apparatus:      TAPS            TA2Calorimeter          Apparatus-TAPS.dat 
-Apparatus:      MWPC            TA2GenericApp           data.2016.08/Apparatus-MWPC.dat
+Apparatus:      MWPC            TA2GenericApp           data.2016.08/MWPC/Apparatus-MWPC.dat
 
 ##
 ## Turn on apparatus-level reconstruction
@@ -87,7 +87,7 @@ Finish:		root/macros/MyFinishMacro.C 	MyFinishMacro()
 #Finish:	root/macros/FinishTree.C	FinishTree("ARHistograms_XXX.root")
 ##
 #Removing for lin pol 12/07/17 CAM
-Display: All
+#####Display: All
 ##
 ## Save all accepted events (ie those which pass all data cuts) to a
 ## ROOT file. Data saved in RAW format (ie ADC indices and values)

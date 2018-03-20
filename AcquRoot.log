@@ -1,2 +1,2 @@
- Error in operation <ERROR ARFile_t: fopen failed, FileName: ./data/ROOTsetup.dat> of class TAcquRoot at command line:
-./data/ROOTsetup.dat FATAL ERROR...exiting AcquRoot
+ Error in operation <ERROR ARFile_t: fopen failed, FileName: data.MC/AR.dat> of class TAcquRoot at command line:
+data.MC/AR.dat FATAL ERROR...exiting AcquRoot
