@@ -14,7 +14,7 @@
 
 
 #include "TA2TAPSAnalysis.h"
-
+#include <iostream>
 
 
 //______________________________________________________________________________
@@ -424,7 +424,7 @@ void TA2TAPSAnalysis::FillTDCHitsM(TA2Detector* det, TH1** h)
 void TA2TAPSAnalysis::Reconstruct()
 {
     // Main analysis method that is called for every event.
-    
+
     // fill BaF2 LG ADC spectra
     if (fBaF2_LG && fBaF2_LG->IsRawHits())
     {

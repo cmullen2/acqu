@@ -13,7 +13,7 @@
 ##-----------------------------------------------------------------------
 Foam-Model:	SAID
 ##		#events/run	Random seed	#runs
-Number-Throws:	100000		888888		300
+Number-Throws:	100000		888888		3000
 ##
 ## Baryon resonances
 ##		Name	PDG code
@@ -76,8 +76,8 @@ Particle: Gamma_2	22	0	1	Pi0	NULL
 #Ntuple-Output:  /scratch/jrma/GD_PPi0_QFSAID_1MN
 #Particle-Output:  /scratch/jrma/GD_PPi0_QFSAID_1MP
 
-Tree-Output:   /w/work14/chris/LatestAnalysisRuns/Sims/SimsOct17/FoamOut/Deuterium/Flat/DeutNoPol    
-Ntuple-Output:   /w/work14/chris/LatestAnalysisRuns/Sims/SimsOct17/FoamOut/Deuterium/Flat/DeutNoPol
+Tree-Output:   /w/work1/home/chris/LatestAnalysisRuns/Sims/SimsOct17/FoamOut/Deuterium/PPi0/DeutNoPol    
+Ntuple-Output:   /w/work1/home/chris/LatestAnalysisRuns/Sims/SimsOct17/FoamOut/Deuterium/PPi0/DeutNoPol
 
 #Tree-Output:   /w/work14/chris/ForSPlots/Simulations/FoamOut/PosPol/PosPol    
 #Ntuple-Output:   /w/work14/chris/ForSPlots/Simulations/FoamOut/PosPol/PosPolNtuple

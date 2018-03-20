@@ -36,8 +36,8 @@ Reconstruct-Analysis:
 #High-level physics analysis, processing 4-vectors produced by apparatus
 #classes.
 ##                 	Name  	Class       	Configuration File
-######Physics-Analysis:	PHYS	TA2GoAT		AR-Analysis-GoAT.dat
-Physics-Analysis:	PHYS	TA2MyCaLib	AR-Analysis-Calib.dat
+Physics-Analysis:	PHYS	TA2GoAT		AR-Analysis-GoAT.dat
+######Physics-Analysis:	PHYS	TA2MyCaLib	AR-Analysis-Calib.dat
 #Physics-Analysis:	PHYS	TA2Pi0Compton	AR-Analysis-Pi0Compton.dat
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #

@@ -2384,11 +2384,10 @@ void TA2MyCaLib::ReconstructPhysics()
             {
                 // fill energy
                 fHCalib_TAPS_LED_Norm->Fill(fBaF2PWOEnergy[fBaF2PWOHits[i]], fBaF2PWOHits[i]);
-            
                 // fill energy under LED1 condition
                 for (UInt_t j = 0; j < fBaF2LED1Nhits; j++)
-                {
-                    if (fBaF2LED1Hits[j] == TOA2Detector::GetVetoInFrontOfElement(fBaF2PWOHits[i], fTAPSType)) 
+                {   
+                    if (fBaF2LED1Hits[j] == TOA2Detector::GetVetoInFrontOfElement(fBaF2PWOHits[i], fTAPSType))
                         fHCalib_TAPS_LED_LED1->Fill(fBaF2PWOEnergy[fBaF2PWOHits[i]], fBaF2PWOHits[i]);
                 }
                 
