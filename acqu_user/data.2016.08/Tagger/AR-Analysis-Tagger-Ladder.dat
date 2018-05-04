@@ -404,6 +404,29 @@ Element: 1148 0.2 2.5 0.0 0.00050 1766M0 -250.0 250.0 -3218 0.1170 0 0 0 1456.62
 Element: 1149 0.2 2.5 0.0 0.00050 1782M0 -250.0 250.0 -3215 0.1170 0 0 0 1460.808 4.863 2925
 Element: 1150 0.2 2.5 0.0 0.00050 1767M0 -250.0 250.0 -3212 0.1170 0 0 0 1464.993 4.881 2926
 Element: 1151 0.2 2.5 0.0 0.00050 1783M0 -250.0 250.0 -3215 0.1170 0 0 0 1469.173 4.895 2927
+##
+Ignore-Elem: 0
+Ignore-Elem: 1
+Ignore-Elem: 2
+Ignore-Elem: 3
+Ignore-Elem: 4
+Ignore-Elem: 5
+Ignore-Elem: 6
+Ignore-Elem: 7
+Ignore-Elem: 8
+Ignore-Elem: 9
+Ignore-Elem: 16
+Ignore-Elem: 18
+Ignore-Elem: 19
+Ignore-Elem: 20
+Ignore-Elem: 21
+Ignore-Elem: 22
+Ignore-Elem: 30
+Ignore-Elem: 96
+Ignore-Elem: 192
+Ignore-Elem: 242
+Ignore-Elem: 243
+##
 Initialise: 
 Display: 1D Nhits       32 0 32
 Display: 1D NhitsPrompt 32 0 32
